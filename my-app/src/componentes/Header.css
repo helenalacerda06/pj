@@ -1,4 +1,24 @@
-.Header {
+.header {
   background-color: #efb7eb;
-  color: #efb7eb;
+  color: #2b2b2b;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.header nav {
+  display: flex;
+  gap: 16px;
+}
+
+.header nav a {
+  color: #2b2b2b;
+  text-decoration: none;
+  font-weight: 600;
 }
