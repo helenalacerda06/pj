@@ -7,7 +7,7 @@ function App() {
     <div className="app-shell">
       <Header />
       <main className="app-main">
-        <h2>Bem-vindo ao meu app</h2>
+
 
       </main>
       <Footer />

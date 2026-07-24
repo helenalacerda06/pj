@@ -1,14 +1,14 @@
 
 import './Header.css';
-import Logo from '../assets/logo.png';
+import Logo from '../logo.png';
+
 function Header() {
   return (
     <header className="header">
-      <img src={Logo} alt="Logo" />
+      <img src={Logo} alt="Logo" className="header-logo" />
       <nav>
         <a href="#">Início</a>
         <a href="#">Sobre</a>
-        <a href="#">Contato</a>
       </nav>
     </header>
   );
