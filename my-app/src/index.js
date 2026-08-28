@@ -7,11 +7,21 @@ import Login from './componentes/login';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+function Root(){
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  function handleLogin(event){
+    event.preventDefault();
+    setLoggedIn(true);
+  }
+  return loggedIn ? <App /> : <Login onLogin={handleLogin} />
+}
 root.render(
   <React.StrictMode>
 
 
-<Login />
+<Root />
 
   </React.StrictMode>
 );

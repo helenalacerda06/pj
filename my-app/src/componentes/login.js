@@ -30,10 +30,11 @@ function Login({ onLogin }){
                         className="input"
                         placeholder='********'
                     />
-                    <button className='button' type='submit'>
+                    
+                </form>
+                <button className='button' type='submit'>
                         Login
                     </button>
-                </form>
                 
 
             </container>
