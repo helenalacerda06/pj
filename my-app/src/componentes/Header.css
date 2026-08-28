@@ -1,5 +1,5 @@
 .header {
-  background-color: #efb7eb;
+  background-color: #ffc8fb;
   color: #2b2b2b;
   padding: 25px 24px;
   display: flex;
@@ -9,8 +9,8 @@
 }
 
 .header-logo {
-  width: 60px;
-  margin-left: 16px;
+  width: 50px;
+  margin-left: 20px;
 
 }
 
@@ -32,8 +32,9 @@
 }
 
 .header a {
-  border: 2px solid #f797f0;
-  background-color: #f1a0ec;
+  border: 2px solid #fdbaf9;
+  background-color: #fdbaf9;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 18px;
+  align-items: center;
 }
