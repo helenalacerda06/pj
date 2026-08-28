@@ -9,7 +9,7 @@ function App() {
   
       <Header />
       <main className="app-main">
-        <Login />
+      
       </main>
       <Footer />
     </div>
