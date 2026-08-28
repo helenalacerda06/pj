@@ -1,12 +1,11 @@
 import './login.css';
-import App from '../App.js'
 
-function Login(){
+function Login({ onLogin }){
     return(
             <container className='container'>
                 <h1 className='titulo'>Login</h1>
                 
-                <form className="form" >
+                <form className="form" onSubmit={onLogin}>
 
                     <label className='label'>Nome do usuário</label>
                     <input
@@ -31,7 +30,9 @@ function Login(){
                         className="input"
                         placeholder='********'
                     />
-                    <button className='button' type='submit'onClick={App} >Login</button>
+                    <button className='button' type='submit'>
+                        Login
+                    </button>
                 </form>
                 
 
