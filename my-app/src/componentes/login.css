@@ -1,0 +1,12 @@
+.container{
+    display: block;
+    background-color: #ffc8fb;
+    width: 350px;
+    height: 400px;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.label{
+    display: block;
+}

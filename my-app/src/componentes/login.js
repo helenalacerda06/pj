@@ -1,22 +1,24 @@
-function login(){
+import './login.css';
+
+function Login(){
     return(
         <div>
-            <container>
+            <container className='container'>
                 <h1>Login</h1>
                 
                 <form className="form" >
 
-                    <label>Nome do usuário</label>
+                    <label className='label'>Nome do usuário</label>
                     <input
                         className="input"
                     />
 
-                    <label>E-mail</label>
+                    <label className='label'>E-mail</label>
                     <input
                         className="input"
                     />
 
-                    <label>Criar senha</label>
+                    <label className='label'>Criar senha</label>
                     <input
                         className="input"
                     />
@@ -26,4 +28,4 @@ function login(){
     )
 }
 
-export default login
+export default Login
