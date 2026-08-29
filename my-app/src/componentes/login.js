@@ -2,7 +2,7 @@ import './login.css';
 
 function Login({ onLogin }){
     return(
-            <container className='container'>
+            <div className='container'>
                 <h1 className='titulo'>Login</h1>
                 
                 <form className="form" onSubmit={onLogin}>
@@ -25,20 +25,17 @@ function Login({ onLogin }){
                         placeholder='********'
                     />
 
-                       <label className='label'>Confirmar senha</label>
+                    <label className='label'>Confirmar senha</label>
                     <input
                         className="input"
                         placeholder='********'
                     />
-                    
-                </form>
-                <button className='button' type='submit'>
+
+                    <button className='button' type='submit'>
                         Login
                     </button>
-                
-
-            </container>
-      
+                </form>
+            </div>
     )
 }
 
