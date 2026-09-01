@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { AppRoutes } from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renderiza login e navega para criar avaliação', () => {
+  render(
+    <MemoryRouter initialEntries={['/']}>
+      <AppRoutes />
+    </MemoryRouter>
+  );
+
+  expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole('button', { name: /^login$/i }));
+
+  expect(screen.getByRole('heading', { name: /criar nova avaliação/i })).toBeInTheDocument();
 });

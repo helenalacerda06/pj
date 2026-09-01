@@ -1,5 +1,4 @@
 *{
-    /* background-color: #b8a2b8; */
    background: #fd93a1;
     background: radial-gradient(circle, rgb(247, 125, 142) 0%, rgb(247, 206, 240) 100%) ;
 }
@@ -38,9 +37,9 @@
 }
 
 .button{
-    margin: 30px;
+    margin: 35px;
     width: 200px;
-    height: 3zzzz0px;
+    height: 30px;
     border-radius: 10px;
     background: #f9c5f5;
     color:rgb(18, 2, 18);
@@ -53,7 +52,9 @@
     height: 20px;
     margin: 10px;
     background: #fccbf8;
+    padding: 3px;
     padding-left: 15px;
+    align-items: center;
 }
 .input houver{
     border-color: transparent;
