@@ -33,3 +33,14 @@
     background: #fce6fa;
     color:#db87d6;
 }
+
+.select{
+    border-radius: 10px;
+    border-color: transparent;
+    width: 270px;
+    height: 30px;
+    margin: 10px;
+    background: #fccbf8;
+    padding-left: 15px;
+    align-items: center;
+}

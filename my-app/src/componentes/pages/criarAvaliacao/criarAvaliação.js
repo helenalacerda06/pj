@@ -7,12 +7,11 @@ function criarAvaliação() {
             <div className="containerAvaliacao">
                 <form className="Form">
                     <label className="label">Categoria</label>
-                    <input
-                        className="input"
-                        placeholder='Categoria '
-                        id='categoria'
-                        type=""
-                    />
+                    <select className="select">
+                        <option value="" className='select' >Filme</option>
+                        <option value="" className='select' >Serie</option>
+                        <option value="" className='select' >Livro</option>
+                    </select>
                     <label className="label">Nome</label>
                     <input
                         className="input"
