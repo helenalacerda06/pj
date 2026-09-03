@@ -23,8 +23,8 @@
     border-style: solid;
     border-width: 3px;
     border-color: #c478c0;
-    
 }
+
 .label{
     width: 100;
     display: block;
@@ -45,17 +45,19 @@
     color:rgb(18, 2, 18);
     border: transparent;
 }
+
 .input{
     border-radius: 10px;
     border-color: transparent;
     width: 250px;
     height: 20px;
-    margin: 10px;
+    margin: 5px;
     background: #fccbf8;
     padding: 3px;
     padding-left: 15px;
     align-items: center;
 }
+
 .input houver{
     border-color: transparent;
     width: 230px;

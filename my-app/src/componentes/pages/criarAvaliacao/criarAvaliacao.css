@@ -6,7 +6,7 @@
 
 .containerAvaliacao{
     display: flex;
-    flex-direction: column;
+
     align-items: start;
     background: #fce3fa;
     width: 1200px;

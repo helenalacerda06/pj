@@ -1,6 +1,12 @@
+import { useState } from 'react';
 import styles from './criarAvaliacao.css';
+import visualizacaoAvaliacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.js'
+import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 
-function criarAvaliação() {
+    
+function CriarAvaliação() {
+    const [nomeAvaliacao, setNomeAvaliacao] = useState("");
+
     return (
         <div >
             <h1 className="tituloAvaliacao">Criar nova avaliação</h1>
@@ -17,35 +23,49 @@ function criarAvaliação() {
                         className="input"
                         placeholder='Nome da avaliação'
                         id='nomeAvaliacao'
-                        type=""
+                        type="text"
+                        value={nomeAvaliacao}
+                        onChange={(e) => setNomeAvaliacao(e.target.value)}
                     />
                     <label className="label">Descrição</label>
                     <input
                         className="input"
                         placeholder='Descrição da avaliação'
                         id='descricao'
-                        type=""
+                        type="text"
                     />
                     <label className="label">Feedback</label>
                     <input
                         className="input"
                         placeholder='Oque você achou da obra?'
                         id='feedback'
-                        type=""
+                        type="text"
                     />
                     <label className="label">Principais pontos</label>
                     <input
                         className="input"
                         placeholder='Pontos importantes'
                         id='principaisPontos'
-                        type=""
+                        type="text"
+                    />
+
+                    <label className="label">Imagem</label>
+                    <input
+                        className="input"
+                        placeholder='Insira o link da imagem'
+                        id='imagem'
+                        type="image"
                     />
                     <label className="label">Nota</label>
                 </form>
+
+                <div className={"containerVisualizacao"}>
+                    
+                </div>
             </div>
         </div>
     )
 
 }
 
-export default criarAvaliação;
+export default CriarAvaliação;
