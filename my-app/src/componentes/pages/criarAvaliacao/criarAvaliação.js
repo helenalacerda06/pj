@@ -7,6 +7,11 @@ import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.cs
 function CriarAvaliação() {
     const [nomeAvaliacao, setNomeAvaliacao] = useState("");
 
+    const [ descricaoAvaliacao, setDescricaoAvaliacao] = useState("")
+    const [ fedbackAvaliacao, setFedbackAvaliacao] = useState("")
+    const [ principaisPontos, setPrincipaisPontos] = useState("")
+
+
     return (
         <div >
             <h1 className="tituloAvaliacao">Criar nova avaliação</h1>
@@ -33,13 +38,17 @@ function CriarAvaliação() {
                         placeholder='Descrição da avaliação'
                         id='descricao'
                         type="text"
+                        value={descricaoAvaliacao}
+                        onChange={(e) => setDescricaoAvaliacao(e.target.value)}
                     />
-                    <label className="label">Feedback</label>
+                    <label className="label">Fedback</label>
                     <input
                         className="input"
                         placeholder='Oque você achou da obra?'
                         id='feedback'
+                        value={fedbackAvaliacao}
                         type="text"
+                        onChange={(e) => setFedbackAvaliacao(e.target.value)}
                     />
                     <label className="label">Principais pontos</label>
                     <input
@@ -47,6 +56,9 @@ function CriarAvaliação() {
                         placeholder='Pontos importantes'
                         id='principaisPontos'
                         type="text"
+                        value={principaisPontos}
+                        onChange={(e) => setPrincipaisPontos(e.target.value)}
+
                     />
 
                     <label className="label">Imagem</label>
@@ -55,17 +67,26 @@ function CriarAvaliação() {
                         placeholder='Insira o link da imagem'
                         id='imagem'
                         type="image"
+                        src='img_submit.gif'
+                        alt='baner ou capa'
+                        accept='.jpg, .jpeg, .png'
+                        required
                     />
                     <label className="label">Nota</label>
                 </form>
 
                 <div className={"containerVisualizacao"}>
-                    
+                    <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
+                    {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
+                    {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
+                    {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
                 </div>
+                
             </div>
         </div>
     )
+    }
 
-}
+
 
 export default CriarAvaliação;

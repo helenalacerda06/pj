@@ -1,5 +1,5 @@
 .containerVisualizacao {
-  display: flex;
+  display: column;
     background: #f7e4f4;
     width: 800px;
     height: 500px;
@@ -9,4 +9,25 @@
     border-style: solid;
     border-width: 3px;
     border-color: #c478c0;
+}
+
+.tituloVisualizacao {
+    font-weight: bold;
+    text-align: center;
+    background: transparent;
+    color: #9c939c;
+    width: 100%;
+}
+
+.containerDescricao {
+  width: 370px;
+  height: 120px;
+  border-color: #a87ea5;
+  border-style: solid;
+  background: #f7d8ef;
+  border-width: 3px;
+  border-radius: 15px;
+  margin-left: 400px;
+  padding-top: 5px;
+  color: #a87ea5;
 }
