@@ -3,13 +3,15 @@ import styles from './criarAvaliacao.css';
 import visualizacaoAvaliacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.js'
 import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 
-    
+
 function CriarAvaliação() {
     const [nomeAvaliacao, setNomeAvaliacao] = useState("");
 
-    const [ descricaoAvaliacao, setDescricaoAvaliacao] = useState("")
-    const [ fedbackAvaliacao, setFedbackAvaliacao] = useState("")
-    const [ principaisPontos, setPrincipaisPontos] = useState("")
+    const [descricaoAvaliacao, setDescricaoAvaliacao] = useState("")
+    const [fedbackAvaliacao, setFedbackAvaliacao] = useState("")
+    const [principaisPontos, setPrincipaisPontos] = useState("")
+    const [adicionarImagem, setAdicionarImagem] = useState(null)
+    const [categoria, setCategoria] = useState("")
 
 
     return (
@@ -18,10 +20,11 @@ function CriarAvaliação() {
             <div className="containerAvaliacao">
                 <form className="Form">
                     <label className="label">Categoria</label>
-                    <select className="select">
-                        <option value="" className='select' >Filme</option>
-                        <option value="" className='select' >Serie</option>
-                        <option value="" className='select' >Livro</option>
+                    <select className="select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                        <option value='' className='select' >Selecione uma categoria</option>
+                        <option value='Filme' className='select' >Filme</option>
+                        <option value='Serie' className='select' >Serie</option>
+                        <option value='Livro' className='select' >Livro</option>
                     </select>
                     <label className="label">Nome</label>
                     <input
@@ -58,34 +61,66 @@ function CriarAvaliação() {
                         type="text"
                         value={principaisPontos}
                         onChange={(e) => setPrincipaisPontos(e.target.value)}
-
                     />
 
                     <label className="label">Imagem</label>
                     <input
-                        className="input"
-                        placeholder='Insira o link da imagem'
+                        className='input'
                         id='imagem'
-                        type="image"
-                        src='img_submit.gif'
-                        alt='baner ou capa'
-                        accept='.jpg, .jpeg, .png'
-                        required
+                        type="file"
+                        accept='image/'
+
+                        onChange={(e) => {
+                            const arquivo = e.target.files[0];
+                            if (arquivo) {
+                                const imagemURL = URL.createObjectURL(arquivo);
+                                setAdicionarImagem(imagemURL)
+                            }
+                        }}
                     />
                     <label className="label">Nota</label>
+                    <div class="vote" className='star' name="fb" value="" checked>
+                        <label className='star'>
+                            <input type="radio" id="star" name='fb'value={1} />
+                            <i class="fa"></i>
+                        </label>
+                        <label className='star'>
+                            <input type="radio" id="star" name='fb'value={2} />
+                            <i class="fa"></i>
+                        </label>
+                        <label className='star'>
+                            <input type="radio" id="star" name='fb'value={3} />
+                            <i class="fa"></i>
+                        </label>
+                        <label className='star'>
+                            <input type="radio" id="star" name='fb'value={4} />
+                            <i class="fa"></i>
+                        </label>
+                        <label className='star'>
+                            <input type="radio" id="star" name='fb'value={5} />
+                            <i class="fa"></i>
+                        </label>
+                    </div>
                 </form>
 
                 <div className={"containerVisualizacao"}>
                     <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
-                    {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
-                    {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
-                    {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
+                    <div className='areaImagem'>
+                        {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
+                        {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
+                    </div>
+                    <div className='areaInformacoes'>
+                        {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
+                        {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
+                        {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
+                    </div>
+
                 </div>
-                
+
             </div>
         </div>
     )
-    }
+}
 
 
 
