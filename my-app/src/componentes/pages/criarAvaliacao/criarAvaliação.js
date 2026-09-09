@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styles from './criarAvaliacao.css';
 import visualizacaoAvaliacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.js'
 import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack'
 
 
 function CriarAvaliação() {
@@ -12,6 +14,7 @@ function CriarAvaliação() {
     const [principaisPontos, setPrincipaisPontos] = useState("")
     const [adicionarImagem, setAdicionarImagem] = useState(null)
     const [categoria, setCategoria] = useState("")
+    const [estrela, setEstrela] = useState("")
 
 
     return (
@@ -79,28 +82,14 @@ function CriarAvaliação() {
                         }}
                     />
                     <label className="label">Nota</label>
-                    <div class="vote" className='star' name="fb" value="" checked>
-                        <label className='star'>
-                            <input type="radio" id="star" name='fb'value={1} />
-                            <i class="fa"></i>
-                        </label>
-                        <label className='star'>
-                            <input type="radio" id="star" name='fb'value={2} />
-                            <i class="fa"></i>
-                        </label>
-                        <label className='star'>
-                            <input type="radio" id="star" name='fb'value={3} />
-                            <i class="fa"></i>
-                        </label>
-                        <label className='star'>
-                            <input type="radio" id="star" name='fb'value={4} />
-                            <i class="fa"></i>
-                        </label>
-                        <label className='star'>
-                            <input type="radio" id="star" name='fb'value={5} />
-                            <i class="fa"></i>
-                        </label>
-                    </div>
+                    <Stack  spacing={1}>
+                        <Rating 
+                        className='estrela' 
+                        name="half-rating-read"
+                        value={estrela}
+                        onChange={(e) => setEstrela(e.target.value)}
+                        />
+                    </Stack>
                 </form>
 
                 <div className={"containerVisualizacao"}>
@@ -108,11 +97,13 @@ function CriarAvaliação() {
                     <div className='areaImagem'>
                         {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
                         {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
+                        {estrela !== "" && <p className='estrela'>{estrela}</p>}
                     </div>
                     <div className='areaInformacoes'>
                         {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
                         {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
                         {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
+                        
                     </div>
 
                 </div>

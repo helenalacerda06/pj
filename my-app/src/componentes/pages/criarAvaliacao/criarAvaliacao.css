@@ -1,6 +1,7 @@
 .tituloAvaliacao{
     color: #ffbffb;
     background:transparent;
+    margin-top: 100px;
 
 }
 
@@ -43,4 +44,10 @@
     background: #fccbf8;
     padding-left: 15px;
     align-items: center;
+}
+
+.estrela{
+    background: #c478c0;
+    color: #630d5e;
+    
 }

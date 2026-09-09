@@ -1,11 +1,12 @@
 .header {
   background: #f8d9f6;
   color: #2b2b2b;
-  padding: 25px 24px;
+  padding: 20px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1040px;
+  position: fixed;
 }
 
 .header-logo {
