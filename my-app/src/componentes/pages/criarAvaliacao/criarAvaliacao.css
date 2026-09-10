@@ -44,10 +44,11 @@
     background: #fccbf8;
     padding-left: 15px;
     align-items: center;
+    color: #717070;
 }
 
 .estrela{
-    background: #c478c0;
-    color: #630d5e;
-    
+    background: transparent;
+    padding-left: 50px;
 }
+

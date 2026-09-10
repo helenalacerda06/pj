@@ -1,0 +1,55 @@
+.home{
+    background: #f8d9f6;
+    width: 1322px ;
+    height: 655px;
+    grid-template-columns: 1fr 1fr;
+     box-sizing: border-box;
+      display: grid;
+}
+
+.tituloHome{
+    margin-top: 70px;
+    color: #a9749f;
+    background: transparent;
+    grid-column: 1;
+    flex-direction: column;
+    justify-content: start;
+    display: flex;
+    padding-top: 70px ;
+    padding-left: 250px;
+    text-align: start;
+    /* font-size: 100px; */
+}
+
+.textoHome{
+    color: #a9749f;
+    margin-top: 120px;
+    background: transparent;
+}
+
+.buttonNovaAva{
+    background: transparent;
+    height: 60px;
+    width: 195px;
+    border-radius: 25px;
+    border:solid;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    align-items: center;
+    margin-top: 80px;
+    border-color: #b491ad;
+
+}
+
+.iconNovaAva{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px ;
+    background: transparent;
+}
+
+.segundo{
+    grid-column: 2;
+    background: transparent;
+}

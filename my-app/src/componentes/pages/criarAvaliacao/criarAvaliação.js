@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from './criarAvaliacao.css';
-import visualizacaoAvaliacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.js'
 import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
@@ -84,7 +83,6 @@ function CriarAvaliação() {
                     <label className="label">Nota</label>
                     <Stack  spacing={1}>
                         <Rating 
-                        className='estrela' 
                         name="half-rating-read"
                         value={estrela}
                         onChange={(e) => setEstrela(e.target.value)}
@@ -97,7 +95,7 @@ function CriarAvaliação() {
                     <div className='areaImagem'>
                         {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
                         {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
-                        {estrela !== "" && <p className='estrela'>{estrela}</p>}
+                        {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly/></p>}
                     </div>
                     <div className='areaInformacoes'>
                         {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}

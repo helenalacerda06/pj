@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Login from './componentes/login';
+import Home from "./componentes/pages/inicio/home"
 
 import reportWebVitals from './reportWebVitals';
 
@@ -15,7 +16,7 @@ function Root(){
     event.preventDefault();
     setLoggedIn(true);
   }
-  return loggedIn ? <App /> : <Login onLogin={handleLogin} />
+  return loggedIn ? <Home /> : <Home onLogin={handleLogin} />
 }
 root.render(
   <React.StrictMode>
