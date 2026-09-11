@@ -80,8 +80,8 @@ function CriarAvaliação() {
                             }
                         }}
                     />
-                    <label className="label">Nota</label>
-                    <Stack  spacing={1}>
+                    <label className="nota">Nota</label>
+                    <Stack className='estrela' spacing={1}>
                         <Rating 
                         name="half-rating-read"
                         value={estrela}

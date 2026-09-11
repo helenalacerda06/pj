@@ -1,24 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
-import Home from "./componentes/pages/inicio/home";
-import CriarAvaliação from "./componentes/pages/criarAvaliacao/criarAvaliação";
+import Home from './componentes/pages/inicio/home';
+import CriarAvaliacao from './componentes/pages/criarAvaliacao/criarAvaliacao';
+import Login from "./componentes/login";
 
 function App() {
     return (
-        <BrowserRouter>
-
-            <Routes>
-
-                <Route path="/criar-avaliacao" element={<Home />} />
-
-                <Route
-                    path="/criar-avaliacao"
-                    element={<CriarAvaliação />}
-                />
-
-            </Routes>
-
-        </BrowserRouter>
+        <Routes>
+           <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/criar-avaliacao" element={<CriarAvaliacao />} />
+        </Routes>
     );
 }
 

@@ -1,30 +1,15 @@
-import React, { useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import Login from './componentes/login';
-import Home from "./componentes/pages/inicio/home"
-
-import reportWebVitals from './reportWebVitals';
+import Login from './componentes/login'
+import Header from './componentes/Header'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-function Root(){
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  function handleLogin(event){
-    event.preventDefault();
-    setLoggedIn(true);
-  }
-  return loggedIn ? <Home /> : <Home onLogin={handleLogin} />
-}
+<Header />
 root.render(
-  <React.StrictMode>
-
-
-<Root />
-
-  </React.StrictMode>
+  
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
 );
-
-reportWebVitals();

@@ -1,19 +1,19 @@
 import './login.css';
+import { useNavigate } from "react-router-dom";
 
 function Login({ onLogin }) {
-    function handleSubmit(event) {
-        event.preventDefault();
+   const navigate = useNavigate();
 
-        if (onLogin) {
-            onLogin(event);
-        }
+    function fazerLogin() {
+        navigate("/home");
     }
 
     return (
+        <div>
         <div className='container'>
             <h1 className='titulo'>Login</h1>
 
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={fazerLogin}>
                 <label className='label'>Nome do usuário</label>
                 <input
                     className="input"
@@ -50,6 +50,7 @@ function Login({ onLogin }) {
                         Login
                     </button>
                 </form> 
+            </div>
             </div>
     )
 }

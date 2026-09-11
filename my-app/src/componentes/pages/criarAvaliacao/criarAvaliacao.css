@@ -2,12 +2,12 @@
     color: #ffbffb;
     background:transparent;
     margin-top: 100px;
-
+    margin-left: 500px;
+    font-family: sans-serif;
 }
 
 .containerAvaliacao{
     display: flex;
-
     align-items: start;
     background: #fce3fa;
     width: 1200px;
@@ -27,12 +27,15 @@
     align-items:baseline;
     padding: 15px;
     margin: 8px;
-
+    border-radius: 10px;
+    
 }
 
 .label{
     background: #fce6fa;
     color:#db87d6;
+    font-family: sans-serif;
+    
 }
 
 .select{
@@ -50,5 +53,30 @@
 .estrela{
     background: transparent;
     padding-left: 50px;
+}
+
+.input{
+    border-radius: 10px;
+    border-color: transparent;
+    width: 270px;
+    height: 30px;
+    margin: 10px;
+    background: #fccbf8;
+    padding-left: 15px;
+    align-items: center;
+    color: #717070;
+    font-family: sans-serif;
+    align-items: center;
+}
+
+.nota{
+    font-family: sans-serif;
+    color: #c478c0;
+    margin-top: 10px;
+    background: transparent;
+}
+
+.lacStar{
+    background: transparent;
 }
 
