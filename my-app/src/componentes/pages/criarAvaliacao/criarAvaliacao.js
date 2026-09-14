@@ -3,6 +3,7 @@ import styles from './criarAvaliacao.css';
 import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
+import Header from '../../Header'
 
 
 function CriarAvaliação() {
@@ -14,10 +15,15 @@ function CriarAvaliação() {
     const [adicionarImagem, setAdicionarImagem] = useState(null)
     const [categoria, setCategoria] = useState("")
     const [estrela, setEstrela] = useState("")
+    const [data, setData] = useState("")
+    const [duracao,setDuracao] =useState("")
 
 
     return (
         <div >
+           <Header className='header'/>
+            <main>
+                
             <h1 className="tituloAvaliacao">Criar nova avaliação</h1>
             <div className="containerAvaliacao">
                 <form className="Form">
@@ -80,6 +86,27 @@ function CriarAvaliação() {
                             }
                         }}
                     />
+
+                    <label className="label">Lançamento</label>
+                    <input 
+                    className='input'
+                    id='data' 
+                    type='date'
+                    value={data}
+                    accept=''
+                    onChange={(e) => setData(e.target.value)}
+                    />
+
+                    <label className='label'>Duração</label>
+                    <input 
+                    className='input'
+                    id='duracao'
+                    type='time'
+                    value={duracao}
+                    onChange={(e) => setDuracao(e.target.value)}
+
+                    />
+
                     <label className="nota">Nota</label>
                     <Stack className='estrela' spacing={1}>
                         <Rating 
@@ -95,6 +122,8 @@ function CriarAvaliação() {
                     <div className='areaImagem'>
                         {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
                         {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
+                        {data !== "" && <p className='lancamento'>Lançamento: {data}</p>}
+                        {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
                         {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly/></p>}
                     </div>
                     <div className='areaInformacoes'>
@@ -106,7 +135,10 @@ function CriarAvaliação() {
 
                 </div>
 
+                <button className='buttonPublicar'>Publicar</button>
+
             </div>
+            </main>
         </div>
     )
 }

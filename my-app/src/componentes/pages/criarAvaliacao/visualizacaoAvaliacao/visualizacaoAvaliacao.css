@@ -2,10 +2,10 @@
   
     background: #f7e4f4;
     width: 850px;
-    height: 540px;
+    height: 550px;
     border-radius: 15px;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 15pz;
+    margin-top: 90px;
     border-style: solid;
     border-width: 3px;
     border-color: #c478c0; 
@@ -22,6 +22,7 @@
     width: 100%;
     grid-column: 1/3;
     font-family: sans-serif ;
+
 }
 
 .containerDescricao {
@@ -35,7 +36,8 @@
   padding-top: 5px;
   color: #a87ea5;
   font-family: sans-serif;
-  padding-left: 4px;
+  padding-left: 3px;
+  margin-right: 5px;
 }
 
 .imagemAvaliacao{
@@ -69,11 +71,40 @@
   font-weight: bold;
   color: #9c939c;
   font-size: large;
-  margin-top: 30px;
+  margin-top: 20px;
   font-family: sans-serif;
 }
 
+.lancamento{
+  background: transparent;
+  font-weight: bold;
+  color:#9c939c;
+  margin-left: 20px;
+  font-size: large;
+  margin-top: 0px;
+  font-family: sans-serif;
+}
+
+.duracao{
+  background: transparent;
+  font-weight: bold;
+  color:#9c939c;
+  margin-left: 50px;
+  font-size: large;
+  margin-top: 0px;
+  font-family: sans-serif;
+}
+
+.estrela{
+    background: transparent;
+  font-weight: bold;
+  color:#9c939c;
+  margin-top: 0px;
+  font-family: sans-serif;
+}
+
+
 .star{
   background: transparent;
-  padding: 4px;
+  margin-top: 10px;
 }

@@ -6,10 +6,10 @@ import Login from './componentes/login'
 import Header from './componentes/Header'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-<Header />
+
 root.render(
   
     <BrowserRouter>
-    <App />
+        <App />
     </BrowserRouter>
 );

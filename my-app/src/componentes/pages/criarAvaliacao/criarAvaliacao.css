@@ -1,9 +1,9 @@
 .tituloAvaliacao{
     color: #ffbffb;
     background:transparent;
-    margin-top: 100px;
     margin-left: 500px;
     font-family: sans-serif;
+    margin-top: 40px;
 }
 
 .containerAvaliacao{
@@ -11,13 +11,14 @@
     align-items: start;
     background: #fce3fa;
     width: 1200px;
-    height: 570px;
+    height: 700px;
     border-radius: 15px;
     margin: auto;
     padding: 15px;
     border-style: solid;
     border-width: 3px;
     border-color: #c478c0;
+    margin-top: 20px;
 }
 
 .Form{
@@ -25,7 +26,7 @@
     display:flex;
     flex-direction: column;
     align-items:baseline;
-    padding: 15px;
+    padding: 10px;
     margin: 8px;
     border-radius: 10px;
     
@@ -43,7 +44,7 @@
     border-color: transparent;
     width: 270px;
     height: 30px;
-    margin: 10px;
+    margin: 5px;
     background: #fccbf8;
     padding-left: 15px;
     align-items: center;
@@ -60,7 +61,7 @@
     border-color: transparent;
     width: 270px;
     height: 30px;
-    margin: 10px;
+    margin: 5px;
     background: #fccbf8;
     padding-left: 15px;
     align-items: center;
@@ -72,11 +73,16 @@
 .nota{
     font-family: sans-serif;
     color: #c478c0;
-    margin-top: 10px;
+    margin-top: 5px;
     background: transparent;
 }
 
 .lacStar{
+    background: transparent;
+}
+
+.buttonPublicar{
+    border-radius: 13px;
     background: transparent;
 }
 

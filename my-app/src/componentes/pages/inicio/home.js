@@ -1,31 +1,38 @@
 import { useNavigate } from 'react-router-dom';
 import CriarAvaliação from '../criarAvaliacao/criarAvaliacao';
 import button from "./mais.png"
-import {style} from './home.css'
+import { style } from './home.css'
 import LacStar from '../../../lacStar.png'
-import header from '../../Header'
+import Header from '../../Header'
 
-function Home(){
+function Home() {
     const navigate = useNavigate();
 
-    function irParaCriarAvaliacao(){
+    function irParaCriarAvaliacao() {
         navigate("/criar-avaliacao");
     }
-    return(
-        <div className="home">
+    return (
+
+        <div>
+            <Header/>
+            <main className="home">
             <img className='lacStar
             'src={LacStar} width="700"
-  height="340"/>
+                height="340" />
             <div className='segundo'>
                 <h3 className='textoHome'> Encontre filmes, séries e livros que combinam com você. Explore avaliações feitas por outros usuários, compartilhe suas próprias opiniões e interaja com diferentes recomendações.<br />
 
-Aqui, cada avaliação ajuda a descobrir uma nova história.</h3>
+                    Aqui, cada avaliação ajuda a descobrir uma nova história.</h3>
                 <button onClick={irParaCriarAvaliacao} className='buttonNovaAva'>
-                    <img className='iconNovaAva' src={button} />
-                    nova avaliação
+                    <span className='iconNovaAva'>
+                     <img className='iconNovaAva' src={button} />
+                    </span>
+                    Criar Avaliação
                 </button>
             </div>
+            </main>
         </div>
+        
     )
 }
 export default Home;

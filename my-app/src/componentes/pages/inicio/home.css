@@ -3,11 +3,21 @@
     background: radial-gradient(circle, rgb(247, 125, 142) 0%, rgb(247, 206, 240) 100%);
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 .home {
     background: #f8d9f6;
-    width: 1322px;
-    height: 655px;
+    width: 100vw;
+    max-width: 100%;
+    height: calc(100vh - 66px);
+    margin: 0;
+    padding: 0;
     grid-template-columns: 1fr 1fr;
     box-sizing: border-box;
     display: grid;
@@ -31,22 +41,26 @@
     color: #a9749f;
     margin-top: 180px;
     background: transparent;
-    margin-left: 90px;
+    margin-left: 60px;
+    margin-right: 60px;
     font-family: sans-serif;
 }
 
 .buttonNovaAva {
-    background: transparent;
+    background: #febffa;
     height: 60px;
-    width: 195px;
-    border-radius: 25px;
-    border: solid;
+    display:inline;
+    width: 220px;
+    border-radius: 16px; 
+    cursor: pointer;
+    padding: 2px 2px 2px 2px;
+    transition: all ease-in-out 0.2s;
+    border: 2px solid #f8d9f6;
     align-items: center;
     text-align: center;
     font-size: 18px;
     align-items: center;
     margin-top: 60px;
-    border-color: #b491ad;
     margin-left: 240px;
 
 }
@@ -63,6 +77,8 @@
 }
 
 .lacStar{
-    margin-top: 150px;
-    margin-left: 25px;
+    margin-top: 100px;
+    margin-left: 80px;
+    height: 100px;
+    width: 200px;
 }
