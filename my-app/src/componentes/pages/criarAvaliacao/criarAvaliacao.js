@@ -117,25 +117,24 @@ function CriarAvaliação() {
                     </Stack>
                 </form>
 
-                <div className={"containerVisualizacao"}>
-                    <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
-                    <div className='areaImagem'>
-                        {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
-                        {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
-                        {data !== "" && <p className='lancamento'>Lançamento: {data}</p>}
-                        {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
-                        {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly/></p>}
+                <div className="visualizacaoWrapper">
+                    <div className={"containerVisualizacao"}>
+                        <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
+                        <div className='areaImagem'>
+                            {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
+                            {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
+                            {data !== "" && <p className='lancamento'>Lançamento: {data}</p>}
+                            {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
+                            {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly/></p>}
+                        </div>
+                        <div className='areaInformacoes'>
+                            {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
+                            {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
+                            {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
+                        </div>
                     </div>
-                    <div className='areaInformacoes'>
-                        {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
-                        {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
-                        {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
-                        
-                    </div>
-
+                    <button className='buttonPublicar'>Publicar</button>
                 </div>
-
-                <button className='buttonPublicar'>Publicar</button>
 
             </div>
             </main>

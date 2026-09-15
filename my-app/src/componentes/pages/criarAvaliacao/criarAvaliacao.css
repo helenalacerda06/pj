@@ -1,12 +1,12 @@
-.tituloAvaliacao{
+.tituloAvaliacao {
     color: #ffbffb;
-    background:transparent;
+    background: transparent;
     margin-left: 500px;
     font-family: sans-serif;
     margin-top: 40px;
 }
 
-.containerAvaliacao{
+.containerAvaliacao {
     display: flex;
     align-items: start;
     background: #fce3fa;
@@ -21,25 +21,25 @@
     margin-top: 20px;
 }
 
-.Form{
+.Form {
     background: transparent;
-    display:flex;
+    display: flex;
     flex-direction: column;
-    align-items:baseline;
+    align-items: baseline;
     padding: 10px;
     margin: 8px;
     border-radius: 10px;
-    
+
 }
 
-.label{
+.label {
     background: #fce6fa;
-    color:#db87d6;
+    color: #db87d6;
     font-family: sans-serif;
-    
+
 }
 
-.select{
+.select {
     border-radius: 10px;
     border-color: transparent;
     width: 270px;
@@ -51,12 +51,12 @@
     color: #717070;
 }
 
-.estrela{
+.estrela {
     background: transparent;
     padding-left: 50px;
 }
 
-.input{
+.input {
     border-radius: 10px;
     border-color: transparent;
     width: 270px;
@@ -70,19 +70,34 @@
     align-items: center;
 }
 
-.nota{
+.nota {
     font-family: sans-serif;
     color: #c478c0;
     margin-top: 5px;
     background: transparent;
 }
 
-.lacStar{
+.lacStar {
     background: transparent;
 }
 
-.buttonPublicar{
-    border-radius: 13px;
-    background: transparent;
+.buttonPublicar {
+    align-self: flex-end;
+    margin-top: 15px;
+    padding: 8px 20px;
+    margin-right: 40px;
+    color: #2b2b2b;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #fdbaf9;
+    background: #fdbaf9;
+    padding: 8px 16px;
+    border-radius: 18px;
+    transition: opacity 0.2s ease;
 }
 
+.visualizacaoWrapper {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}

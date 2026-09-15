@@ -30,6 +30,10 @@ function Home() {
                     Criar Avaliação
                 </button>
             </div>
+
+            <div>
+                
+            </div>
             </main>
         </div>
         

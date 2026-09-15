@@ -1,5 +1,5 @@
 .header {
-  position: sticky;
+position: sticky;
   top: 0;
   left: 0;
   width: 100vw;
@@ -19,7 +19,7 @@
 
 .header-logo {
   width: 50px;
-  height: auto;
+height: auto;
   margin: 8px 0 8px 12px;
   background: transparent;
 }
@@ -31,10 +31,10 @@
 
 .header nav {
   display: flex;
-  align-items: center;
+align-items: center;
   gap: 12px;
   margin-left: auto;
-  background: transparent;
+background: transparent;
   font-family: sans-serif;
 }
 
@@ -46,9 +46,9 @@
   background: #fdbaf9;
   padding: 8px 16px;
   border-radius: 18px;
-  display: inline-flex;
+display: inline-flex;
   align-items: center;
-  justify-content: center;
+justify-content: center;
   transition: opacity 0.2s ease;
   margin-right: 10px;
 }
