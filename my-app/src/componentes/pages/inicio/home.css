@@ -3,7 +3,8 @@
     background: radial-gradient(circle, rgb(247, 125, 142) 0%, rgb(247, 206, 240) 100%);
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -49,9 +50,9 @@ html, body {
 .buttonNovaAva {
     background: #febffa;
     height: 60px;
-    display:inline;
+    display: inline;
     width: 220px;
-    border-radius: 16px; 
+    border-radius: 16px;
     cursor: pointer;
     padding: 2px 2px 2px 2px;
     transition: all ease-in-out 0.2s;
@@ -61,7 +62,7 @@ html, body {
     font-size: 18px;
     align-items: center;
     margin-top: 60px;
-    margin-left: 240px;
+    margin-left: 200px;
 
 }
 
@@ -72,13 +73,32 @@ html, body {
     background: transparent;
 }
 
-.segundo {
+.primeiro {
     background: transparent;
 }
 
-.lacStar{
-    margin-top: 100px;
+.segundo {
+    background: transparent;
+    display: inline-block;
+}
+
+.lacStar {
+    margin-top: 50px;
     margin-left: 80px;
     height: 100px;
     width: 200px;
+}
+
+.lacStarLogo {
+    background: transparent;
+    margin-left: 160px;
+    height: 500px;
+}
+
+.avaliacao {
+    height: 500px;
+    width: 100%;
+    max-width: 1350px;
+    box-sizing: border-box;
+    padding: 0 24px;
 }

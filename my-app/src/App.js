@@ -6,7 +6,7 @@ import Login from "./componentes/login";
 
 function App() {
     return (
-        <Routes> 
+        <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/criar-avaliacao" element={<CriarAvaliacao />} />

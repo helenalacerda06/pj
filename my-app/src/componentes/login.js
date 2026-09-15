@@ -2,7 +2,7 @@ import './login.css';
 import { useNavigate } from "react-router-dom";
 
 function Login({ onLogin }) {
-   const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function fazerLogin() {
         navigate("/home");
@@ -10,17 +10,17 @@ function Login({ onLogin }) {
 
     return (
         <div>
-        <div className='container'>
-            <h1 className='titulo'>Login</h1>
+            <div className='container'>
+                <h1 className='titulo'>Login</h1>
 
-            <form className="form" onSubmit={fazerLogin}>
-                <label className='label'>Nome do usuário</label>
-                <input
-                    className="input"
-                    placeholder='Seu nome'
-                    id='nomes'
-                    type='text'
-                />
+                <form className="form" onSubmit={fazerLogin}>
+                    <label className='label'>Nome do usuário</label>
+                    <input
+                        className="input"
+                        placeholder='Seu nome'
+                        id='nomes'
+                        type='text'
+                    />
 
                     <label className='label'>E-mail</label>
                     <input
@@ -49,9 +49,9 @@ function Login({ onLogin }) {
                     <button className='button' type='submit' id='buttonLogar'  >
                         Login
                     </button>
-                </form> 
+                </form>
             </div>
-            </div>
+        </div>
     )
 }
 

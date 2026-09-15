@@ -1,16 +1,16 @@
-*{
-   background: transparent;
-    background: radial-gradient(circle, rgb(247, 125, 142) 0%, rgb(247, 206, 240) 100%) ;
+* {
+    background: transparent;
+    background: radial-gradient(circle, rgb(247, 125, 142) 0%, rgb(247, 206, 240) 100%);
 }
 
-.titulo{
+.titulo {
     background: #fce6fa;
     color: #db87d6;
     margin: 35px;
     font-family: sans-serif;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,28 +26,28 @@
     border-color: #c478c0;
 }
 
-.label{
+.label {
     width: 100;
     display: block;
     margin-top: 20px;
     margin: 10px;
-    color:#db87d6;
+    color: #db87d6;
     background: #fce6fa;
     background-color: transparent;
-    
+
 }
 
-.button{
+.button {
     margin: 35px;
     width: 200px;
     height: 30px;
     border-radius: 10px;
     background: #f9c5f5;
-    color:rgb(18, 2, 18);
+    color: rgb(18, 2, 18);
     border: transparent;
 }
 
-.input{
+.input {
     border-radius: 10px;
     border-color: transparent;
     width: 250px;
@@ -59,13 +59,13 @@
     align-items: center;
 }
 
-.input houver{
+.input houver {
     border-color: transparent;
     width: 230px;
     height: 44;
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column;
     align-items: center;

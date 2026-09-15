@@ -8,7 +8,7 @@ import Header from './componentes/Header'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  
+
     <BrowserRouter>
         <App />
     </BrowserRouter>
