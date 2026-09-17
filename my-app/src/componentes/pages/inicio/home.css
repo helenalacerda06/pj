@@ -17,7 +17,7 @@ body {
     width: 100vw;
     max-width: 100%;
     height: calc(100vh - 66px);
-    margin: 0;
+    margin-top: 60px;
     padding: 0;
     grid-template-columns: 1fr 1fr;
     box-sizing: border-box;
@@ -96,8 +96,8 @@ body {
 }
 
 .avaliacao {
-    height: 500px;
-    width: 100%;
+    height: auto;
+    width: auto;
     max-width: 1350px;
     box-sizing: border-box;
     padding: 0 24px;

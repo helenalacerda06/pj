@@ -12,6 +12,7 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import './cardsAva.css';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -44,36 +45,25 @@ export default function RecipeReviewCard() {
     };
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        r
-                    </Avatar>
-                }
-                action={
-                    <IconButton aria-label="setting">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="Shimp and Chorizo Paella"
-                subheaser="Setember 14, 2016"
+        <Card className="avaliacaoCard" sx={{ maxWidth: 345 }}>
+            <CardHeader className={'headerCard'}
+                title="Nome"
+                subheader="Lançamento"
             />
             <CardMedia
                 component="img"
-                height="194"
                 imagem=""
             />
             <CardContent>
-                <Typography variant="bory2" sx={{ color: 'text.secondary' }}>
+                <Typography className={'descricao'}>
                     Descrição aqui
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton arial-label="add to favorites">
+                <IconButton aria-label="add to favorites" disableRipple>
                     <FavoriteIcon />
                 </IconButton>
-                <IconButton aria-label="share" >
+                <IconButton aria-label="share" disableRipple>
                     <ShareIcon />
                 </IconButton>
             </CardActions>
