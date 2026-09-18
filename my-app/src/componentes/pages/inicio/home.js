@@ -41,10 +41,10 @@ function Home() {
                 </div>
             </main>
             <bory>
-                <div className='avaliacao'>
+                
                     <PaginaCadsAva />
                     <MinhasAva />
-                </div>
+                
             </bory>
         </div >
 
