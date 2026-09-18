@@ -1,0 +1,21 @@
+.tituloMinhasAva{
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    color: #ffc6f6;
+    font-family: sans-serif;
+}
+
+.containerMinhaAva {
+    background: #f8d9f6;
+    width: 1200px;
+    height: 500px;
+    border-radius: 15px ;
+    margin-top: -4px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #c478c0;
+    margin-left: 30px;
+}
