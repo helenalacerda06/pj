@@ -38,13 +38,6 @@ function Login({ onLogin }) {
                         id='senha'
                     />
 
-                    <label className='label'>Confirmar senha</label>
-                    <input
-                        className="input"
-                        type='password'
-                        placeholder='********'
-                        id='confirmarSenha'
-                    />
 
                     <button className='button' type='submit' id='buttonLogar'  >
                         Login

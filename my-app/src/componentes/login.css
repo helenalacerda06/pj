@@ -39,6 +39,7 @@
 
 .button {
     margin: 35px;
+    margin-top: 50px;
     width: 200px;
     height: 30px;
     border-radius: 10px;
@@ -52,7 +53,7 @@
     border-color: transparent;
     width: 250px;
     height: 20px;
-    margin: 5px;
+    margin: 10px;
     background: #fccbf8;
     padding: 3px;
     padding-left: 15px;
