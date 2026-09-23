@@ -50,8 +50,8 @@ body {
 .buttonNovaAva {
     background: #febffa;
     height: 60px;
-    display: inline;
-    width: 220px;
+    display: flex;
+    width: 200px;
     border-radius: 16px;
     cursor: pointer;
     padding: 2px 2px 2px 2px;
@@ -60,10 +60,8 @@ body {
     align-items: center;
     text-align: center;
     font-size: 18px;
-    align-items: center;
     margin-top: 60px;
     margin-left: 200px;
-
 }
 
 .iconNovaAva {
@@ -71,6 +69,8 @@ body {
     width: 30px;
     margin-right: 10px;
     background: transparent;
+    align-items: center;
+    margin-left: 6px;
 }
 
 .primeiro {

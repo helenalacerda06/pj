@@ -4,6 +4,7 @@ import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.cs
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
 import Header from '../../Header'
+import Footer from '../../Footer';
 
 
 function CriarAvaliação() {
@@ -138,6 +139,7 @@ function CriarAvaliação() {
 
                 </div>
             </main>
+            <Footer />
         </div>
     )
 }
