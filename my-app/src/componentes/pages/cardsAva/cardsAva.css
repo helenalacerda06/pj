@@ -4,8 +4,9 @@
     border: 1px solid #ead8e7;
     border-radius: 18px;
     background: #fffdfd;
-    margin-top: 60px;
-    margin-left: 80px;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .avaliacaoCard:hover {

@@ -22,10 +22,8 @@ function PaginaCadsAva() {
                             <img className='seta' src={SetaEsquerda} />
                         </span>
                     </button>
-                    <div>
-                            <CardsAva />
-                    </div>
-                    <button className='carouselButton'>
+                           {/* {avliacao !== "" &&  } */}
+                    <button className='carouselButtonDireita'>
                         <span className='seta'>
                             <img className='seta' src={SetaDireita} />
                         </span>

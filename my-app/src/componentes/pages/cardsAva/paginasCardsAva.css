@@ -31,6 +31,8 @@
     border-color: #c478c0;
     margin-left: 60px;
     display: flex;
+    justify-content: center;
+    display: flex;
     align-items: center;
 }
 
@@ -42,7 +44,26 @@
 .carouselButton {
     height: 50px;
     width: 50px;
-    margin-left: 25px;
+    border-radius: 25px;
+    background: #fcbffc;
+    border-color: #c099bd;
+    border-style: solid;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.seta {
+    height: 35px;
+    width: 35px;
+    background: transparent;
+}
+
+.carouselButtonDireita {
+    height: 50px;
+    width: 50px;
+    margin-left: 710px;
     border-radius: 25px;
     background: #fcbffc;
     border-color: #c099bd;
@@ -52,8 +73,6 @@
     align-items: center;
 }
 
-.seta {
-    height: 35px;
-    width: 35px;
+.cardsAval {
     background: transparent;
 }

@@ -16,9 +16,15 @@
 }
 
 .ladoUm {
+    grid-column: 1;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+.ladoDois {
     grid-column: 2;
     background: transparent;
-    margin-top: 80px;
 }
 
 .tituloCa {
@@ -26,4 +32,20 @@
     color: #db87d6;
     font-family: sans-serif;
     margin-left: 250px;
+
+}
+
+.logo {
+    height: 400px;
+    width: 400px;
+    background: transparent;
+}
+
+.buttonCa {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+    background: #f9c5f5;
+    color: rgb(18, 2, 18);
+    border: transparent;
 }
