@@ -1,6 +1,9 @@
 import CardsAva from './cardsAva'
 import styled from './paginasCardsAva.css'
 import pesquisar from '../../../pesquisa.png'
+import CarouselAva from './carouselAva'
+import SetaEsquerda from '../../../seta-esquerda.png'
+import SetaDireita from '../../../seta-direita.png'
 
 function PaginaCadsAva() {
     return (
@@ -14,7 +17,20 @@ function PaginaCadsAva() {
 
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-                    <CardsAva />
+                    <button className='carouselButton'>
+                        <span className='seta'>
+                            <img className='seta' src={SetaEsquerda} />
+                        </span>
+                    </button>
+                    <div>
+                            <CardsAva />
+                    </div>
+                    <button className='carouselButton'>
+                        <span className='seta'>
+                            <img className='seta' src={SetaDireita} />
+                        </span>
+                    </button>
+
 
 
                 </div>

@@ -11,7 +11,7 @@ function CriarAvaliação() {
     const [nomeAvaliacao, setNomeAvaliacao] = useState("");
 
     const [descricaoAvaliacao, setDescricaoAvaliacao] = useState("")
-    const [fedbackAvaliacao, setFedbackAvaliacao] = useState("")
+    const [feedbackAvaliacao, setFeedbackAvaliacao] = useState("")
     const [principaisPontos, setPrincipaisPontos] = useState("")
     const [adicionarImagem, setAdicionarImagem] = useState(null)
     const [categoria, setCategoria] = useState("")
@@ -58,9 +58,9 @@ function CriarAvaliação() {
                             className="input"
                             placeholder='Oque você achou da obra?'
                             id='feedback'
-                            value={fedbackAvaliacao}
+                            value={feedbackAvaliacao}
                             type="text"
-                            onChange={(e) => setFedbackAvaliacao(e.target.value)}
+                            onChange={(e) => setFeedbackAvaliacao(e.target.value)}
                         />
                         <label className="label">Principais pontos</label>
                         <input
@@ -121,17 +121,32 @@ function CriarAvaliação() {
                     <div className="visualizacaoWrapper">
                         <div className={"containerVisualizacao"}>
                             <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
+                            {nomeAvaliacao == "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
                             <div className='areaImagem'>
                                 {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
+                                {adicionarImagem == null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
+
                                 {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
+                                {categoria == "" && <p className='categoriaNull'> Categoria: </p>}
+
                                 {data !== "" && <p className='lancamento'>Lançamento: {data}</p>}
+                                {data == "" && <p className='lancamentoNull'>Lançamento: </p>}
+
                                 {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
+                                {duracao == "" && <p className='duracaoNull'>Duração: </p>}
+
                                 {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly /></p>}
+                                {estrela == "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} readOnly /></p>}
                             </div>
                             <div className='areaInformacoes'>
                                 {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
-                                {fedbackAvaliacao !== "" && <p className="containerDescricao">{fedbackAvaliacao}</p>}
-                                {principaisPontos !== "" && < p className="containerDescricao">{principaisPontos}</p>}
+                                {descricaoAvaliacao =="" && <h3 className='containerDescricaoNull'>Descrição</h3>}
+
+                                {feedbackAvaliacao !== "" && <p className="containerDescricao">{feedbackAvaliacao}</p>}
+                                {feedbackAvaliacao == "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
+
+                                {principaisPontos !== "" && <p className="containerDescricao">{principaisPontos}</p>}
+                                {principaisPontos == "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
                             </div>
                         </div>
                         <button className='buttonPublicar'>Publicar</button>
