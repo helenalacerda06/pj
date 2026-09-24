@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
 import Header from '../../Header'
 import Footer from '../../Footer';
+import ButtoVoltar from '../../button/buttonVoltar'
 
 
 function CriarAvaliação() {
@@ -151,8 +152,9 @@ function CriarAvaliação() {
                         </div>
                         <button className='buttonPublicar'>Publicar</button>
                     </div>
-
                 </div>
+                <ButtoVoltar />
+
             </main>
             <Footer />
         </div>
