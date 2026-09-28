@@ -22,14 +22,18 @@ function Cadastro({onCadastro}) {
                         <input
                             className="input"
                             placeholder='Seu nome'
-                            id='nomes'
+                            id='nome'
                             type='text'
+                            value={nome}
+                            onChange={(event) => setNome(event.target.value)}
                         />
                         <label className="label">Data de nascimento</label>
                         <input
                             className="input"
-                            id='data'
+                            id='aniversario'
                             type="date"
+                            value={aniversario}
+                            onChange={(event) => setAniversario(event.target.value)}
                         />
                         <label className='label'>E-mail</label>
                         <input
