@@ -56,6 +56,10 @@
     padding-left: 50px;
 }
 
+.estrela * {
+    background: transparent;
+}
+
 .input {
     border-radius: 10px;
     border-color: transparent;

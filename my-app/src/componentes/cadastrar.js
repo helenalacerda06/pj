@@ -1,43 +1,13 @@
 import styled from './cadastrar.css'
 import logo from '../lacStarLogo.png'
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-function Cadastro({ onCadastro }) {
+function Cadastro({onCadastro}) {
     const navigate = useNavigate();
-    const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
-    const [aniversario, setAniversario] = useState("");
-    const [senha, setSenha] = useState("");
 
-    async function Cadastrar(event) {
-        event.preventDefault();
-        
-       const resposta = await fetch("http://localhost:3001/usuario", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            nome,
-            email,
-            aniversario,
-            senha
-        })
-       });
-
-       const mensagem = await resposta.text();
-       console.log(mensagem);
-
-       if(resposta.ok){
-        navigate("/home")
-       }
-
-        
+    function Cadastrar(){
+        navigate("/home");
     }
-
-
-
     return (
         <div>
             <div className="containerCadastro">
@@ -71,21 +41,24 @@ function Cadastro({ onCadastro }) {
                             placeholder='seuemail@exemplo.com'
                             id='email'
                             type='email'
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
                         />
                         <label className='label'>Senha</label>
                         <input
                             className='input'
                             placeholder='Digite uma senha'
                             id='senha'
-                            type='password'
-                            value={senha}
-                            onChange={(event) => setSenha(event.target.value)}
+                            type='pasword'
+                        />
+                        <label className='label'>Confirmar senha</label>
+                        <input
+                            className='input'
+                            placeholder='Confirme sua senha'
+                            id='senha'
+                            type='pasword'
                         />
                         <button className='buttonCa' type='submit' id='buttonCadastrar'  >
-                            Cadastrar
-                        </button>
+                        Cadastrar
+                    </button>
 
                     </form>
                 </ div>
