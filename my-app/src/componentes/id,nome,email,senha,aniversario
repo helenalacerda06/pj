@@ -1,0 +1,6 @@
+id,nome,email,senha,aniversario
+1,Helena,helena@email.com,123456,2009-06-22
+2,Helena,helena2@email.com,123456,2009-06
+3,,,,
+4,test,teste@teste.com,123,2009-06-22
+5,leo,leo|@test.com,123,2009-06-22

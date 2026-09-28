@@ -1,47 +1,91 @@
 import styled from './cadastrar.css'
+import logo from '../lacStarLogo.png'
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-function cadastro() {
+function Cadastro({ onCadastro }) {
+    const navigate = useNavigate();
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [aniversario, setAniversario] = useState("");
+    const [senha, setSenha] = useState("");
+
+    async function Cadastrar(event) {
+        event.preventDefault();
+        
+       const resposta = await fetch("http://localhost:3001/usuario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nome,
+            email,
+            aniversario,
+            senha
+        })
+       });
+
+       const mensagem = await resposta.text();
+       console.log(mensagem);
+
+       if(resposta.ok){
+        navigate("/home")
+       }
+
+        
+    }
+
+
+
     return (
         <div>
             <div className="containerCadastro">
                 <h1 className='tituloCa'>Cadastrar</h1>
-
                 <div className='ladoUm'>
-                    <form className="form" onSubmit={cadastro}>
+                    <img className='logo' src={logo} />
+                </div>
+
+                <div className='ladoDois'>
+                    <form className="form" onSubmit={Cadastrar}>
                         <label className='label'>Nome do usuário</label>
                         <input
                             className="input"
                             placeholder='Seu nome'
-                            id='nomes'
+                            id='nome'
                             type='text'
+                            value={nome}
+                            onChange={(event) => setNome(event.target.value)}
                         />
                         <label className="label">Data de nascimento</label>
                         <input
                             className="input"
-                            id='data'
+                            id='aniversario'
                             type="date"
+                            value={aniversario}
+                            onChange={(event) => setAniversario(event.target.value)}
                         />
                         <label className='label'>E-mail</label>
-                    <input
-                        className="input"
-                        placeholder='seuemail@exemplo.com'
-                        id='email'
-                        type='email'
-                    />
-                    <label className='label'>Senha</label>
-                    <input
-                    className='input'
-                    placeholder='Digite uma senha'
-                    id='senha'
-                    type='pasword'
-                    />
-                         <label className='label'>Confirmar senha</label>
-                    <input
-                    className='input'
-                    placeholder='Confirme sua senha'
-                    id='senha'
-                    type='pasword'
-                    />
+                        <input
+                            className="input"
+                            placeholder='seuemail@exemplo.com'
+                            id='email'
+                            type='email'
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                        <label className='label'>Senha</label>
+                        <input
+                            className='input'
+                            placeholder='Digite uma senha'
+                            id='senha'
+                            type='password'
+                            value={senha}
+                            onChange={(event) => setSenha(event.target.value)}
+                        />
+                        <button className='buttonCa' type='submit' id='buttonCadastrar'  >
+                            Cadastrar
+                        </button>
 
                     </form>
                 </ div>
@@ -49,4 +93,4 @@ function cadastro() {
         </div>
     )
 }
-export default cadastro;
+export default Cadastro;
