@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import styles from './criarAvaliacao.css';
 import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 import Rating from '@mui/material/Rating';
@@ -17,38 +16,10 @@ function CriarAvaliação() {
     const [principaisPontos, setPrincipaisPontos] = useState("")
     const [adicionarImagem, setAdicionarImagem] = useState(null)
     const [categoria, setCategoria] = useState("")
-    const [estrelas, setEstrela] = useState(0);
-    const [lancamento, setLancamento] = useState("")
+    const [estrela, setEstrela] = useState("")
+    const [data, setData] = useState("")
     const [duracao, setDuracao] = useState("")
 
-
-    async function AvaCriada(event) {
-        event.preventDefault();
-
-        const avaliacao = await fetch("http://localhost:3001/avaliacao", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                categoria,
-                nome,
-                descricao,
-                fedback,
-                principais_pontos,
-                imagem,
-                lancamento,
-                duracao,
-                estrelas
-            })
-        });
-        const dados = await avaliacao.text()
-        console.log(dados);
-
-        if (avaliacao.ok) {
-            navigate("/home");
-        }
-    }
 
     return (
         <div >
@@ -56,44 +27,34 @@ function CriarAvaliação() {
             <main>
 
                 <h1 className="tituloAvaliacao">Criar nova avaliação</h1>
-
-                <div className="containerAvaliacao" >
-
-                    <form className="Form" onSubmit={AvaCriada}>
-
+                <div className="containerAvaliacao">
+                    <form className="Form">
                         <label className="label">Categoria</label>
-
                         <select className="select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                             <option value='' className='select' >Selecione uma categoria</option>
                             <option value='Filme' className='select' >Filme</option>
                             <option value='Serie' className='select' >Serie</option>
                             <option value='Livro' className='select' >Livro</option>
                         </select>
-
                         <label className="label">Nome</label>
-
                         <input
                             className="input"
                             placeholder='Nome da avaliação'
                             id='nomeAvaliacao'
                             type="text"
-                            value={nome}
-                            onChange={(e) => setNome(e.target.value)}
+                            value={nomeAvaliacao}
+                            onChange={(e) => setNomeAvaliacao(e.target.value)}
                         />
-
                         <label className="label">Descrição</label>
-
                         <input
                             className="input"
                             placeholder='Descrição da avaliação'
                             id='descricao'
                             type="text"
-                            value={descricao}
-                            onChange={(e) => setDescricao(e.target.value)}
+                            value={descricaoAvaliacao}
+                            onChange={(e) => setDescricaoAvaliacao(e.target.value)}
                         />
-
                         <label className="label">Fedback</label>
-
                         <input
                             className="input"
                             placeholder='Oque você achou da obra?'
@@ -102,16 +63,14 @@ function CriarAvaliação() {
                             type="text"
                             onChange={(e) => setFeedbackAvaliacao(e.target.value)}
                         />
-
                         <label className="label">Principais pontos</label>
-
                         <input
                             className="input"
                             placeholder='Pontos importantes'
-                            id='principais_pontos'
+                            id='principaisPontos'
                             type="text"
-                            value={principais_pontos}
-                            onChange={(e) => setPrincipais_pontos(e.target.value)}
+                            value={principaisPontos}
+                            onChange={(e) => setPrincipaisPontos(e.target.value)}
                         />
 
                         <label className="label">Imagem</label>
@@ -120,11 +79,12 @@ function CriarAvaliação() {
                             id='imagem'
                             type="file"
                             accept='image/'
+
                             onChange={(e) => {
                                 const arquivo = e.target.files[0];
                                 if (arquivo) {
                                     const imagemURL = URL.createObjectURL(arquivo);
-                                    setImagem(imagemURL)
+                                    setAdicionarImagem(imagemURL)
                                 }
                             }}
                         />
@@ -134,9 +94,9 @@ function CriarAvaliação() {
                             className='input'
                             id='data'
                             type='date'
-                            value={lancamento}
+                            value={data}
                             accept=''
-                            onChange={(e) => setLancamento(e.target.value)}
+                            onChange={(e) => setData(e.target.value)}
                         />
 
                         <label className='label'>Duração</label>
@@ -153,23 +113,13 @@ function CriarAvaliação() {
                         <Stack className='estrela' spacing={1}>
                             <Rating
                                 name="half-rating-read"
-                                value={estrelas}
-                                onChange={(e, novoValor) => setEstrela(novoValor)}
+                                value={estrela}
+                                onChange={(e) => setEstrela(e.target.value)}
                             />
                         </Stack>
-
-                       <button
-                            className="buttonPublicar"
-                            type="submit"
-                            id="buttonPublicar"
-                        >
-                            Publicar
-                        </button>
-
                     </form>
 
                     <div className="visualizacaoWrapper">
-
                         <div className={"containerVisualizacao"}>
                             <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
                             {nomeAvaliacao == "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
@@ -189,7 +139,6 @@ function CriarAvaliação() {
                                 {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly /></p>}
                                 {estrela == "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} readOnly /></p>}
                             </div>
-
                             <div className='areaInformacoes'>
                                 {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
                                 {descricaoAvaliacao =="" && <h3 className='containerDescricaoNull'>Descrição</h3>}
@@ -201,6 +150,7 @@ function CriarAvaliação() {
                                 {principaisPontos == "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
                             </div>
                         </div>
+                        <button className='buttonPublicar'>Publicar</button>
                     </div>
                 </div>
                 <ButtoVoltar />
