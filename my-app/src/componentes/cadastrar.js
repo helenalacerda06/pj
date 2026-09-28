@@ -83,9 +83,15 @@ function Cadastro({ onCadastro }) {
                             value={senha}
                             onChange={(event) => setSenha(event.target.value)}
                         />
-                        <button className='buttonCa' type='submit' id='buttonCadastrar'  >
+                        <div className='buttons'>
+                            <button className='buttonCa' type='submit' id='buttonCadastrar'  >
                             Cadastrar
                         </button>
+                        <nav className='buttonLo'>
+                            <a href="Login" className='buttonLo'>Já tenho uma conta </a>
+                            </nav>
+                        </div>
+                        
 
                     </form>
                 </ div>
