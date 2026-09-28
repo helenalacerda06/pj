@@ -6,16 +6,15 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
 import Header from '../../Header'
 import Footer from '../../Footer';
-import ButtoVoltar from '../../button/buttonVoltar'
 
 
 function CriarAvaliação() {
-    const [nomeAvaliacao, setNomeAvaliacao] = useState("");
-
-    const [descricaoAvaliacao, setDescricaoAvaliacao] = useState("")
-    const [feedbackAvaliacao, setFeedbackAvaliacao] = useState("")
-    const [principaisPontos, setPrincipaisPontos] = useState("")
-    const [adicionarImagem, setAdicionarImagem] = useState(null)
+    const navigate = useNavigate();
+    const [nome, setNome] = useState("");
+    const [descricao, setDescricao] = useState("")
+    const [fedback, setFedback] = useState("")
+    const [principais_pontos, setPrincipais_pontos] = useState("")
+    const [imagem, setImagem] = useState(null)
     const [categoria, setCategoria] = useState("")
     const [estrelas, setEstrela] = useState(0);
     const [lancamento, setLancamento] = useState("")
@@ -98,9 +97,9 @@ function CriarAvaliação() {
                             className="input"
                             placeholder='Oque você achou da obra?'
                             id='feedback'
-                            value={feedbackAvaliacao}
+                            value={fedback}
                             type="text"
-                            onChange={(e) => setFeedbackAvaliacao(e.target.value)}
+                            onChange={(e) => setFedback(e.target.value)}
                         />
 
                         <label className="label">Principais pontos</label>
@@ -171,40 +170,24 @@ function CriarAvaliação() {
                     <div className="visualizacaoWrapper">
 
                         <div className={"containerVisualizacao"}>
-                            <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
-                            {nomeAvaliacao == "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
+
+                            <h1 className="tituloVisualizacao">{nome}</h1>
                             <div className='areaImagem'>
-                                {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
-                                {adicionarImagem == null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
-
+                                {imagem && (<img className="imagemAvaliacao" src={imagem} />)}
                                 {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
-                                {categoria == "" && <p className='categoriaNull'> Categoria: </p>}
-
-                                {data !== "" && <p className='lancamento'>Lançamento: {data}</p>}
-                                {data == "" && <p className='lancamentoNull'>Lançamento: </p>}
-
+                                {lancamento !== "" && <p className='lancamento'>Lançamento: {lancamento}</p>}
                                 {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
-                                {duracao == "" && <p className='duracaoNull'>Duração: </p>}
-
-                                {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly /></p>}
-                                {estrela == "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} readOnly /></p>}
+                                {estrelas > 0 && <p className='estrela'><Rating name="half-rating" value={estrelas}precision={1} readOnly/></p>}
                             </div>
 
                             <div className='areaInformacoes'>
-                                {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
-                                {descricaoAvaliacao =="" && <h3 className='containerDescricaoNull'>Descrição</h3>}
-
-                                {feedbackAvaliacao !== "" && <p className="containerDescricao">{feedbackAvaliacao}</p>}
-                                {feedbackAvaliacao == "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
-
-                                {principaisPontos !== "" && <p className="containerDescricao">{principaisPontos}</p>}
-                                {principaisPontos == "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
+                                {descricao !== '' && <p className="containerDescricao">{descricao}</p>}
+                                {fedback !== "" && <p className="containerDescricao">{fedback}</p>}
+                                {principais_pontos !== "" && < p className="containerDescricao">{principais_pontos}</p>}
                             </div>
                         </div>
                     </div>
                 </div>
-                <ButtoVoltar />
-
             </main>
             <Footer />
         </div>
