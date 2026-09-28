@@ -172,18 +172,34 @@ function CriarAvaliação() {
                         <div className={"containerVisualizacao"}>
 
                             <h1 className="tituloVisualizacao">{nome}</h1>
+                            {nome == "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
+
                             <div className='areaImagem'>
+
                                 {imagem && (<img className="imagemAvaliacao" src={imagem} />)}
+                                {imagem == null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
+
                                 {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
+                                {categoria == "" && <p className='categoriaNull'> Categoria: </p>}
+
                                 {lancamento !== "" && <p className='lancamento'>Lançamento: {lancamento}</p>}
+                                {lancamento == "" && <p className='lancamentoNull'>Lançamento: </p>}
+
                                 {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
-                                {estrelas > 0 && <p className='estrela'><Rating name="half-rating" value={estrelas}precision={1} readOnly/></p>}
+                                {duracao == "" && <p className='duracaoNull'>Duração: </p>}
+
+                                {estrelas !== "" && <p className='estrela'><Rating name="half-rating" value={estrelas}precision={1} readOnly/></p>}
                             </div>
 
                             <div className='areaInformacoes'>
                                 {descricao !== '' && <p className="containerDescricao">{descricao}</p>}
+                                  {descricao =="" && <h3 className='containerDescricaoNull'>Descrição</h3>}
+
                                 {fedback !== "" && <p className="containerDescricao">{fedback}</p>}
+                                {fedback == "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
+
                                 {principais_pontos !== "" && < p className="containerDescricao">{principais_pontos}</p>}
+                                {principais_pontos == "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
                             </div>
                         </div>
                     </div>
