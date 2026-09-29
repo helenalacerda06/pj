@@ -38,7 +38,7 @@ function Header() {
   return (
     <header className="header">
       <img src={Logo} alt="Logo" className="header-logo" />
-      <h3 className='nomeUsuario'> {nomeUsuario} \ {email}</h3>
+      <p className='nomeUsuario'> {nomeUsuario} \ {email}</p>
       <nav>
         <a href="Home">Início</a>
         <a href="#">Sobre</a>

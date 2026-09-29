@@ -7,10 +7,10 @@ import SetaDireita from '../../../seta-direita.png'
 
 function PaginaCadsAva() {
     return (
-        <bory>
+        <section>
             <button className="maisAva" >
                 <span>
-                    <img className='pesquisar' src={pesquisar} />
+                            <img className='pesquisar' src={pesquisar} />
                 </span>
                 Mais avaliações
             </button>
@@ -18,20 +18,16 @@ function PaginaCadsAva() {
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
                     <button className='carouselButton'>
-                        <span className='seta'>
-                            <img className='seta' src={SetaEsquerda} />
-                        </span>
+                        <img className='seta' src={SetaEsquerda} />
                     </button>
                     <button className='carouselButtonDireita'>
-                        <span className='seta'>
-                            <img className='seta' src={SetaDireita} />
-                        </span>
+                        <img className='seta' src={SetaDireita} />
                     </button>
 
                 </div>
 
             </div>
-        </bory>
+        </section>
 
 
     )

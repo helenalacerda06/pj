@@ -22,12 +22,12 @@ function CriarAvaliação() {
 
 
     return (
-        <div >
+        <>
             <Header className='header' />
             <main>
 
                 <h1 className="tituloAvaliacao">Criar nova avaliação</h1>
-                <div className="containerAvaliacao">
+                <section className="containerAvaliacao">
                     <form className="Form">
                         <label className="label">Categoria</label>
                         <select className="select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
@@ -120,10 +120,10 @@ function CriarAvaliação() {
                     </form>
 
                     <div className="visualizacaoWrapper">
-                        <div className={"containerVisualizacao"}>
+                        <article className={"containerVisualizacao"}>
                             <h1 className="tituloVisualizacao">{nomeAvaliacao}</h1>
                             {nomeAvaliacao == "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
-                            <div className='areaImagem'>
+                            <section className='areaImagem'>
                                 {adicionarImagem && (<img className="imagemAvaliacao" src={adicionarImagem} />)}
                                 {adicionarImagem == null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
 
@@ -138,8 +138,8 @@ function CriarAvaliação() {
 
                                 {estrela !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} precision={estrela} readOnly /></p>}
                                 {estrela == "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrela} readOnly /></p>}
-                            </div>
-                            <div className='areaInformacoes'>
+                            </section>
+                            <section className='areaInformacoes'>
                                 {descricaoAvaliacao !== '' && <p className="containerDescricao">{descricaoAvaliacao}</p>}
                                 {descricaoAvaliacao =="" && <h3 className='containerDescricaoNull'>Descrição</h3>}
 
@@ -148,16 +148,16 @@ function CriarAvaliação() {
 
                                 {principaisPontos !== "" && <p className="containerDescricao">{principaisPontos}</p>}
                                 {principaisPontos == "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
-                            </div>
-                        </div>
+                            </section>
+                        </article>
                         <button className='buttonPublicar'>Publicar</button>
                     </div>
-                </div>
+                </section>
                 <ButtoVoltar />
 
             </main>
             <Footer />
-        </div>
+        </>
     )
 }
 

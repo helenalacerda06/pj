@@ -18,18 +18,18 @@ function Home() {
     }
     return (
 
-        <div>
+        <>
             <Header />
             <main className="home">
-                <div className="primeiro">
+                <section className="primeiro">
                     <img className='lacStar
             'src={LacStar} width="700"
                         height="340" />
                     <img className='lacStarLogo' src={LacStarLogo}
                         height="340" />
-                </div>
+                </section>
 
-                <div className='segundo'>
+                <section className='segundo'>
                     <h3 className='textoHome'> Encontre filmes, séries e livros que combinam com você. Explore avaliações feitas por outros usuários, compartilhe suas próprias opiniões e interaja com diferentes recomendações.<br />
 
                         Aqui, cada avaliação ajuda a descobrir uma nova história.</h3>
@@ -39,16 +39,12 @@ function Home() {
                         </span>
                         Criar Avaliação
                     </button>
-                </div>
+                </section>
             </main>
-            <bory>
-                
-                    <PaginaCadsAva />
-                    <MinhasAva />
-                
-            </bory>
+            <PaginaCadsAva />
+            <MinhasAva />
             <Footer/>
-        </div >
+        </>
 
     )
 }

@@ -46,8 +46,7 @@ async function fazerLogin(event) {
     }
 
 return (
-    <div>
-        <div className='container'>
+        <main className='container'>
             <h1 className='titulo'>Login</h1>
 
             <form className="form" onSubmit={fazerLogin}>
@@ -69,7 +68,7 @@ return (
                     onChange={(event) => setEmail(event.target.value)}
                 />
 
-                <label className='label'>Criar senha</label>
+                <label className='label'>Senha</label>
                 <input
                     className="input"
                     type='password'
@@ -84,8 +83,7 @@ return (
                     Login
                 </button>
             </form>
-        </div>
-    </div>
+        </main>
 )
 }
 

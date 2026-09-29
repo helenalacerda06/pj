@@ -40,14 +40,13 @@ function Cadastro({ onCadastro }) {
 
 
     return (
-        <div>
-            <div className="containerCadastro">
+        <main className="containerCadastro">
                 <h1 className='tituloCa'>Cadastrar</h1>
-                <div className='ladoUm'>
+                <section className='ladoUm'>
                     <img className='logo' src={logo} />
-                </div>
+                </section>
 
-                <div className='ladoDois'>
+                <section className='ladoDois'>
                     <form className="form" onSubmit={Cadastrar}>
                         <label className='label'>Nome do usuário</label>
                         <input
@@ -95,9 +94,8 @@ function Cadastro({ onCadastro }) {
                         
 
                     </form>
-                </ div>
-            </div>
-        </div>
+                </section>
+        </main>
     )
 }
 export default Cadastro;
