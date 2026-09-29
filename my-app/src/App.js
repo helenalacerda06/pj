@@ -11,6 +11,7 @@ function App() {
             <Route path="/" element={<Cadastrar />} />
             <Route path="/home" element={<Home />} />
             <Route path="/criar-avaliacao" element={<CriarAvaliacao />} />
+            <Route path='/login' element={<Login />} />
         </Routes>
     );
 }
