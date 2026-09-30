@@ -33,8 +33,6 @@ function Cadastro({ onCadastro }) {
         localStorage.setItem("nomeUsuario", nome);
         navigate("/home")
        }
-
-        
     }
 
 

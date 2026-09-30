@@ -77,3 +77,26 @@
     background: transparent;
     display: flex;
 }
+
+@media (max-width: 600px) {
+    .containerCadastro {
+        width: 330px;
+        height: 740px;
+        display: block;
+        margin-top: 40px;
+        margin-bottom: 200px;
+    }
+    .ladoUm{
+        display: block;
+        align-items: center;
+        justify-content: center;
+    }
+    .tituloCa{
+        margin-left: 75px;
+    }
+    .logo{
+        height: 250px;
+        width: 250px;
+        margin-left: 45px;
+    }
+}

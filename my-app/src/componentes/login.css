@@ -72,3 +72,11 @@
     align-items: center;
     background: #fce6fa;
 }
+
+@media (max-width: 600px){
+    .container{
+        width: 330px;
+        height:470px;
+        margin-top: 140px
+    }
+}

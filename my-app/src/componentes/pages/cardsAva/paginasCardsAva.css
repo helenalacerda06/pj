@@ -76,3 +76,19 @@
 .cardsAval {
     background: transparent;
 }
+
+@media(max-width: 600px){
+
+    .maisAva{
+        margin-left: 135px;
+    }
+    .containerAvas{
+    width: 350px;
+    height: 500px;
+    margin-left: 30px;
+    }
+    .carouselButton{
+        height: 20px;
+        margin-right: 10px;
+    }
+}

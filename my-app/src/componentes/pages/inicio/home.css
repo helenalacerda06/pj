@@ -101,3 +101,41 @@ body {
     box-sizing: border-box;
     padding: 0 24px;
 }
+
+@media (max-width:600px){
+    .home{
+        display: block;
+    }
+    .primeiro{
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .lacStar{
+        height: 60px;
+        width: 110px;
+        margin-left: 30px;
+    }
+
+    .lacStarLogo{
+        height: 300px;
+        margin-left: 55px;
+    }
+
+
+    .segundo{
+        align-items: center;
+        justify-content: center;
+        display: block;
+    }
+    .textoHome{
+        margin-top: 30px;
+    }
+
+    .buttonNovaAva{
+        margin-left: 100px;
+    }
+
+
+    
+}
