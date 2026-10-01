@@ -83,14 +83,14 @@ server.post('/login', (request, response) => {
 // cria a avaliação do db
 
 server.post('/avaliacao', (request, response) => {
-    const { categoria, nome, descricao, fedback, principais_pontos, imagem, lancamento, duracao, estrelas } = request.body
+    const { categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas } = request.body
 
     const sql = `
-    INSERT INTO avaliacao ( categoria, nome, descricao, fedback, principais_pontos, imagem, lancamento, duracao, estrelas)
+    INSERT INTO avaliacao ( categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas)
     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
     `
 
-    db.run(sql, [categoria, nome, descricao, fedback, principais_pontos, imagem, lancamento, duracao, estrelas], function (erro) {
+    db.run(sql, [categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas], function (erro) {
         if (erro) {
             console.log("ERRO DO BANCO:", + erro.message)
             return response.status(500).send("Erro ao criar avaliação: " + erro.message)

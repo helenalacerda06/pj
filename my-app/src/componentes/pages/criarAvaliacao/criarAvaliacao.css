@@ -8,10 +8,9 @@
 
 .containerAvaliacao {
     display: flex;
-    align-items: start;
     background: #fce3fa;
-    width: 1200px;
-    height: 770px;
+    width: 1250px;
+    height: auto;
     border-radius: 15px;
     margin: auto;
     padding: 15px;
@@ -56,7 +55,7 @@
     padding-left: 50px;
 }
 
-.estrela * {
+.estrelas * {
     background: transparent;
 }
 
@@ -86,22 +85,43 @@
 }
 
 .buttonPublicar {
-    align-self: flex-end;
-    margin-top: 15px;
+    margin-top: auto;
+    align-self: flex-start;
+    margin-top: 20px;
     padding: 8px 20px;
-    margin-right: 40px;
     color: #2b2b2b;
-    text-decoration: none;
     font-weight: 600;
     border: 2px solid #fdbaf9;
     background: #fdbaf9;
-    padding: 8px 16px;
     border-radius: 18px;
     transition: opacity 0.2s ease;
+    margin-left: 90px;
 }
 
 .visualizacaoWrapper {
     display: flex;
     flex-direction: column;
     background: transparent;
+
+}
+
+.visualizacaoWrapper {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+@media(max-width: 600px) {
+    .tituloAvaliacao {
+        margin-left: 0px;
+    }
+
+    .containerAvaliacao {
+        display: column;
+        height: auto;
+        Width: 350px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 }

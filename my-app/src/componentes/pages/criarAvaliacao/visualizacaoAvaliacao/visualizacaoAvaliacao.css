@@ -1,9 +1,8 @@
 .containerVisualizacao {
   background: #f7e4f4;
-  width: 870px;
-  height: 600px;
+  width: 920px;
+  height: 620px;
   border-radius: 15px;
-  padding: 15pz;
   margin-top: 90px;
   border-style: solid;
   border-width: 3px;
@@ -197,4 +196,38 @@
   font-weight: bold;
   padding-left: 3px;
   margin-right: 5px;
+}
+
+@media (max-width: 600px){
+  .containerVisualizacao {
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tituloVisualizacaoNull {
+    margin-left: 17px;
+  }
+  .tituloVisualizacao {
+    margin-left: auto;
+  }
+
+  .containerDescricao {
+    width: 300px;
+    height: 100px;
+  }
+  .containerDescricaoNull {
+    width: 300px;
+    height: 100px;
+  }
+  
+  .areaImagem {
+    margin-left: 0px;
+  }
+  .imagemAvaliacaoNull{
+    margin-top: 0px;
+  }
+  
+  
 }
