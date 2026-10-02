@@ -30,7 +30,7 @@ async function fazerLogin(event) {
 
             if (resposta.ok) {
                 localStorage.setItem(
-                    "usuarioId",
+                    "id_usuario",
                     usuario.id
                 );
 

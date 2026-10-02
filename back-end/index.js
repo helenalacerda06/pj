@@ -2,8 +2,7 @@ const express = require("express")
 const sqlite3 = require("sqlite3").verbose()
 const cors = require("cors")
 
-const server = express()
-
+ const server = express() 
 server.use(cors())
 server.use(express.json())
 
@@ -22,7 +21,7 @@ server.post('/usuario', (request, response) => {
     db.run(sql, [nome, email, aniversario, senha], function (erro) {
         if (erro) {
             console.log("ERRO DO BANCO:", erro.message)
-            return response.status(500).send("Erro ao criar usuário: " + erro.message)
+            return response.status(500).send("Erro ao criar usuário: ", erro.message)
         }
         return response.send("Usuario criado com sucesso")
     });
@@ -92,10 +91,34 @@ server.post('/avaliacao', (request, response) => {
 
     db.run(sql, [categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas], function (erro) {
         if (erro) {
-            console.log("ERRO DO BANCO:", + erro.message)
-            return response.status(500).send("Erro ao criar avaliação: " + erro.message)
+            console.log("ERRO DO BANCO:",  erro.message)
+            return response.status(500).send("Erro ao criar avaliação: ", erro.message)
         }
-        return response.send("Avaliação criada com sucesso")
+        return response.json({
+                mensagem: "Avaliação criada com sucesso",
+                id_avaliacao: this.lastID
+    })
+})
+})
+
+//tabelas relacionadas a avaliação
+
+server.post("/avaliacoes_usuario", (request, response) => {
+    const {id_usuario, id_avaliacao, data_criacao} = request.body
+
+    const sql = `
+    INSERT INTO avaliacoes_usuario (id_usuario, id_avaliacao, data_criacao)
+    VALUES(?, ?, ?)
+    `
+    
+    db.run(sql, [id_usuario, id_avaliacao, data_criacao], function (erro) {
+        if (erro) {
+            console.log("ERRO DO BANCO:", erro.message)
+            return response.status(500).send("Erro ao relacionar avaliação e usuário: ", erro.message)
+        }
+        return response.json({
+            mensagem: "Avaliação relacionada com sucesso"
+        })
     })
 })
 

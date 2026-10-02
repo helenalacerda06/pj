@@ -13,7 +13,7 @@ function Header() {
         async function buscarUsuario() {
 
             const idUsuario =
-                localStorage.getItem("usuarioId");
+              localStorage.getItem("id_usuario");
             try {
                 const resposta = await fetch(
                     `http://localhost:3001/usuario/${idUsuario}`

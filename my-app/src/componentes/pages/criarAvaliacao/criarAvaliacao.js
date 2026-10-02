@@ -19,6 +19,7 @@ function CriarAvaliação() {
     const [estrelas, setEstrelas] = useState("");
     const [lancamento, setLancamento] = useState("")
     const [duracao, setDuracao] = useState("")
+    const idUsuario = localStorage.getItem("id_usuario");
 
 
     async function AvaCriada(event) {
@@ -41,11 +42,25 @@ function CriarAvaliação() {
                 estrelas
             })
         });
-        const dados = await avaliacao.text()
+        const dados = await avaliacao.json()
         console.log(dados);
 
+        //Se colocar direto o navigate(home) a pagina muda sem salvar o id do usuario que criou a avaliação (go the trinks) 
         if (avaliacao.ok) {
-            navigate("/home");
+            
+            const relacionamento = await fetch("http://localhost:3001/avaliacoes_usuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id_usuario: idUsuario,
+                    id_avaliacao: dados.id_avaliacao,
+                    data_criacao: new Date()
+                })
+            });
+            console.log(await relacionamento.json());
+            navigate("/home")
         }
     }
 
