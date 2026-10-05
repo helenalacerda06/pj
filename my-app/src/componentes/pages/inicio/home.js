@@ -6,7 +6,6 @@ import LacStar from '../../../lacStar.png'
 import Header from '../../Header'
 import LacStarLogo from '../../../lacStarLogo.png'
 import PaginaCadsAva from '../cardsAva/paginasCardsAva';
-import MinhasAva from '../minhasAva/minhasAva';
 import Footer from '../../Footer'
 
 
@@ -44,7 +43,6 @@ function Home() {
             <bory>
                 
                     <PaginaCadsAva />
-                    <MinhasAva />
                 
             </bory>
             <Footer/>

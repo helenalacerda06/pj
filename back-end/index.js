@@ -80,7 +80,6 @@ server.post('/login', (request, response) => {
 });
 
 // cria a avaliação do db
-
 server.post('/avaliacao', (request, response) => {
     const { categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas } = request.body
 
@@ -121,6 +120,44 @@ server.post("/avaliacoes_usuario", (request, response) => {
         })
     })
 })
+
+//buscar pelas avaliacoes do usuario
+server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
+    const id_usuario = request.params.id_usuario;
+
+    const sql=`
+    SELECT
+    avaliacao.id,
+    avaliacao.categoria,
+    avaliacao.nome,
+    avaliacao.descricao,
+    avaliacao.feedback,
+    avaliacao_principais_pontos,
+    avaliacao.imagem,
+    avaliacao.lancamento,
+    avaliacao.duracao,
+    avaliacao.estrelas,
+    avaliacoes_usuario.data_criacao,
+
+    FROM avaliacoes_usuario
+
+    INNER JOIN avaliacao 
+    ON avaliacoes_usuario.id_avaliacao = avaliacao.id
+    WHERE avaliacoes_usuario.id_usuario = ?
+    `
+
+    db.all(sql, [id_usuario], (erro, avaliacoes) => {
+        if (erro) {
+            console.error(erro);
+            return response.status(500).json({
+                erro: "Erro ao mostrar avaliações do usuário"
+            });
+        }
+        response.json(avaliacoes);
+    })
+
+})
+
 
 server.listen(3001, () => {
     console.log("Servidor rodando em http://localhost:3001")

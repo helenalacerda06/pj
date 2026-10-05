@@ -1,6 +1,5 @@
 import './Header.css';
 import Logo from '../logo.png'
-import Home from './pages/inicio/home'
 import { useEffect, useState } from "react";
 
 function Header() {
@@ -42,6 +41,7 @@ function Header() {
       <nav>
         <a href="Home">Início</a>
         <a href="#">Sobre</a>
+        <a href="MinhasAva">Meu Perfil</a>
       </nav>
     </header>
   );
