@@ -2,7 +2,7 @@
 import logo from '../lacStarLogo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import styled from './cadastrar.css'
+import './cadastrar.css'
 
 function Cadastro({ onCadastro }) {
     const navigate = useNavigate();

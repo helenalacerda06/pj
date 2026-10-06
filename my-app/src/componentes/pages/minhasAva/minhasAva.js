@@ -1,6 +1,6 @@
 import Header from '../../Header'
 import Footer from '../../Footer'
-import style from './minhasAva.css'
+import './minhasAva.css'
 
 function minhasAva(){
     return(

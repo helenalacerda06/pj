@@ -1,7 +1,7 @@
 import pesquisar from '../../../pesquisa.png'
 import SetaEsquerda from '../../../seta-esquerda.png'
 import SetaDireita from '../../../seta-direita.png'
-import styled from './paginasCardsAva.css'
+import './paginasCardsAva.css'
 
 function PaginaCadsAva() {
     return (

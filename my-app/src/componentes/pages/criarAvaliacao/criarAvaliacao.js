@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack'
 import Header from '../../Header'
 import Footer from '../../Footer';
 import ButtoVoltar from '../../button/buttonVoltar'
-import styles from './criarAvaliacao.css';
-import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
+import './criarAvaliacao.css';
+import './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 
 function CriarAvaliação() {
     const navigate = useNavigate();
