@@ -40,7 +40,7 @@ function Header() {
       <h3 className='nomeUsuario'> {nomeUsuario} \ {email}</h3>
       <nav>
         <a href="Home">Início</a>
-        <a href="#">Sobre</a>
+        {/* <a href="#">Sobre</a> */}
         <a href="MinhasAva">Meu Perfil</a>
       </nav>
     </header>

@@ -32,7 +32,7 @@ function Home() {
                         Aqui, cada avaliação ajuda a descobrir uma nova história.</h3>
                     <button onClick={irParaCriarAvaliacao} className='buttonNovaAva'>
                         <span className='iconNovaAva'>
-                            <img className='iconNovaAva' src={button} />
+                            <img className='iconNovaAva' src={button} alt="Criar Avaliação" />
                         </span>
                         Criar Avaliação
                     </button>
