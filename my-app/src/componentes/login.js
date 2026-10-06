@@ -12,7 +12,7 @@ async function fazerLogin(event) {
         event.preventDefault();
         try {
             const resposta = await fetch(
-                "http://localhost:3001/login",
+                "http://localhost:3002/login",
                 {
                     method: "POST",
                     headers: {
@@ -33,6 +33,7 @@ async function fazerLogin(event) {
                     "id_usuario",
                     usuario.id
                 );
+                localStorage.setItem("nomeUsuario", usuario.nome);
 
                 navigate("/home");
 
@@ -42,6 +43,7 @@ async function fazerLogin(event) {
 
         } catch (erro) {
             console.error("Erro no login:", erro);
+            alert("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
         }
     }
 
@@ -51,20 +53,13 @@ return (
             <h1 className='titulo'>Login</h1>
 
             <form className="form" onSubmit={fazerLogin}>
-                <label className='label'>Nome do usuário</label>
-                <input
-                    className="input"
-                    placeholder='Seu nome'
-                    id='nomes'
-                    type='text'
-                />
-
                 <label className='label'>E-mail</label>
                 <input
                     className="input"
                     placeholder='seuemail@exemplo.com'
                     id='email'
                     type='email'
+                    required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
@@ -76,6 +71,7 @@ return (
                     placeholder='********'
                     id='senha'
                     value={senha}
+                    required
                     onChange={(event) => setSenha(event.target.value)}
                 />
 

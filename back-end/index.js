@@ -1,12 +1,13 @@
 const express = require("express")
 const sqlite3 = require("sqlite3").verbose()
 const cors = require("cors")
+const path = require("path")
 
  const server = express() 
 server.use(cors())
 server.use(express.json())
 
-const db = new sqlite3.Database("../teste_helena.db")
+const db = new sqlite3.Database(path.join(__dirname, "../teste_helena.db"))
 
 // cria o usuario no db
 server.post('/usuario', (request, response) => {
@@ -21,9 +22,15 @@ server.post('/usuario', (request, response) => {
     db.run(sql, [nome, email, aniversario, senha], function (erro) {
         if (erro) {
             console.log("ERRO DO BANCO:", erro.message)
-            return response.status(500).send("Erro ao criar usuário: ", erro.message)
+            if (erro.code === "SQLITE_CONSTRAINT" || erro.code === "SQLITE_CONSTRAINT_UNIQUE") {
+                return response.status(409).json({ erro: "Este e-mail já está cadastrado." })
+            }
+            return response.status(500).json({ erro: "Erro ao criar usuário." })
         }
-        return response.send("Usuario criado com sucesso")
+        return response.status(201).json({
+            mensagem: "Usuário criado com sucesso.",
+            id: this.lastID
+        })
     });
 }
 
@@ -69,7 +76,12 @@ server.post('/login', (request, response) => {
     `;
 
     db.get(sql, [email, senha], (erro, usuario) => {
-
+        if (erro) {
+            console.error("ERRO DO BANCO:", erro.message)
+            return response.status(500).json({
+                erro: "Erro ao consultar usuário."
+            })
+        }
         if (!usuario) {
             return response.status(401).json({
                 erro: "E-mail ou senha incorretos :(" 
@@ -155,10 +167,11 @@ server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
         }
         response.json(avaliacoes);
     })
-
 })
 
 
-server.listen(3001, () => {
-    console.log("Servidor rodando em http://localhost:3001")
+const port = process.env.PORT || 3002;
+
+server.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`)
 })

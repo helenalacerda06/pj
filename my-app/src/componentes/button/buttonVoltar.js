@@ -1,5 +1,6 @@
 import Seta from '../../seta-esquerda.png'
 import { useNavigate } from 'react-router-dom';
+import style from './buttonVoltar.css'
 
 function ButtonVoltar({onVoltar}) {
     const navigate = useNavigate();

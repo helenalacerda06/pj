@@ -5,6 +5,7 @@ import Header from '../../Header'
 import LacStarLogo from '../../../lacStarLogo.png'
 import PaginaCadsAva from '../cardsAva/paginasCardsAva';
 import Footer from '../../Footer'
+import { style } from './home.css'
 
 
 function Home() {
@@ -39,11 +40,11 @@ function Home() {
                 </div>
             </main>
             <bory>
-                
-                    <PaginaCadsAva />
-                
+
+                <PaginaCadsAva />
+
             </bory>
-            <Footer/>
+            <Footer />
         </div >
 
     )

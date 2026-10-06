@@ -15,7 +15,7 @@ function Header() {
               localStorage.getItem("id_usuario");
             try {
                 const resposta = await fetch(
-                    `http://localhost:3001/usuario/${idUsuario}`
+                    `http://localhost:3002/usuario/${idUsuario}`
                 );
 
                 const usuario = await resposta.json();

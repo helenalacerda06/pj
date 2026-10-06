@@ -1,6 +1,8 @@
+
 import logo from '../lacStarLogo.png'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import styled from './cadastrar.css'
 
 function Cadastro({ onCadastro }) {
     const navigate = useNavigate();
@@ -11,64 +13,67 @@ function Cadastro({ onCadastro }) {
 
     async function Cadastrar(event) {
         event.preventDefault();
-        
-       const resposta = await fetch("http://localhost:3001/usuario", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            nome,
-            email,
-            aniversario,
-            senha
-        })
-       });
+        try {
+            const resposta = await fetch("http://localhost:3002/usuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ nome, email, aniversario, senha })
+            });
+            const resultado = await resposta.json();
 
-       const mensagem = await resposta.text();
-       console.log(mensagem);
+            if (!resposta.ok) {
+                alert(resultado.erro || "Não foi possível criar a conta.");
+                return;
+            }
 
-       if(resposta.ok){
-        localStorage.setItem("nomeUsuario", nome);
-        navigate("/home")
-       }
+            localStorage.setItem("id_usuario", resultado.id);
+            localStorage.setItem("nomeUsuario", nome);
+            navigate("/home");
+        } catch (erro) {
+            console.error("Erro no cadastro:", erro);
+            alert("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
+        }
     }
 
 
 
     return (
-        <div>
-            <div className="containerCadastro">
+        <main className="containerCadastro">
                 <h1 className='tituloCa'>Cadastrar</h1>
-                <div className='ladoUm'>
-                    <img className='logo' src={logo} alt="Logo" />
-                </div>
+                <section className='ladoUm' aria-label='Identidade visual'>
+                    <img className='logo' src={logo} alt='LacStar' />
+                </section>
 
-                <div className='ladoDois'>
+                <section className='ladoDois' aria-label='Dados de cadastro'>
                     <form className="form" onSubmit={Cadastrar}>
-                        <label className='label'>Nome do usuário</label>
+                        <label className='label' >Nome do usuário</label>
                         <input
                             className="input"
                             placeholder='Seu nome'
                             id='nome'
                             type='text'
+                            required
                             value={nome}
                             onChange={(event) => setNome(event.target.value)}
                         />
-                        <label className="label">Data de nascimento</label>
+                        <label className="label" >Data de nascimento</label>
                         <input
                             className="input"
                             id='aniversario'
                             type="date"
+                            required
                             value={aniversario}
                             onChange={(event) => setAniversario(event.target.value)}
                         />
-                        <label className='label'>E-mail</label>
+                        <label className='label' >E-mail</label>
                         <input
                             className="input"
                             placeholder='seuemail@exemplo.com'
                             id='email'
                             type='email'
+                            required
                             value={email}
                             onChange={(event) => setEmail(event.target.value)}
                         />
@@ -78,6 +83,7 @@ function Cadastro({ onCadastro }) {
                             placeholder='Digite uma senha'
                             id='senha'
                             type='password'
+                            required
                             value={senha}
                             onChange={(event) => setSenha(event.target.value)}
                         />
@@ -86,15 +92,14 @@ function Cadastro({ onCadastro }) {
                             Cadastrar
                         </button>
                         <nav className='buttonLo'>
-                            <a href="Login" className='buttonLo'>Já tenho uma conta </a>
+                            <Link to="/login" className='buttonLo'>Já tenho uma conta</Link>
                             </nav>
                         </div>
                         
 
                     </form>
-                </ div>
-            </div>
-        </div>
+                </section>
+        </main>
     )
 }
 export default Cadastro;
