@@ -5,7 +5,7 @@ import Header from '../../Header'
 import LacStarLogo from '../../../lacStarLogo.png'
 import PaginaCadsAva from '../cardsAva/paginasCardsAva';
 import Footer from '../../Footer'
-import { style } from './home.css'
+import './home.css'
 
 
 function Home() {
