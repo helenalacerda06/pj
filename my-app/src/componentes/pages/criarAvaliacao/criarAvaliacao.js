@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import styles from './criarAvaliacao.css';
-import stylesVisualizacao from './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
 import Header from '../../Header'
@@ -179,33 +177,33 @@ function CriarAvaliação() {
                     <div className="visualizacaoWrapper">
                         <article className={"containerVisualizacao"}>
                             <h1 className="tituloVisualizacao">{nome}</h1>
-                            {nome == "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
+                            {nome === "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
                             <section className='areaImagem'>
-                                {imagem && (<img className="imagemAvaliacao" src={imagem} />)}
-                                {imagem == null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
+                                {imagem && (<img className="imagemAvaliacao" src={imagem} alt="Imagem da avaliação" />)}
+                                {imagem === null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
 
                                 {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
-                                {categoria == "" && <p className='categoriaNull'> Categoria: </p>}
+                                {categoria === "" && <p className='categoriaNull'> Categoria: </p>}
 
                                 {lancamento !== "" && <p className='lancamento'>Lançamento: {lancamento}</p>}
-                                {lancamento == "" && <p className='lancamentoNull'>Lançamento: </p>}
+                                {lancamento === "" && <p className='lancamentoNull'>Lançamento: </p>}
 
                                 {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
-                                {duracao == "" && <p className='duracaoNull'>Duração: </p>}
+                                {duracao === "" && <p className='duracaoNull'>Duração: </p>}
 
                                {estrelas !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas} precision={estrelas} readOnly /></p>}
-                               {estrelas == "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas}  readOnly /></p>}
+                               {estrelas === "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas}  readOnly /></p>}
 
                             </section>
                             <section className='areaInformacoes'>
                                 {descricao !== '' && <p className="containerDescricao">{descricao}</p>}
-                                {descricao == "" && <h3 className='containerDescricaoNull'>Descrição</h3>}
+                                {descricao === "" && <h3 className='containerDescricaoNull'>Descrição</h3>}
 
                                 {feedback !== "" && <p className="containerDescricao">{feedback}</p>}
-                                {feedback    == "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
+                                {feedback    === "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
 
                                 {principais_pontos !== "" && <p className="containerDescricao">{principais_pontos}</p>}
-                                {principais_pontos == "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
+                                {principais_pontos === "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}
                             </section>
                         </article>
                     </div>

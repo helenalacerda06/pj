@@ -1,5 +1,4 @@
 import Seta from '../../seta-esquerda.png'
-import style from './buttonVoltar.css'
 import { useNavigate } from 'react-router-dom';
 
 function ButtonVoltar({onVoltar}) {
@@ -11,7 +10,7 @@ function ButtonVoltar({onVoltar}) {
     return (
         <button className='voltar' type='submit' id='buttonCadastrar' onClick={Voltar} >
             <span className='imgVoltar'>
-                <img className='imgVoltar' src={Seta} />
+                <img className='imgVoltar' src={Seta} alt="Seta para voltar" />
             </span>
         </button>
     )

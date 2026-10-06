@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import CriarAvaliação from '../criarAvaliacao/criarAvaliacao';
 import button from "./mais.png"
-import { style } from './home.css'
 import LacStar from '../../../lacStar.png'
 import Header from '../../Header'
 import LacStarLogo from '../../../lacStarLogo.png'
@@ -22,9 +20,9 @@ function Home() {
             <main className="home">
                 <div className="primeiro">
                     <img className='lacStar
-            'src={LacStar} width="700"
+            'src={LacStar} alt="Lac Star" width="700"
                         height="340" />
-                    <img className='lacStarLogo' src={LacStarLogo}
+                    <img className='lacStarLogo' src={LacStarLogo} alt="Lac Star Logo"
                         height="340" />
                 </div>
 

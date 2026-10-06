@@ -50,6 +50,7 @@ export default function RecipeReviewCard() {
             <CardMedia
                 component="img"
                 imagem=""
+                alt="Imagem da avaliação"
             />
             <CardContent>
                 <Typography className={'descricao'}>

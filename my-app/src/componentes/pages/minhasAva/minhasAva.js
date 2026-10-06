@@ -1,4 +1,3 @@
-import style from './minhasAva.css'
 import Header from '../../Header'
 import Footer from '../../Footer'
 

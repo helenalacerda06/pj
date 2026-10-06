@@ -1,4 +1,3 @@
-import styled from './cadastrar.css'
 import logo from '../lacStarLogo.png'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -42,7 +41,7 @@ function Cadastro({ onCadastro }) {
             <div className="containerCadastro">
                 <h1 className='tituloCa'>Cadastrar</h1>
                 <div className='ladoUm'>
-                    <img className='logo' src={logo} />
+                    <img className='logo' src={logo} alt="Logo" />
                 </div>
 
                 <div className='ladoDois'>

@@ -1,7 +1,4 @@
-import CardsAva from './cardsAva'
-import styled from './paginasCardsAva.css'
 import pesquisar from '../../../pesquisa.png'
-import CarouselAva from './carouselAva'
 import SetaEsquerda from '../../../seta-esquerda.png'
 import SetaDireita from '../../../seta-direita.png'
 
@@ -10,7 +7,7 @@ function PaginaCadsAva() {
         <bory>
             <button className="maisAva" >
                 <span>
-                    <img className='pesquisar' src={pesquisar} />
+                    <img className='pesquisar' src={pesquisar} alt="Ícone de pesquisa" />
                 </span>
                 Mais avaliações
             </button>
@@ -19,12 +16,12 @@ function PaginaCadsAva() {
                 <div className={'containerAvas'}>
                     <button className='carouselButton'>
                         <span className='seta'>
-                            <img className='seta' src={SetaEsquerda} />
+                            <img className='seta' src={SetaEsquerda} alt="Seta para esquerda" />
                         </span>
                     </button>
                     <button className='carouselButtonDireita'>
                         <span className='seta'>
-                            <img className='seta' src={SetaDireita} />
+                            <img className='seta' src={SetaDireita} alt="Seta para direita" />
                         </span>
                     </button>
 
