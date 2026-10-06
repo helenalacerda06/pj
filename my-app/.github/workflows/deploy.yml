@@ -44,3 +44,5 @@ jobs:
       - name: Publicar no GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+        # Deploy do LacStar
