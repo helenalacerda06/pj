@@ -20,8 +20,9 @@ function Home() {
             <Header />
             <main className="home">
                 <div className="primeiro">
-                    <img className='lacStar
-            'src={LacStar} alt="Lac Star" width="700"
+                    <img
+                        className='lacStar'
+                        src={LacStar} alt="Lac Star" width="700"
                         height="340" />
                     <img className='lacStarLogo' src={LacStarLogo} alt="Lac Star Logo"
                         height="340" />
