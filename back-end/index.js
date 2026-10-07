@@ -38,30 +38,18 @@ server.post('/usuario', (request, response) => {
 
 // busca um usuario pelo id
 
-server.get("/usuario/:id", (request, response) => {
-    const id = request.params.id;
+server.get('/usuario', (request, response) => {
+    const sql = "SELECT * FROM usuarios"
 
-    const sql = `
-    SELECT id, nome, email
-    FROM usuarios
-    WHERE id = ?
-    `;
+    db.all(sql, [], (erro, usuarios) => {
 
-    db.get(sql, [id], (erro, usuario) => {
         if (erro) {
-            console.error(erro);
-
             return response.status(500).json({
-                erro: "Erro ao buscar usuario"
-            });
+                erro: erro.message
+            })
         }
-        if (!usuario) {
-            return response.status(404).json({
-                erro: "Usuário não encontrado"
-            });
-        }
-        console.log("Usuaío encontrado:", usuario);
-        response.json(usuario);
+
+        response.json(usuarios)
     })
 })
 
