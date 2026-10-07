@@ -4,35 +4,36 @@ import { useEffect, useState } from "react";
 
 function Header() {
 
-    const [nomeUsuario, setNomeUsuario] = useState("");
-    const [email, setEmail] = useState("");
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [email, setEmail] = useState("");
 
-    useEffect(() => {
+  useEffect(() => {
 
-        async function buscarUsuario() {
+    async function buscarUsuario() {
 
-            const idUsuario =
-              localStorage.getItem("id_usuario");
-            try {
-                const resposta = await fetch(
-                    `http://localhost:3002/usuario/${idUsuario}`
-                );
+      const idUsuario =
+        localStorage.getItem("id_usuario");
+      try {
+        const resposta = await fetch(`
+                  https://lacstar-api.onrender.com/usuario/${idUsuario}
+                  `
+        );
 
-                const usuario = await resposta.json();
+        const usuario = await resposta.json();
 
-                console.log("Usuário atual:", usuario);
+        console.log("Usuário atual:", usuario);
 
-                setNomeUsuario(usuario.nome);
-                setEmail(usuario.email);
-            } catch (erro) {
-                console.error(
-                    "Erro ao buscar usuário:",
-                    erro
-                );
-            }
-        }
-        buscarUsuario();
-    }, []);
+        setNomeUsuario(usuario.nome);
+        setEmail(usuario.email);
+      } catch (erro) {
+        console.error(
+          "Erro ao buscar usuário:",
+          erro
+        );
+      }
+    }
+    buscarUsuario();
+  }, []);
 
   return (
     <header className="header">
