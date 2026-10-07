@@ -14,7 +14,7 @@ function Cadastro({ onCadastro }) {
     async function Cadastrar(event) {
         event.preventDefault();
         try {
-            const resposta = await fetch("https://lacstar-api.onrender.com/usuario", {
+            const resposta = await fetch("https://lacstar-backend.onrender.com/usuario", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
