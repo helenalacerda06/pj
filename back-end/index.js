@@ -144,12 +144,12 @@ server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
     avaliacao.nome,
     avaliacao.descricao,
     avaliacao.feedback,
-    avaliacao_principais_pontos,
+    avaliacao.principais_pontos,
     avaliacao.imagem,
     avaliacao.lancamento,
     avaliacao.duracao,
     avaliacao.estrelas,
-    avaliacoes_usuario.data_criacao,
+    avaliacoes_usuario.data_criacao
 
     FROM avaliacoes_usuario
 
