@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -44,65 +44,71 @@ export default function RecipeReviewCard() {
     const idUsuario = localStorage.getItem("id_usuario");
     const [erro, setErro] = useState("");
 
-   const [avaliacoes, setAvaliacoes] = useState([]);
-   
+    const [avaliacoes, setAvaliacoes] = useState([]);
+
     const [expanded, setExpanded] = React.useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    useEffect(() => {
 
-    async function buscarAva (event) {
-        event.preventDefault();
-        try {
-            const resposta = await fetch(`https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
+        async function buscarAva(event) {
+            event.preventDefault();
+            try {
+                console.log("ID do usuário:", idUsuario);
+                const resposta = await fetch(`https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
                 }
-            }
-            );
-            const resultado = await resposta.json();
+                );
+                const resultado = await resposta.json();
 
-            if (!resposta.ok) {
-                setErro(resultado.erro || "Não foi possível buscar as avaliações.");
-                return;
+                if (!resposta.ok) {
+                    setErro(resultado.erro || "Não foi possível buscar as avaliações.");
+                    return;
+                }
+                console.log(resultado);
+                setAvaliacoes(resultado);
+
+            } catch (erro) {
+                setErro("Erro ao conectar com o servidor.");
             }
-            console.log(resultado);
-        } catch (erro) {
-            setErro("Erro ao conectar com o servidor.");
         }
-    }
-return (
-    <main>
-        {avaliacoes.map((avaliacao) => (
-    <Card className="avaliacaoCard" sx={{ maxWidth: 345 }}>
-        
-        <CardHeader className={'headerCard'}
-            title={avaliacao.nome}
-            subheader={avaliacao.subheader}
-        />
-        <CardMedia
-            component="img"
-            image={avaliacao.imagem}
-            alt="Imagem da avaliação"
-        />
-        <CardContent>
-            <Typography className={'descricao'}>
-                {avaliacao.descricao}
-            </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites" disableRipple>
-                <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share" disableRipple>
-                <ShareIcon />
-            </IconButton>
-        </CardActions>
-    </ Card>
-    ))
-    }
-    </main>
-);
+        if (idUsuario) {
+            buscarAva();
+        }
+
+    }, [idUsuario]);
+    return (
+        <main>
+            {avaliacoes.map((avaliacao) => (
+                <Card key={avaliacao.id} className="avaliacaoCard" sx={{ maxWidth: 345 }}>
+
+                    <CardHeader className={'headerCard'}
+                        title={avaliacao.nome}
+                        subheader={avaliacao.categoria}
+                    />
+                    <CardMedia
+                        component="img"
+                        image={avaliacao.imagem}
+                        alt="Imagem da avaliação"
+                    />
+                    <CardContent>
+                        <Typography className={'descricao'}>
+                            {avaliacao.descricao}
+                        </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                        <IconButton aria-label="add to favorites" disableRipple>
+                            <FavoriteIcon />
+                        </IconButton>
+                        <IconButton aria-label="share" disableRipple>
+                            <ShareIcon />
+                        </IconButton>
+                    </CardActions>
+                </ Card>
+            ))
+            }
+        </main>
+    );
 }

@@ -10,7 +10,6 @@ function Login({ onLogin }) {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
-    const [mensagem, setMensagem] = useState("");
 
     async function fazerLogin(event) {
 
