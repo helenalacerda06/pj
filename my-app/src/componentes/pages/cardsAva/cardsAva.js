@@ -41,27 +41,18 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard() {
     const navigate = useNavigate();
-
-    const [nome, setNome] = useState("");
-    const [descricao, setDescricao] = useState("")
-    const [feedback, setFeedback] = useState("")
-    const [principais_pontos, setPrincipais_pontos] = useState("")
-    const [imagem, setImagem] = useState(null)
-    const [categoria, setCategoria] = useState("")
-    const [estrelas, setEstrelas] = useState("");
-    const [lancamento, setLancamento] = useState("")
-    const [duracao, setDuracao] = useState("")
+    const idUsuario = localStorage.getItem("id_usuario");
     const [erro, setErro] = useState("");
 
-    const idUsuario = localStorage.getItem("id_usuario");
-
+   const [avaliacoes, setAvaliacoes] = useState([]);
+   
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
-    async function cardsAva(event) {
+    async function buscarAva (event) {
         event.preventDefault();
         try {
             const resposta = await fetch(`https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`, {
@@ -83,19 +74,22 @@ export default function RecipeReviewCard() {
         }
     }
 return (
+    <main>
+        {avaliacoes.map((avaliacao) => (
     <Card className="avaliacaoCard" sx={{ maxWidth: 345 }}>
+        
         <CardHeader className={'headerCard'}
-            title={nome}
-            subheader="Lançamento"
+            title={avaliacao.nome}
+            subheader={avaliacao.subheader}
         />
         <CardMedia
             component="img"
-            image={imagem}
+            image={avaliacao.imagem}
             alt="Imagem da avaliação"
         />
         <CardContent>
             <Typography className={'descricao'}>
-                {descricao}
+                {avaliacao.descricao}
             </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -107,5 +101,8 @@ return (
             </IconButton>
         </CardActions>
     </ Card>
+    ))
+    }
+    </main>
 );
 }

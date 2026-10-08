@@ -10,9 +10,7 @@ function minhasAva(){
             <h1 className="tituloMinhasAva">Minhas Avaliações</h1>
                 <div className='visualizacaoWrapper'>
                     <div className={'containerMinhaAva'}>
-                        
-
-
+                        <MinhasAvaCard />
                     </div>
                 </div>
                 <Footer />
