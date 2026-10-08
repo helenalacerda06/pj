@@ -3,6 +3,7 @@ import logo from '../lacStarLogo.png'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import './cadastrar.css'
+import Erro from '../erro.svg';
 
 function Cadastro({ onCadastro }) {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Cadastro({ onCadastro }) {
     const [email, setEmail] = useState("");
     const [aniversario, setAniversario] = useState("");
     const [senha, setSenha] = useState("");
+    const [erro, setErro] = useState("");
 
     async function Cadastrar(event) {
         event.preventDefault();
@@ -24,7 +26,7 @@ function Cadastro({ onCadastro }) {
             const resultado = await resposta.json();
 
             if (!resposta.ok) {
-                alert(resultado.erro || "Não foi possível criar a conta.");
+                setErro(resultado.erro || "Não foi possível criar a conta.");
                 return;
             }
 
@@ -33,14 +35,15 @@ function Cadastro({ onCadastro }) {
             navigate("/home");
         } catch (erro) {
             console.error("Erro no cadastro:", erro);
-            alert("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
+            setErro("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
         }
     }
 
 
 
     return (
-        <main className="containerCadastro">
+        <main>
+            <article className="containerCadastro">
                 <h1 className='tituloCa'>Cadastrar</h1>
                 <section className='ladoUm' aria-label='Identidade visual'>
                     <img className='logo' src={logo} alt='LacStar' />
@@ -95,11 +98,19 @@ function Cadastro({ onCadastro }) {
                             <Link to="/login" className='buttonLo'>Já tenho uma conta</Link>
                             </nav>
                         </div>
-                        
-
                     </form>
                 </section>
+            </article>
+            {erro &&
+                <div className="mensagemErro">
+                    <h5 className="tituloErro">{erro}</h5>
+                    <img className="imagemErro" src={Erro} alt="Imagem de erro" />
+                    <p className="mensagem">Esse e-mail já está em uso, vá para o login ou tente com outro e-mail.</p>
+
+                </div>}
         </main>
+        
+        
     )
 }
 export default Cadastro;
