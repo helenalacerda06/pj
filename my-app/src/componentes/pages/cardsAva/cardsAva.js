@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -35,36 +37,75 @@ const ExpandMore = styled((props) => {
     ],
 }));
 
+
+
 export default function RecipeReviewCard() {
+    const navigate = useNavigate();
+
+    const [nome, setNome] = useState("");
+    const [descricao, setDescricao] = useState("")
+    const [feedback, setFeedback] = useState("")
+    const [principais_pontos, setPrincipais_pontos] = useState("")
+    const [imagem, setImagem] = useState(null)
+    const [categoria, setCategoria] = useState("")
+    const [estrelas, setEstrelas] = useState("");
+    const [lancamento, setLancamento] = useState("")
+    const [duracao, setDuracao] = useState("")
+    const [erro, setErro] = useState("");
+
+    const idUsuario = localStorage.getItem("id_usuario");
+
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
+        setExpanded(!expanded);
     };
 
-    return (
-        <Card className="avaliacaoCard" sx={{ maxWidth: 345 }}>
-            <CardHeader className={'headerCard'}
-                title="Nome"
-                subheader="Lançamento"
-            />
-            <CardMedia
-                component="img"
-                imagem=""
-                alt="Imagem da avaliação"
-            />
-            <CardContent>
-                <Typography className={'descricao'}>
-                    Descrição aqui
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites" disableRipple>
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share" disableRipple>
-                    <ShareIcon />
-                </IconButton>
-            </CardActions>
-        </ Card>
-    );
+    async function cardsAva(event) {
+        event.preventDefault();
+        try {
+            const resposta = await fetch(`https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+            );
+            const resultado = await resposta.json();
+
+            if (!resposta.ok) {
+                setErro(resultado.erro || "Não foi possível buscar as avaliações.");
+                return;
+            }
+            console.log(resultado);
+        } catch (erro) {
+            setErro("Erro ao conectar com o servidor.");
+        }
+    }
+return (
+    <Card className="avaliacaoCard" sx={{ maxWidth: 345 }}>
+        <CardHeader className={'headerCard'}
+            title={nome}
+            subheader="Lançamento"
+        />
+        <CardMedia
+            component="img"
+            image={imagem}
+            alt="Imagem da avaliação"
+        />
+        <CardContent>
+            <Typography className={'descricao'}>
+                {descricao}
+            </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites" disableRipple>
+                <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share" disableRipple>
+                <ShareIcon />
+            </IconButton>
+        </CardActions>
+    </ Card>
+);
 }
