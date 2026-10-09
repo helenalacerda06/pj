@@ -25,7 +25,7 @@ function CriarAvaliação() {
     async function AvaCriada(event) {
         event.preventDefault();
 
-        const avaliacao = await fetch("https://lacstar-backend.onrender.com/avaliacao", {
+        const avaliacao = await fetch("http://localhost:3002/avaliacao", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -48,7 +48,7 @@ function CriarAvaliação() {
         //Se colocar direto o navigate(home) a pagina muda sem salvar o id do usuario que criou a avaliação (go the trinks) 
         if (avaliacao.ok) {
             
-            const relacionamento = await fetch("https://lacstar-backend.onrender.com/avaliacoes_usuario", {
+            const relacionamento = await fetch("http://localhost:3002/avaliacoes_usuario", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -15,7 +15,7 @@ function Login({ onLogin }) {
 
         event.preventDefault();
         try {
-            const resposta = await fetch("https://lacstar-backend.onrender.com/login",
+            const resposta = await fetch("http://localhost:3002/login",
                 {
                     method: "POST",
                     headers: {

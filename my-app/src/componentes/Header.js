@@ -15,7 +15,7 @@ function Header() {
         localStorage.getItem("id_usuario");
       try {
         const resposta = await fetch(
-          `https://lacstar-backend.onrender.com/usuario/${idUsuario}`
+          `http://localhost:3002/usuario/${idUsuario}`
         );
 
         const usuario = await resposta.json();

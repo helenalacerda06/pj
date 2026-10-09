@@ -19,6 +19,7 @@
     border-width: 3px;
     border-color: #c478c0;
     margin-left: 60px;
+    display: inline;
 }
 
 @media (max-width:600px) {

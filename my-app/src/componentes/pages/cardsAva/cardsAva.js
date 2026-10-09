@@ -49,36 +49,40 @@ export default function RecipeReviewCard() {
     const [expanded, setExpanded] = React.useState(false);
 
     useEffect(() => {
+async function buscarAva() {
+try {
+console.log("ID do usuário:", idUsuario);
 
-        async function buscarAva(event) {
-            event.preventDefault();
-            try {
-                console.log("ID do usuário:", idUsuario);
-                const resposta = await fetch(`https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-                );
-                const resultado = await resposta.json();
+        const resposta = await fetch(
+            `http://localhost:3002/avaliacoes_usuarios/${idUsuario}`
+        );
 
-                if (!resposta.ok) {
-                    setErro(resultado.erro || "Não foi possível buscar as avaliações.");
-                    return;
-                }
-                console.log(resultado);
-                setAvaliacoes(resultado);
+        const resultado = await resposta.json();
 
-            } catch (erro) {
-                setErro("Erro ao conectar com o servidor.");
-            }
-        }
-        if (idUsuario) {
-            buscarAva();
+        if (!resposta.ok) {
+            setErro(
+                resultado.erro || "Não foi possível buscar as avaliações."
+            );
+            return;
         }
 
-    }, [idUsuario]);
+        console.log("Avaliações recebidas:", resultado);
+        setAvaliacoes(resultado);
+        setErro("");
+
+    } catch (erro) {
+        console.error("Erro ao buscar avaliações:", erro);
+        setErro("Erro ao conectar com o servidor.");
+    }
+}
+
+if (idUsuario) {
+    buscarAva();
+} else {
+    setErro("Nenhum usuário está identificado.");
+}
+
+}, [idUsuario]);
     return (
         <main>
             {avaliacoes.map((avaliacao) => (
