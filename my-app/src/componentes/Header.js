@@ -1,11 +1,21 @@
 import './Header.css';
 import Logo from '../logo.png'
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
 
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  function irParaMinhasAva(){
+    navigate("/minhas-ava")
+  }
+
+  function irParaHome(){
+    navigate("/home")
+  }
 
   useEffect(() => {
 
@@ -39,9 +49,12 @@ function Header() {
       <img src={Logo} alt="Logo" className="header-logo" />
       <h3 className='nomeUsuario'> {nomeUsuario} \ {email}</h3>
       <nav>
-        <a href="Home">Início</a>
-        {/* <a href="#">Sobre</a> */}
-        <a href="MinhasAva">Meu Perfil</a>
+        <button className="buttonHeader" onClick={irParaHome}>
+          Início
+        </button>
+        <button className="buttonHeader" onClick={irParaMinhasAva}>
+          Minhas avaliações
+        </button>
       </nav>
     </header>
   );
