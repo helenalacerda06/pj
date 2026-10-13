@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack'
@@ -7,6 +7,7 @@ import Footer from '../../Footer';
 import ButtoVoltar from '../../button/buttonVoltar'
 import './criarAvaliacao.css';
 import './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
+
 
 function CriarAvaliação() {
     const navigate = useNavigate();
@@ -20,35 +21,58 @@ function CriarAvaliação() {
     const [lancamento, setLancamento] = useState("")
     const [duracao, setDuracao] = useState("")
     const idUsuario = localStorage.getItem("id_usuario");
+    const [imagemPreview, setImagemPreview] = useState(null);
+
+    useEffect(() => {
+        if (!imagem) {
+            setImagemPreview(null);
+            return;
+        }
+
+        const url = URL.createObjectURL(imagem);
+        setImagemPreview(url);
+
+        return () => URL.revokeObjectURL(url);
+    }, [imagem]);
 
 
-    async function AvaCriada(event) {
-        event.preventDefault();
+async function AvaCriada(event) {
+    event.preventDefault();
 
-        const avaliacao = await fetch("http://localhost:3002/avaliacao", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                categoria,
-                nome,
-                descricao,
-                feedback,
-                principais_pontos,
-                imagem,
-                lancamento,
-                duracao,
-                estrelas
-            })
-        });
-        const dados = await avaliacao.json()
-        console.log(dados);
+    try {
+        const formulario = new FormData();
 
-        //Se colocar direto o navigate(home) a pagina muda sem salvar o id do usuario que criou a avaliação (go the trinks) 
-        if (avaliacao.ok) {
-            
-            const relacionamento = await fetch("http://localhost:3002/avaliacoes_usuario", {
+        formulario.append("categoria", categoria);
+        formulario.append("nome", nome);
+        formulario.append("descricao", descricao);
+        formulario.append("feedback", feedback);
+        formulario.append("principais_pontos", principais_pontos);
+        formulario.append("lancamento", lancamento);
+        formulario.append("duracao", duracao);
+        formulario.append("estrelas", String(estrelas));
+
+        if (imagem) {
+            formulario.append("imagem", imagem);
+        }
+
+        const resposta = await fetch(
+            "http://localhost:3002/avaliacao",
+            {
+                method: "POST",
+                body: formulario
+            }
+        );
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(dados.mensagem || dados.message || "Erro ao criar avaliação.");
+            return;
+        }
+
+        const relacionamento = await fetch(
+            "http://localhost:3002/avaliacoes_usuario",
+            {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -56,13 +80,23 @@ function CriarAvaliação() {
                 body: JSON.stringify({
                     id_usuario: idUsuario,
                     id_avaliacao: dados.id_avaliacao,
-                    data_criacao: new Date()
+                    data_criacao: new Date().toISOString()
                 })
-            });
-            console.log(await relacionamento.json());
-            navigate("/home")
+            }
+        );
+
+        if (!relacionamento.ok) {
+            alert("Avaliação criada, mas houve um erro ao vinculá-la ao usuário.");
+            return;
         }
+
+        navigate("/home");
+    } catch (erro) {
+        console.error("Erro ao criar avaliação:", erro);
+        alert("Não foi possível conectar ao servidor.");
     }
+}
+
 
     return (
         <>
@@ -123,16 +157,17 @@ function CriarAvaliação() {
                         />
 
                         <label className="label">Imagem</label>
+
                         <input
-                            className='input'
-                            id='imagem'
+                            className="input"
+                            id="imagem"
                             type="file"
-                            accept='image/'
+                            accept="image/*"
                             onChange={(e) => {
                                 const arquivo = e.target.files[0];
+
                                 if (arquivo) {
-                                    const imagemURL = URL.createObjectURL(arquivo);
-                                    setImagem(imagemURL)
+                                    setImagem(arquivo);
                                 }
                             }}
                         />
@@ -166,7 +201,7 @@ function CriarAvaliação() {
                             />
                         </Stack>
 
-                       <button
+                        <button
                             className="buttonPublicar"
                             type="submit"
                             id="buttonPublicar"
@@ -181,8 +216,8 @@ function CriarAvaliação() {
                             <h1 className="tituloVisualizacao">{nome}</h1>
                             {nome === "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
                             <section className='areaImagem'>
-                                {imagem && (<img className="imagemAvaliacao" src={imagem} alt="Imagem da avaliação" />)}
-                                {imagem === null && <h3 className="imagemAvaliacaoNull">Área Do banner</h3>}
+                                {imagemPreview && (<img className="imagemAvaliacao" src={imagemPreview} alt="Imagem da avaliação"/>)}
+                                {!imagemPreview && (<h3 className="imagemAvaliacaoNull">Área do banner</h3>)}
 
                                 {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
                                 {categoria === "" && <p className='categoriaNull'> Categoria: </p>}
@@ -193,8 +228,8 @@ function CriarAvaliação() {
                                 {duracao !== "" && <p className='duracao'>Duração: {duracao}</p>}
                                 {duracao === "" && <p className='duracaoNull'>Duração: </p>}
 
-                               {estrelas !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas} precision={estrelas} readOnly /></p>}
-                               {estrelas === "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas}  readOnly /></p>}
+                                {estrelas !== "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas} precision={estrelas} readOnly /></p>}
+                                {estrelas === "" && <p className='estrela'><Rating name="half-rating" defaultValue={estrelas} readOnly /></p>}
 
                             </section>
                             <section className='areaInformacoes'>
@@ -202,7 +237,7 @@ function CriarAvaliação() {
                                 {descricao === "" && <h3 className='containerDescricaoNull'>Descrição</h3>}
 
                                 {feedback !== "" && <p className="containerDescricao">{feedback}</p>}
-                                {feedback    === "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
+                                {feedback === "" && <h3 className='containerDescricaoNull'>Feedback</h3>}
 
                                 {principais_pontos !== "" && <p className="containerDescricao">{principais_pontos}</p>}
                                 {principais_pontos === "" && <h3 className='containerDescricaoNull'>Principais Pontos</h3>}

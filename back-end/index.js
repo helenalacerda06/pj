@@ -2,12 +2,37 @@ const express = require("express")
 const sqlite3 = require("sqlite3").verbose()
 const cors = require("cors")
 const path = require("path")
+const multer = require("multer");
 
  const server = express() 
 server.use(cors())
 server.use(express.json())
 
 const db = new sqlite3.Database(path.join(__dirname, "../teste_helena.db"))
+
+const fs = require("fs");
+
+const pastaUploads = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(pastaUploads)) {
+    fs.mkdirSync(pastaUploads, { recursive: true });
+}
+
+server.use("/uploads", express.static(pastaUploads));
+
+const armazenamento = multer.diskStorage({
+    destination: (request, file, callback) => {
+        callback(null, pastaUploads);
+    },
+    filename: (request, file, callback) => {
+        const nomeArquivo = Date.now() + path.extname(file.originalname);
+        callback(null, nomeArquivo);
+    }
+});
+
+const upload = multer({
+    storage: armazenamento
+});
 
 // cria o usuario no db
 server.post('/usuario', (request, response) => {
@@ -92,25 +117,44 @@ server.post('/login', (request, response) => {
 });
 
 // cria a avaliação do db
-server.post('/avaliacao', (request, response) => {
-    const { categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas } = request.body
+server.post('/avaliacao', upload.single('imagem'), (request, response) => {
+    const {categoria, nome, descricao, feedback, principais_pontos, lancamento, duracao, estrelas} = request.body;
+
+    const imagem = request.file
+        ? `/uploads/${request.file.filename}`
+        : null;
 
     const sql = `
-    INSERT INTO avaliacao ( categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas)
-    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `
+        INSERT INTO avaliacao (categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
 
-    db.run(sql, [categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas], function (erro) {
+    const valores = [categoria, nome, descricao, feedback, principais_pontos, imagem, lancamento, duracao, estrelas];
+
+    db.run(sql, valores, function (erro) {
         if (erro) {
-            console.log("ERRO DO BANCO:",  erro.message)
-            return response.status(500).send("Erro ao criar avaliação: ", erro.message)
+            console.error('Erro ao criar avaliação:', erro.message);
+
+            // Remove o arquivo caso não tenha sido possível salvar o registro no banco de dados.
+            if (request.file) {
+                require('fs').unlink(
+                    request.file.path,
+                    () => {}
+                );
+            }
+
+            return response.status(500).json({
+                mensagem: 'Erro ao salvar a avaliação.'
+            });
         }
-        return response.json({
-                mensagem: "Avaliação criada com sucesso",
-                id_avaliacao: this.lastID
-    })
-})
-})
+
+        response.status(201).json({
+            mensagem: 'Avaliação criada com sucesso!',
+            id_avaliacao: this.lastID,
+            imagem: imagem
+        });
+    });
+});
 
 //tabelas relacionadas a avaliação
 

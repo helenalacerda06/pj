@@ -80,7 +80,11 @@ export default function RecipeReviewCard() {
                     {avaliacao.imagem && (
                         <CardMedia
                             component="img"
-                            image={avaliacao.imagem}
+                            image={
+                                avaliacao.imagem
+                                    ? `http://localhost:3002${avaliacao.imagem}`
+                                    : undefined
+                            }
                             alt={`Imagem de ${avaliacao.nome}`}
                         />
                     )}
