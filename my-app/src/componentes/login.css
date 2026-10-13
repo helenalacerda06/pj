@@ -90,7 +90,7 @@
 }
 
 .tituloErro {
-    color: #665565;
+    color: #d80000;
     background: #f7daf7;
     font-family: sans-serif;
     padding: 0px;
@@ -107,7 +107,7 @@
     background: transparent;
     grid-column: 1 / 2;
     margin-left: 20px;
-    margin-top: 0px;
+    margin-top: -4px;
 }
 
 .mensagem {
