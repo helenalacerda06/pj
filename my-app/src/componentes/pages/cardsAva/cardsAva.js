@@ -52,7 +52,7 @@ export default function RecipeReviewCard() {
     }, [idUsuario]);
 
     return (
-        <main>
+        <main className="avaliacoes">
             {erro && (
                 <Typography color="error" role="alert">
                     {erro}

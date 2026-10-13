@@ -6,7 +6,14 @@
     background: #fffdfd;
     justify-content: center;
     align-items: center;
+}
 
+.avaliacoes {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 50px;
+    background: transparent;
 }
 
 .avaliacaoCard:hover {
