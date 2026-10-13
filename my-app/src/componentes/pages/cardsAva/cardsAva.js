@@ -60,8 +60,8 @@ export default function RecipeReviewCard() {
             )}
 
             {!erro && avaliacoes.length === 0 && (
-                <Typography>
-                    Você ainda não possui avaliações cadastradas.
+                <Typography className="mensagemErroSemAva">
+                    Você ainad não possui avaliações cadastradas. Para criar sua primeira avaliação volte para a página principal e click em "criar avaliação"
                 </Typography>
             )}
 
