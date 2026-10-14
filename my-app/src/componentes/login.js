@@ -67,7 +67,7 @@ function Login({ onLogin }) {
                         onChange={(event) => setEmail(event.target.value)}
                     />
 
-                    <label className='label'>Criar senha</label>
+                    <label className='label'>Digite sua senha</label>
                     <input
                         className="input"
                         type='password'
