@@ -9,11 +9,11 @@ function Header() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
-  function irParaMinhasAva(){
+  function irParaMinhasAva() {
     navigate("/minhas-ava")
   }
 
-  function irParaHome(){
+  function irParaHome() {
     navigate("/home")
   }
 
@@ -25,7 +25,7 @@ function Header() {
         localStorage.getItem("id_usuario");
       try {
         const resposta = await fetch(
-          `http://localhost:3002/usuario/${idUsuario}`
+          `https://lacstar-backend.onrender.com/usuario/${idUsuario}`
         );
 
         const usuario = await resposta.json();
