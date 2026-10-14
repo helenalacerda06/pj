@@ -214,8 +214,8 @@ server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
 })
 
 
-const port = process.env.PORT || 3002;
+const port = "https://helenalacerda06.github.io/";
 
 server.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`)
+    console.log(`Servidor rodando em ${port}`)
 })
