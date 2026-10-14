@@ -91,7 +91,7 @@ export default function RecipeReviewCard() {
 
                     <CardContent>
                         <Typography className="descricao">
-                            {avaliacao.descricao}
+                            {avaliacao.data}
                         </Typography>
                     </CardContent>
 
