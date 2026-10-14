@@ -6,8 +6,6 @@ import LacStarLogo from '../../../lacStarLogo.png'
 import PaginaCadsAva from '../cardsAva/paginasCardsAva';
 import Footer from '../../Footer'
 import './home.css'
-// import usuarioNaoEncontrado from '../../mensagens de erro/usuario/usuario não encontrado/usuarioNaoEncontrado';
-
 
 function Home() {
     const navigate = useNavigate();
