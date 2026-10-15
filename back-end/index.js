@@ -4,7 +4,7 @@ const cors = require("cors")
 const path = require("path")
 const multer = require("multer");
 
- const server = express() 
+const server = express()
 server.use(cors())
 server.use(express.json())
 
@@ -109,7 +109,7 @@ server.post('/login', (request, response) => {
         }
         if (!usuario) {
             return response.status(401).json({
-                erro: "E-mail ou senha incorretos :(" 
+                erro: "E-mail ou senha incorretos :("
             });
         }
         response.json(usuario);
@@ -118,7 +118,7 @@ server.post('/login', (request, response) => {
 
 // cria a avaliação do db
 server.post('/avaliacao', upload.single('imagem'), (request, response) => {
-    const {categoria, nome, descricao, feedback, principais_pontos, lancamento, duracao, estrelas} = request.body;
+    const { categoria, nome, descricao, feedback, principais_pontos, lancamento, duracao, estrelas } = request.body;
 
     const imagem = request.file
         ? `/uploads/${request.file.filename}`
@@ -139,7 +139,7 @@ server.post('/avaliacao', upload.single('imagem'), (request, response) => {
             if (request.file) {
                 require('fs').unlink(
                     request.file.path,
-                    () => {}
+                    () => { }
                 );
             }
 
@@ -159,13 +159,13 @@ server.post('/avaliacao', upload.single('imagem'), (request, response) => {
 //tabelas relacionadas a avaliação
 
 server.post("/avaliacoes_usuario", (request, response) => {
-    const {id_usuario, id_avaliacao, data_criacao} = request.body
+    const { id_usuario, id_avaliacao, data_criacao } = request.body
 
     const sql = `
     INSERT INTO avaliacoes_usuario (id_usuario, id_avaliacao, data_criacao)
     VALUES(?, ?, ?)
     `
-    
+
     db.run(sql, [id_usuario, id_avaliacao, data_criacao], function (erro) {
         if (erro) {
             console.log("ERRO DO BANCO:", erro.message)
@@ -181,7 +181,7 @@ server.post("/avaliacoes_usuario", (request, response) => {
 server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
     const id_usuario = request.params.id_usuario;
 
-    const sql=`
+    const sql = `
     SELECT
     avaliacao.id,
     avaliacao.categoria,
@@ -214,8 +214,8 @@ server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
 })
 
 
-const port = "https://helenalacerda06.github.io/";
+const PORT = process.env.PORT || 3002;
 
-server.listen(port, () => {
-    console.log(`Servidor rodando em ${port}`)
-})
+server.listen(PORT, "0.0.0.0", () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
