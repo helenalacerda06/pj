@@ -56,7 +56,7 @@ async function AvaCriada(event) {
         }
 
         const resposta = await fetch(
-            "http://localhost:3002/avaliacao",
+            "https://lacstar-backend.onrender.com/avaliacao",
             {
                 method: "POST",
                 body: formulario
@@ -71,7 +71,7 @@ async function AvaCriada(event) {
         }
 
         const relacionamento = await fetch(
-            "http://localhost:3002/avaliacoes_usuario",
+            "https://lacstar-backend.onrender.com/avaliacoes_usuario",
             {
                 method: "POST",
                 headers: {

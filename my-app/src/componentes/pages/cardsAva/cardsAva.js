@@ -82,7 +82,7 @@ export default function RecipeReviewCard() {
                             component="img"
                             image={
                                 avaliacao.imagem
-                                    ? `http://localhost:3002${avaliacao.imagem}`
+                                    ? `https://lacstar-backend.onrender.com${avaliacao.imagem}`
                                     : undefined
                             }
                             alt={`Imagem de ${avaliacao.nome}`}
