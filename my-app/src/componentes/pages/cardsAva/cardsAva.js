@@ -22,7 +22,7 @@ export default function RecipeReviewCard() {
         async function buscarAva() {
             try {
                 const resposta = await fetch(
-                    `http://localhost:3002/avaliacoes_usuarios/${idUsuario}`
+                    `https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`
                 );
 
                 const resultado = await resposta.json();
