@@ -82,3 +82,9 @@
     background: transparent;
     color: #6c676c;
 }
+
+@media (max-widt: 600px) {
+    .avaliacoes{
+        flex-direction: column;
+    }
+}
