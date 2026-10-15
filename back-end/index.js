@@ -213,6 +213,54 @@ server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
     })
 })
 
+server.get("/admin/avaliacoes", (request, response) => {
+    const token = request.headers.authorization;
+
+    if (
+        !process.env.ADMIN_TOKEN ||
+        token !== `Bearer ${process.env.ADMIN_TOKEN}`
+    ) {
+        return response.status(401).json({
+            erro: "Acesso não autorizado"
+        });
+    }
+
+    const sql = `
+        SELECT
+            avaliacao.id,
+            avaliacao.categoria,
+            avaliacao.nome,
+            avaliacao.descricao,
+            avaliacao.feedback,
+            avaliacao.principais_pontos,
+            avaliacao.imagem,
+            avaliacao.lancamento,
+            avaliacao.duracao,
+            avaliacao.estrelas,
+            avaliacoes_usuario.id_usuario,
+            usuarios.nome AS nome_usuario,
+            avaliacoes_usuario.data_criacao
+        FROM avaliacao
+        LEFT JOIN avaliacoes_usuario
+            ON avaliacao.id = avaliacoes_usuario.id_avaliacao
+        LEFT JOIN usuarios
+            ON avaliacoes_usuario.id_usuario = usuarios.id
+        ORDER BY avaliacao.id DESC
+    `;
+
+    db.all(sql, [], (erro, avaliacoes) => {
+        if (erro) {
+            console.error("Erro na consulta administrativa:", erro.message);
+
+            return response.status(500).json({
+                erro: "Erro ao consultar avaliações"
+            });
+        }
+
+        return response.json(avaliacoes);
+    });
+});
+
 
 const PORT = process.env.PORT || 3002;
 
