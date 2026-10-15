@@ -1,50 +1,77 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+Version change: unversioned scaffold -> 1.0.0
+Modified principles: unpopulated template -> five defined core principles
+Added sections: Technical Constraints; Development Workflow
+Removed sections: none
+Follow-up TODOs: Confirm the original ratification date.
+-->
+
+# PJ Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Approved Technology Stack
+The frontend MUST use React. The backend MUST use Node.js with Express, and persistent
+application data MUST use SQLite. Contributors MUST follow these choices and the
+technologies already used by the project unless an amendment explicitly authorizes a
+change. This keeps the system coherent and maintainable.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Clear Responsibility and Reuse
+Code MUST be organized into components, modules, and files with clear, separate
+responsibilities. Before creating a new component, function, or structure, contributors
+MUST check whether an existing one can be reused. New abstractions MUST be limited to
+those that improve clarity or prevent meaningful duplication.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Accessible, Legible Interface
+The interface MUST be easy to understand and operate, and MUST meet applicable
+accessibility requirements, including keyboard operation, semantic structure, and
+sufficient contrast. The visual design MUST use delicate pastel pink tones while
+preserving legibility and clear interaction states.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Safe Backend and Behavior Preservation
+Backend input MUST be validated at the point it enters the application. Errors MUST be
+handled explicitly and returned or reported in a way appropriate to the interface; the
+backend MUST NOT disguise failures as successful results. Existing functionality MUST
+remain unchanged unless a requested change requires otherwise, and any necessary
+behavioral change MUST be deliberate and covered by appropriate tests.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Simplicity and Maintainability
+Solutions MUST favor straightforward, readable, and maintainable code over unnecessary
+complexity. Changes MUST be explained clearly, and implementations MUST use the
+project's established patterns and technologies. Rationale for any necessary deviation
+MUST be documented with the change.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technical Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+The frontend is React; the backend is Node.js with Express; and the database is SQLite.
+Data crossing the backend boundary MUST be validated, and errors MUST be handled
+explicitly. User-facing changes MUST preserve accessibility and the project's pastel-pink
+visual direction without sacrificing contrast or readability.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Before implementation, contributors MUST inspect the relevant existing code for reusable
+components, functions, and established patterns. Changes MUST be scoped to the requested
+behavior, with unrelated functionality left intact. New or changed behavior MUST be
+validated using relevant tests or other project checks; any unavailable validation MUST
+be disclosed. Change summaries MUST explain what changed and identify deviations from
+the established stack or patterns.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution governs project decisions and MUST be used to assess proposed and
+completed changes. Amendments require a documented proposal describing the motivation
+and impact, review and approval by the project maintainers, and an update to this
+document. Changes MUST increment the constitution version using semantic versioning:
+MAJOR for incompatible governance or principle changes, MINOR for new principles or
+materially expanded requirements, and PATCH for clarifications and non-semantic edits.
+Every amendment MUST update the last-amended date and include an impact summary.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Contributors and reviewers MUST check relevant changes for compliance with these
+principles during implementation and review. A deviation requires explicit justification
+and maintainer approval in the change record. If project practice conflicts with this
+constitution, the conflict MUST be raised for resolution before the affected change is
+approved.
+
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): original adoption date unknown | **Last Amended**: 2026-10-15
