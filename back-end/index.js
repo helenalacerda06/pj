@@ -261,6 +261,37 @@ server.get("/admin/avaliacoes", (request, response) => {
     });
 });
 
+// Consultar usuários sem expor senhas
+server.get("/admin/usuarios", (request, response) => {
+    const token = request.headers.authorization;
+
+    if (
+        !process.env.ADMIN_TOKEN ||
+        token !== `Bearer ${process.env.ADMIN_TOKEN}`
+    ) {
+        return response.status(401).json({
+            erro: "Acesso não autorizado"
+        });
+    }
+
+    const sql = `
+        SELECT id, nome, email, aniversario
+        FROM usuarios
+        ORDER BY id DESC
+    `;
+
+    db.all(sql, [], (erro, usuarios) => {
+        if (erro) {
+            console.error(erro.message);
+            return response.status(500).json({
+                erro: "Erro ao consultar usuários"
+            });
+        }
+
+        return response.json(usuarios);
+    });
+});
+
 
 const PORT = process.env.PORT || 3002;
 
