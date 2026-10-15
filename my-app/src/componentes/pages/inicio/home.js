@@ -21,15 +21,22 @@ function Home() {
                 <div className="primeiro">
                     <img
                         className='lacStar'
-                        src={LacStar} alt="Lac Star" width="700"
-                        height="340" />
-                    <img className='lacStarLogo' src={LacStarLogo} alt="Lac Star Logo"
-                        height="340" />
+                        src={LacStar}
+                        alt="Lac Star"
+                        width="700"
+                        height="340"
+                    />
+                    <img
+                        className='lacStarLogo'
+                        src={LacStarLogo}
+                        alt="Lac Star Logo"
+                        height="340"
+                    />
                 </div>
 
                 <div className='segundo'>
-                    <h3 className='textoHome'> Encontre filmes, séries e livros que combinam com você. Explore avaliações feitas por outros usuários, compartilhe suas próprias opiniões e interaja com diferentes recomendações.<br />
-
+                    <h3 className='textoHome'>
+                         Encontre filmes, séries e livros que combinam com você. Explore avaliações feitas por outros usuários, compartilhe suas próprias opiniões e interaja com diferentes recomendações.<br />
                         Aqui, cada avaliação ajuda a descobrir uma nova história.</h3>
                     <button onClick={irParaCriarAvaliacao} className='buttonNovaAva'>
                         <span className='iconNovaAva'>
