@@ -22,11 +22,21 @@
 }
 
 @media (max-width:600px) {
+    .tituloMinhasAva {
+        margin: 120px 16px 16px;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
     .containerMinhaAva {
-        width: 350px;
-        height: 500px;
-        margin-left: 30px;
-        align-items: flex;
-        flex-direction: column
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+        height: auto;
+        margin: 0 auto;
+        padding: 16px;
+    }
+
+    .visualizacaoWrapper {
+        width: 100%;
     }
 }

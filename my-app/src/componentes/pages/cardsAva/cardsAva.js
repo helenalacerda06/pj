@@ -69,7 +69,6 @@ export default function RecipeReviewCard() {
                 <Card
                     key={avaliacao.id}
                     className="avaliacaoCard"
-                    sx={{ maxWidth: 345 }}
                 >
                     <CardHeader
                         className="headerCard"

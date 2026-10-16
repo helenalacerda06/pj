@@ -83,8 +83,61 @@
     color: #6c676c;
 }
 
-@media (max-widt: 600px) {
-    .avaliacoes{
+@media (max-width: 600px) {
+    .avaliacoes {
         flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        box-sizing: border-box;
+        gap: 16px;
+        margin-top: 0;
+    }
+
+    .avaliacaoCard {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        min-width: 0;
+        margin-left: 0;
+        align-items: stretch;
+        justify-content: flex-start;
+    }
+
+    .headerCard {
+        padding: 14px 16px 12px;
+    }
+
+    .headerCard .MuiCardHeader-content {
+        min-width: 0;
+    }
+
+    .headerCard .MuiCardHeader-title,
+    .headerCard .MuiCardHeader-subheader {
+        overflow-wrap: anywhere;
+    }
+
+    .avaliacaoCard .MuiCardMedia-root {
+        width: 100%;
+        height: auto;
+        max-height: 220px;
+        object-fit: contain;
+    }
+
+    .avaliacaoCard .MuiCardContent-root {
+        padding: 14px 16px 8px;
+        overflow-wrap: anywhere;
+    }
+
+    .avaliacaoCard .MuiCardActions-root {
+        padding: 4px 8px 8px;
+    }
+
+    .mensagemErroSemAva {
+        overflow-wrap: anywhere;
+    }
+
+    .avaliacaoCard:hover {
+        transform: none;
     }
 }
