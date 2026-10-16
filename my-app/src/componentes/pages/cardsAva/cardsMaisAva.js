@@ -64,7 +64,7 @@ export default function RecipeReviewCard() {
                     <CardHeader
                         className="headerCard"
                         title={avaliacao.nome}
-                        subheader={avaliacao.catrgoria}
+                        subheader={avaliacao.categoria}
                     />
 
                     {avaliacao.imagem && (

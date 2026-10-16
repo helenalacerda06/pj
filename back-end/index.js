@@ -117,6 +117,40 @@ server.post('/login', (request, response) => {
 });
 
 // cria a avaliação do db
+server.get('/avaliacao', (request, response) => {
+    const sql = `
+        SELECT
+            avaliacao.id,
+            avaliacao.categoria,
+            avaliacao.nome,
+            avaliacao.descricao,
+            avaliacao.feedback,
+            avaliacao.principais_pontos,
+            avaliacao.imagem,
+            avaliacao.lancamento,
+            avaliacao.duracao,
+            avaliacao.estrelas,
+            COALESCE((
+                SELECT MIN(avaliacoes_usuario.data_criacao)
+                FROM avaliacoes_usuario
+                WHERE avaliacoes_usuario.id_avaliacao = avaliacao.id
+            ), '') AS data
+        FROM avaliacao
+        ORDER BY avaliacao.id DESC
+    `;
+
+    db.all(sql, [], (erro, avaliacoes) => {
+        if (erro) {
+            console.error('Erro ao buscar avaliações:', erro.message);
+            return response.status(500).json({
+                erro: 'Erro ao buscar avaliações.'
+            });
+        }
+
+        return response.json(avaliacoes);
+    });
+});
+
 server.post('/avaliacao', upload.single('imagem'), (request, response) => {
     const { categoria, nome, descricao, feedback, principais_pontos, lancamento, duracao, estrelas } = request.body;
 
