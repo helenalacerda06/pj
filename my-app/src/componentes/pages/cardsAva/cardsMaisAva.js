@@ -94,7 +94,7 @@ export default function RecipeReviewCard() {
                         </IconButton>
 
                         <IconButton
-                            aria-laabel="Compartilhar avaliação"
+                            label="Compartilhar avaliação"
                             disableRipple
                         >
                             <ShareIcon />
