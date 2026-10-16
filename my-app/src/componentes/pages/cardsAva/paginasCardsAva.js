@@ -2,6 +2,7 @@ import pesquisar from '../../../pesquisa.png'
 import SetaEsquerda from '../../../seta-esquerda.png'
 import SetaDireita from '../../../seta-direita.png'
 import './paginasCardsAva.css'
+import AvaCard from './cardsMaisAva'
 
 function PaginaCadsAva() {
     return (
@@ -20,6 +21,9 @@ function PaginaCadsAva() {
                             <img className='seta' src={SetaEsquerda} alt="Seta para esquerda" />
                         </span>
                     </button>
+
+                    <AvaCard />
+
                     <button className='carouselButtonDireita'>
                         <span className='seta'>
                             <img className='seta' src={SetaDireita} alt="Seta para direita" />
