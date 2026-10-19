@@ -3,6 +3,7 @@ import SetaEsquerda from '../../../seta-esquerda.png'
 import SetaDireita from '../../../seta-direita.png'
 import './paginasCardsAva.css'
 import AvaCard from './cardsMaisAva'
+import CarouselAva from './carouselAva'
 
 function PaginaCadsAva() {
     return (
@@ -16,20 +17,7 @@ function PaginaCadsAva() {
 
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-                    <button className='carouselButton'>
-                        <span className='seta'>
-                            <img className='seta' src={SetaEsquerda} alt="Seta para esquerda" />
-                        </span>
-                    </button>
-
-                    <AvaCard />
-
-                    <button className='carouselButtonDireita'>
-                        <span className='seta'>
-                            <img className='seta' src={SetaDireita} alt="Seta para direita" />
-                        </span>
-                    </button>
-
+                    <CarouselAva />
                 </div>
 
             </div>
