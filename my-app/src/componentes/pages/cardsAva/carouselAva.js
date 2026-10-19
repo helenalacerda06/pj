@@ -6,12 +6,12 @@ import CardAva from './cardsMaisAva';
 
 import { Pagination } from 'swiper/modules';
 
-export default function CarouselAva () {
+export default function CarouselAva() {
   return (
     <>
-    <Swiper
-     slidesPerView={3}
-        spaceBetween={10}
+      <Swiper
+        slidesPerView={3}
+        spaceBetween={5}
         pagination={{
           clickable: true,
         }}

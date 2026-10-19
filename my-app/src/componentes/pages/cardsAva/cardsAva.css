@@ -83,6 +83,10 @@
     color: #6c676c;
 }
 
+.mySwiper{
+    background: transparent;
+}
+
 @media (max-width: 600px) {
     .avaliacoes {
         flex-direction: column;

@@ -117,7 +117,7 @@ async function AvaCriada(event) {
                             <option value='Serie' className='select' >Serie</option>
                             <option value='Livro' className='select' >Livro</option>
                         </select>
-                        <label className="label">Nome</label>
+                        <label className="label">Nome da Obra</label>
                         <input
                             className="input"
                             placeholder='Nome da avaliação'
@@ -214,7 +214,7 @@ async function AvaCriada(event) {
                     <div className="visualizacaoWrapper">
                         <article className={"containerVisualizacao"}>
                             <h1 className="tituloVisualizacao">{nome}</h1>
-                            {nome === "" && <h1 className='tituloVisualizacaoNull'>nome da obra</h1>}
+                            {nome === "" && <h1 className='tituloVisualizacaoNull'>Nome da Obra</h1>}
                             <section className='areaImagem'>
                                 {imagemPreview && (<img className="imagemAvaliacao" src={imagemPreview} alt="Imagem da avaliação"/>)}
                                 {!imagemPreview && (<h3 className="imagemAvaliacaoNull">Área do banner</h3>)}
