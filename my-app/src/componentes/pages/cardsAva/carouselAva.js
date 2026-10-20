@@ -1,24 +1,32 @@
-import React, { useRef, useState } from 'react';
-import { Swiper } from 'swiper/react';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import CardAva from './cardsMaisAva';
+import CardAva from './cardsMaisAva'
+import './carouselAva.css'
 
-import { Pagination } from 'swiper/modules';
+import { Pagination, Keyboard} from 'swiper/modules';
 
-export default function CarouselAva() {
+export default function CarouselAva({avaliacoes}) {
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={4}
         spaceBetween={5}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination]}
+        keyboard={{
+        enabled: true
+        }}
+        modules={[Pagination, Keyboard]}
         className="mySwiper"
       >
-        <CardAva />
+        {avaliacoes.map((avaliacao) => (
+          <SwiperSlide className="cardss" key={avaliacao.id}>
+            <CardAva className="cardss" avaliacao={avaliacao} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

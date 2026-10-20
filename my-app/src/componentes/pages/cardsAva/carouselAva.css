@@ -1,0 +1,24 @@
+.mySwiper {
+    background: transparent;
+    padding-bottom: 32px;
+}
+
+.cardss {
+    background: transparent;
+}
+
+.mySwiper .swiper-wrapper {
+    background: transparent;
+    display: center;
+}
+
+.mySwiper .swiper-slide {
+     justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.mySwiper .swiper-pagination {
+    bottom: 0;
+    background: transparent;
+}
