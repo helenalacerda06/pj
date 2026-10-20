@@ -36,66 +36,66 @@ function CriarAvaliação() {
     }, [imagem]);
 
 
-async function AvaCriada(event) {
-    event.preventDefault();
+    async function AvaCriada(event) {
+        event.preventDefault();
 
-    try {
-        const formulario = new FormData();
+        try {
+            const formulario = new FormData();
 
-        formulario.append("categoria", categoria);
-        formulario.append("nome", nome);
-        formulario.append("descricao", descricao);
-        formulario.append("feedback", feedback);
-        formulario.append("principais_pontos", principais_pontos);
-        formulario.append("lancamento", lancamento);
-        formulario.append("duracao", duracao);
-        formulario.append("estrelas", String(estrelas));
+            formulario.append("categoria", categoria);
+            formulario.append("nome", nome);
+            formulario.append("descricao", descricao);
+            formulario.append("feedback", feedback);
+            formulario.append("principais_pontos", principais_pontos);
+            formulario.append("lancamento", lancamento);
+            formulario.append("duracao", duracao);
+            formulario.append("estrelas", String(estrelas));
 
-        if (imagem) {
-            formulario.append("imagem", imagem);
-        }
-
-        const resposta = await fetch(
-            "https://lacstar-backend.onrender.com/avaliacao",
-            {
-                method: "POST",
-                body: formulario
+            if (imagem) {
+                formulario.append("imagem", imagem);
             }
-        );
 
-        const dados = await resposta.json();
+            const resposta = await fetch(
+                "https://lacstar-backend.onrender.com/avaliacao",
+                {
+                    method: "POST",
+                    body: formulario
+                }
+            );
 
-        if (!resposta.ok) {
-            alert(dados.mensagem || dados.message || "Erro ao criar avaliação.");
-            return;
-        }
+            const dados = await resposta.json();
 
-        const relacionamento = await fetch(
-            "https://lacstar-backend.onrender.com/avaliacoes_usuario",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    id_usuario: idUsuario,
-                    id_avaliacao: dados.id_avaliacao,
-                    data_criacao: new Date().toISOString()
-                })
+            if (!resposta.ok) {
+                alert(dados.mensagem || dados.message || "Erro ao criar avaliação.");
+                return;
             }
-        );
 
-        if (!relacionamento.ok) {
-            alert("Avaliação criada, mas houve um erro ao vinculá-la ao usuário.");
-            return;
+            const relacionamento = await fetch(
+                "https://lacstar-backend.onrender.com/avaliacoes_usuario",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id_usuario: idUsuario,
+                        id_avaliacao: dados.id_avaliacao,
+                        data_criacao: new Date().toISOString()
+                    })
+                }
+            );
+
+            if (!relacionamento.ok) {
+                alert("Avaliação criada, mas houve um erro ao vinculá-la ao usuário.");
+                return;
+            }
+
+            navigate("/home");
+        } catch (erro) {
+            console.error("Erro ao criar avaliação:", erro);
+            alert("Não foi possível conectar ao servidor.");
         }
-
-        navigate("/home");
-    } catch (erro) {
-        console.error("Erro ao criar avaliação:", erro);
-        alert("Não foi possível conectar ao servidor.");
     }
-}
 
 
     return (
