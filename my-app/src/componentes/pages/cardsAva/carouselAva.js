@@ -11,7 +11,11 @@ export default function CarouselAva({avaliacoes}) {
   return (
     <>
       <Swiper
-        slidesPerView={4}
+        slidesPerView={1}
+        breakpoints={{
+          600: { slidesPerView: 2},
+          1024: { slidesPerView: 4}
+        }}
         spaceBetween={5}
         pagination={{
           clickable: true,

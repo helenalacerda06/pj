@@ -54,7 +54,7 @@ function PaginaCadsAva() {
 
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-                    <p role="status">Carregando...</p>
+            <p className="cardss"role="status">Carregando...</p>
                 </div>
 
             </div>
@@ -73,7 +73,7 @@ function PaginaCadsAva() {
 
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-                    <p role="alert">{erro}</p>
+                    <p className="cardss" role="alert">{erro}</p>
                 </div>
 
             </div>
@@ -92,7 +92,7 @@ function PaginaCadsAva() {
 
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-                    <p>Não há avaliações:(</p>
+                    <p className="cardss">Não há avaliações:(</p>
                 </div>
 
             </div>

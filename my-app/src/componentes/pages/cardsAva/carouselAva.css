@@ -9,13 +9,13 @@
 
 .mySwiper .swiper-wrapper {
     background: transparent;
-    display: center;
 }
 
 .mySwiper .swiper-slide {
-     justify-content: center;
-  display: flex;
-  align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .mySwiper .swiper-pagination {
