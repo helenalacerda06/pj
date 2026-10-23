@@ -234,6 +234,7 @@ server.get("/avaliacoes_usuarios/:id_usuario", (request, response) => {
     INNER JOIN avaliacao 
     ON avaliacoes_usuario.id_avaliacao = avaliacao.id
     WHERE avaliacoes_usuario.id_usuario = ?
+    ORDER BY avaliacao.id DESC
     `
 
     db.all(sql, [id_usuario], (erro, avaliacoes) => {

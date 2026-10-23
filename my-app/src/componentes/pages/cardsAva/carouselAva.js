@@ -19,6 +19,7 @@ export default function CarouselAva({avaliacoes}) {
         spaceBetween={5}
         pagination={{
           clickable: true,
+          dynamicBullets: true,
         }}
         keyboard={{
         enabled: true

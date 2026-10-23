@@ -101,6 +101,7 @@
 .visualizacaoWrapper {
     display: flex;
     flex-direction: column;
+    background: transparent
     
 }
 

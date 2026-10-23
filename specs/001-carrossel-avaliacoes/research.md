@@ -6,11 +6,11 @@
 - **Rationale**: O endpoint já retorna a lista completa ordenada por ID decrescente. O ID é atribuído quando a avaliação é inserida e, portanto, representa a ordem de criação da avaliação sem depender do relacionamento opcional com um usuário.
 - **Alternatives considered**: Ordenar pelo campo `data` retornado pela API. Esse campo é a menor data de relacionamento da avaliação com um usuário e pode estar vazio; portanto, não representa de forma consistente a criação da avaliação pública. Alterar o endpoint para paginação também foi considerado, mas seria desnecessário para manter uma cópia estável da lista durante a sessão de navegação.
 
-## Paginação e estabilidade da lista
+## Limite do carrossel e estabilidade da lista
 
-- **Decision**: Buscar a lista uma vez ao montar a tela e mantê-la em memória; separar essa lista em grupos consecutivos de no máximo 15 avaliações. O carrossel mostra até quatro cards simultaneamente na página selecionada.
-- **Rationale**: A navegação local evita requisições quando o usuário muda a página e impede que avaliações novas alterem a sequência atual. Uma recarga do navegador volta a montar a tela e obter a lista mais recente.
-- **Alternatives considered**: Buscar a API em cada página. Isso poderia acrescentar itens novos entre navegações e tornar instável a paginação. Persistir a lista em armazenamento do navegador impediria a atualização esperada no recarregamento.
+- **Decision**: Buscar a lista uma vez ao montar a tela e mantê-la em memória; apresentar no carrossel somente as primeiras 15 avaliações da resposta, que já vem ordenada da mais recente para a mais antiga. Uma página futura para acessar as demais não faz parte deste escopo.
+- **Rationale**: O limite restringe a área de destaque às avaliações recentes, e manter uma única lista em memória impede que novos itens alterem o conteúdo durante a navegação. Uma recarga do navegador inicia uma nova busca.
+- **Alternatives considered**: Dividir toda a lista em grupos de até 15 e permitir navegar entre eles. Essa opção foi descartada para a feature atual; a página para avaliações excedentes será decidida e especificada futuramente. Buscar a API durante cada navegação também foi descartado porque poderia alterar a sequência corrente.
 
 ## Biblioteca de interface e acessibilidade
 
@@ -20,6 +20,6 @@
 
 ## Testes
 
-- **Decision**: Cobrir busca, estados de carregamento/erro/vazio, quantidade visível, limites de 15, continuidade entre páginas, estabilidade da lista e acessibilidade dos controles usando os padrões de teste do frontend; complementar com verificação integrada manual.
+- **Decision**: Validar busca, estados de carregamento/erro/vazio, quantidade visível, limite de 15 avaliações mais recentes, estabilidade da lista e acessibilidade dos controles usando os padrões de teste do frontend; complementar com verificação integrada manual.
 - **Rationale**: A aplicação usa Jest e React Testing Library por `react-scripts`; não há script de teste declarado no backend.
 - **Alternatives considered**: Adicionar framework de testes de API ou uma nova infraestrutura E2E. Isso não é necessário para a alteração de interface e aumentaria o escopo.

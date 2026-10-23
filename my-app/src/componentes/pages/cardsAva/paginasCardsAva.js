@@ -9,6 +9,8 @@ function PaginaCadsAva() {
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
 
+    const quantidadeCards = 15;
+
     useEffect(() => {
         async function buscarAvaliacoes() {
             try {
@@ -45,18 +47,16 @@ function PaginaCadsAva() {
     // enquanto carrega
     if (carregando) {
         return <main>
-            <button className="maisAva" >
+            <button className="maisAva">
                 <span>
                     <img className='pesquisar' src={pesquisar} alt="Ícone de pesquisa" />
                 </span>
                 Mais avaliações
             </button>
-
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-            <p className="cardss"role="status">Carregando...</p>
+                    <p className="cardss" role="status">Carregando...</p>
                 </div>
-
             </div>
         </main>
     }
@@ -64,18 +64,16 @@ function PaginaCadsAva() {
     // se der erro
     if (erro) {
         return <main>
-            <button className="maisAva" >
+            <button className="maisAva">
                 <span>
                     <img className='pesquisar' src={pesquisar} alt="Ícone de pesquisa" />
                 </span>
                 Mais avaliações
             </button>
-
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
                     <p className="cardss" role="alert">{erro}</p>
                 </div>
-
             </div>
         </main>
     }
@@ -83,36 +81,32 @@ function PaginaCadsAva() {
     // Se não tiver avaliações
     if (avaliacoes.length === 0) {
         return <main>
-            <button className="maisAva" >
+            <button className="maisAva">
                 <span>
                     <img className='pesquisar' src={pesquisar} alt="Ícone de pesquisa" />
                 </span>
                 Mais avaliações
             </button>
-
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
                     <p className="cardss">Não há avaliações:(</p>
                 </div>
-
             </div>
         </main>
     }
     
     return (
         <main>
-            <button className="maisAva" >
+            <button className="maisAva">
                 <span>
                     <img className='pesquisar' src={pesquisar} alt="Ícone de pesquisa" />
                 </span>
                 Mais avaliações
             </button>
-
             <div className='visualizacaoWrapper'>
                 <div className={'containerAvas'}>
-                    <CarouselAva avaliacoes={avaliacoes} />
+                    <CarouselAva avaliacoes={avaliacoes.slice(0, quantidadeCards)} />
                 </div>
-
             </div>
         </main>
 

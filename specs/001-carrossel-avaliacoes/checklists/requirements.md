@@ -31,4 +31,4 @@
 
 ## Notes
 
-- Checklist review passed; no incomplete items remain before `/speckit-clarify` or `/speckit-plan`.
+- Checklist review passed for the current scope: the carrossel displays at most the 15 most recent evaluations; a separate page for older evaluations is deferred.
