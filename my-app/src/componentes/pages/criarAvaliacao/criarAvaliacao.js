@@ -114,7 +114,7 @@ function CriarAvaliação() {
                         <select className="select" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                             <option value='' className='select' >Selecione uma categoria</option>
                             <option value='Filme' className='select' >Filme</option>
-                            <option value='Serie' className='select' >Serie</option>
+                            <option value='Série' className='select' >Série</option>
                             <option value='Livro' className='select' >Livro</option>
                         </select>
                         <label className="label">Nome da Obra</label>
