@@ -4,10 +4,9 @@
     overflow: hidden;
     border: 1px solid #ead8e7;
     border-radius: 18px;
-    background: #fffdfd;
+    background: transparent;
     justify-content: center;
     align-items: center;
-    margin-left: 20px;
 }
 
 .avaliacoes {
@@ -39,7 +38,7 @@
 }
 
 .avaliacaoCard .MuiCardMedia-root {
-    height: 194px;
+    height: 220px;
     background: #fce3f8;
 }
 
@@ -83,6 +82,10 @@
     color: #6c676c;
 }
 
+.mySwiper{
+    background: transparent;
+}
+
 @media (max-width: 600px) {
     .avaliacoes {
         flex-direction: column;
@@ -95,9 +98,9 @@
 
     .avaliacaoCard {
         box-sizing: border-box;
-        width: 100%;
+        width: 250px;
         max-width: none;
-        height: auto;
+        height: 405px;
         min-width: 0;
         margin-left: 0;
         align-items: stretch;
@@ -119,7 +122,6 @@
 
     .avaliacaoCard .MuiCardMedia-root {
         width: 100%;
-        height: auto;
         max-height: 220px;
         object-fit: contain;
     }

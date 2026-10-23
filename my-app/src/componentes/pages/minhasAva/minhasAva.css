@@ -1,42 +1,48 @@
 .tituloMinhasAva {
-    margin-top: 130px;
+    margin: 130px 16px 16px;
     justify-content: center;
     align-items: center;
     display: flex;
-    flex-direction: row;
     color: #ffc6f6;
     font-family: sans-serif;
     background: transparent;
 }
 
+.minhasAvaWrapper {
+    width: 100%;
+}
+
 .containerMinhaAva {
     background: #f8d9f6;
-    width: 1340px;
-    height: 500px;
+    width: calc(100% - 32px);
+    max-width: 1333px;
+    min-height: 500px;
+    box-sizing: border-box;
     border-radius: 15px;
-    margin-top: -4px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #c478c0;
-    margin-left: 60px;
+    margin: 0 auto;
+    border: 3px solid #c478c0;
+    display: flex;
+    align-items: center;
+}
+
+.minhasAvaMensagem {
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+}
+
+.minhasAvaPage .avaliacaoCard {
+    animation: none;
 }
 
 @media (max-width:600px) {
     .tituloMinhasAva {
-        margin: 120px 16px 16px;
+        margin-top: 120px;
         font-size: 1.6rem;
         text-align: center;
     }
 
     .containerMinhaAva {
-        box-sizing: border-box;
-        width: calc(100% - 32px);
-        height: auto;
-        margin: 0 auto;
-        padding: 16px;
-    }
-
-    .visualizacaoWrapper {
-        width: 100%;
+        min-height: 500px;
     }
 }
