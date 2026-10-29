@@ -9,6 +9,7 @@ function Login({ onLogin }) {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState("");
 
     async function fazerLogin(event) {
@@ -47,6 +48,8 @@ function Login({ onLogin }) {
         } catch (erro) {
             console.error("Erro no login:", erro);
             setErro("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
+        } finally {
+            setCarregando(false);
         }
     }
 
@@ -80,7 +83,12 @@ function Login({ onLogin }) {
 
 
                     <button className='button' type='submit' id='buttonLogar'  >
-                        Login
+                        {carregando && (
+                            <p>Carregando...</p>
+                        )}
+                        {!carregando && (
+                           <p>Login</p>
+                        )}
                     </button>
                 </form>
             </div>
