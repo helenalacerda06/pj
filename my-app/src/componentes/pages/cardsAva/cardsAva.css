@@ -9,6 +9,22 @@
     align-items: center;
 }
 
+.cardDetalhesAcionador {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.cardDetalhesAcionador:focus-visible {
+    outline: 3px solid #9c3d95;
+    outline-offset: -3px;
+}
+
 .avaliacoes {
     align-items: center;
     justify-content: center;
