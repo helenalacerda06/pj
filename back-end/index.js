@@ -328,7 +328,9 @@ server.get("/admin/usuarios", (request, response) => {
 });
 
 
+
 const PORT = process.env.PORT || 3002;
+console.log("Banco utilizado:", path.join(__dirname, "../teste_helena.db"));
 
 server.listen(PORT, "0.0.0.0", () => {
     console.log(`Servidor rodando na porta ${PORT}`);
