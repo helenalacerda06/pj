@@ -1,58 +1,52 @@
 import './login.css';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { fazerLogin, redefinirSenha } from "../firebase/auth";
 import Erro from '../erro.svg';
 
-
-function Login({ onLogin }) {
+function Login() {
     const navigate = useNavigate();
-
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [carregando, setCarregando] = useState(false);
     const [erro, setErro] = useState("");
+    const [mensagem, setMensagem] = useState("");
 
-    async function fazerLogin(event) {
-
+    async function entrar(event) {
         event.preventDefault();
         setErro("");
+        setMensagem("");
         setCarregando(true);
+
         try {
-              const resposta = await fetch("https://lacstar-backend.onrender.com/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        email,
-                        senha
-                    })
-                }
-            );
-
-            const usuario = await resposta.json();
-            console.log("Usuário recebido:", usuario);
-
-            if (resposta.ok) {
-                localStorage.setItem(
-                    "id_usuario",
-                    usuario.id
-                );
-                localStorage.setItem("nomeUsuario", usuario.nome);
-
-                navigate("/home");
-
-            } else {
-                setErro(usuario.erro || usuario.mensagem || usuario.mensagemErro);
-            }
-
-        } catch (erro) {
-            console.error("Erro no login:", erro);
-            setErro("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
+            await fazerLogin(email, senha);
+            navigate("/home");
+        } catch (erroLogin) {
+            console.error("Erro no login Firebase:", erroLogin);
+            setErro("Não foi possível entrar. Verifique os dados informados.");
         } finally {
             setCarregando(false);
         }
+    }
+
+    async function solicitarRedefinicao() {
+        setErro("");
+        setMensagem("");
+        if (!email.trim()) {
+            setErro("Informe seu e-mail para receber as instruções.");
+            return;
+        }
+
+        try {
+            await redefinirSenha(email.trim());
+        } catch (erroRedefinicao) {
+            console.error("Erro ao solicitar redefinição:", erroRedefinicao);
+            if (erroRedefinicao.code !== "auth/user-not-found") {
+                setErro("Não foi possível solicitar a redefinição. Tente novamente.");
+                return;
+            }
+        }
+        setMensagem("Se houver uma conta associada, você receberá instruções por e-mail.");
     }
 
     return (
@@ -60,8 +54,8 @@ function Login({ onLogin }) {
             <div className='container'>
                 <h1 className='titulo'>Login</h1>
 
-                <form className="form" onSubmit={fazerLogin}>
-                    <label className='label'>E-mail</label>
+                <form className="form" onSubmit={entrar}>
+                    <label className='label' htmlFor='email'>E-mail</label>
                     <input
                         className="input"
                         placeholder='seuemail@exemplo.com'
@@ -72,7 +66,7 @@ function Login({ onLogin }) {
                         onChange={(event) => setEmail(event.target.value)}
                     />
 
-                    <label className='label'>Digite sua senha</label>
+                    <label className='label' htmlFor='senha'>Digite sua senha</label>
                     <input
                         className="input"
                         type='password'
@@ -83,21 +77,30 @@ function Login({ onLogin }) {
                         onChange={(event) => setSenha(event.target.value)}
                     />
 
-
                     <button className='button' type='submit' disabled={carregando}>
                         {carregando ? "Carregando..." : "Logar"}
+                    </button>
+                    <button
+                        className='button'
+                        type='button'
+                        onClick={solicitarRedefinicao}
+                        disabled={carregando}
+                    >
+                        Esqueci minha senha
                     </button>
                 </form>
             </div>
 
-            {erro &&
-             <div className="mensagemErro">
-                <h5 className="tituloErro">{erro}</h5>
-                <img className="imagemErro" src={Erro} alt="Imagem de erro" />
-                <p className="mensagem">Verifique se o e-mail e a senha estão corretos ou se você já possui cadastro.</p>
-            </div>}
+            {erro && (
+                <div className="mensagemErro" role="alert">
+                    <h5 className="tituloErro">{erro}</h5>
+                    <img className="imagemErro" src={Erro} alt="Imagem de erro" />
+                    <p className="mensagem">Verifique o e-mail e a senha ou solicite a redefinição de senha.</p>
+                </div>
+            )}
+            {mensagem && <p role="status">{mensagem}</p>}
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

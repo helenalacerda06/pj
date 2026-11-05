@@ -1,10 +1,10 @@
 import Rating from '@mui/material/Rating';
 import '../criarAvaliacao/visualizacaoAvaliacao/visualizacaoAvaliacao.css';
 
-const urlBaseImagem = 'https://lacstar-backend.onrender.com';
-
 export default function VisualizacaoDetalhesAvaliacao({ avaliacao }) {
     const nome = avaliacao.nome || '';
+    const imagemUrl = avaliacao.imagemUrl
+        || (avaliacao.imagem?.startsWith('https://') ? avaliacao.imagem : null);
 
     return (
         <article className="containerVisualizacao">
@@ -17,10 +17,10 @@ export default function VisualizacaoDetalhesAvaliacao({ avaliacao }) {
             )}
 
             <section className="areaImagem">
-                {avaliacao.imagem ? (
+                {imagemUrl ? (
                     <img
                         className="imagemAvaliacao"
-                        src={`${urlBaseImagem}${avaliacao.imagem}`}
+                        src={imagemUrl}
                         alt={`Imagem de ${nome || 'avaliação'}`}
                     />
                 ) : (

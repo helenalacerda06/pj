@@ -1,17 +1,36 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { AppRoutes } from './App';
+import App from './App';
+import { fazerLogin } from './firebase/auth';
 
-test('renderiza login e navega para criar avaliação', () => {
+jest.mock('./firebase/auth', () => ({
+  fazerLogin: jest.fn(),
+  redefinirSenha: jest.fn()
+}));
+jest.mock('./componentes/pages/inicio/home', () => () => <h1>Início</h1>);
+jest.mock('./componentes/pages/minhasAva/minhasAva', () => () => null);
+
+test('renders login and navigates to home after Firebase authentication', async () => {
+  fazerLogin.mockResolvedValue({});
   render(
-    <MemoryRouter initialEntries={['/']}>
-      <AppRoutes />
+    <MemoryRouter initialEntries={['/login']}>
+      <App />
     </MemoryRouter>
   );
 
-  expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Login' })).toBeInTheDocument();
 
-  fireEvent.click(screen.getByRole('button', { name: /^login$/i }));
+  fireEvent.change(screen.getByLabelText('E-mail'), {
+    target: { value: 'user@example.test' }
+  });
+  fireEvent.change(screen.getByLabelText('Digite sua senha'), {
+    target: { value: 'password-for-test' }
+  });
+  fireEvent.click(screen.getByRole('button', { name: 'Logar' }));
 
-  expect(screen.getByRole('heading', { name: /criar nova avaliação/i })).toBeInTheDocument();
+  await waitFor(() => {
+    expect(fazerLogin).toHaveBeenCalledWith('user@example.test', 'password-for-test');
+    expect(screen.getByRole('heading', { name: 'Início' })).toBeInTheDocument();
+  });
 });

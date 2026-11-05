@@ -11,45 +11,31 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import './cardsAva.css';
+import { apiRequest } from '../../../services/api';
+import { observarAutenticacao } from '../../../firebase/auth';
 
 export default function RecipeReviewCard() {
-    const idUsuario = localStorage.getItem("id_usuario");
-
     const [erro, setErro] = useState("");
     const [avaliacoes, setAvaliacoes] = useState([]);
 
     useEffect(() => {
-        async function buscarAva() {
-            try {
-                const resposta = await fetch(
-                    `https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`
-                );
-
-                const resultado = await resposta.json();
-
-                if (!resposta.ok) {
-                    setErro(
-                        resultado.erro ||
-                        "Não foi possível buscar as avaliações."
-                    );
-                    return;
-                }
-
-                setAvaliacoes(resultado);
-                setErro("");
-
-            } catch (erro) {
-                console.error("Erro ao buscar avaliações:", erro);
-                setErro("Erro ao conectar com o servidor.");
+        return observarAutenticacao((usuario) => {
+            if (!usuario) {
+                setErro("Entre na sua conta para ver suas avaliações.");
+                return;
             }
-        }
 
-        if (idUsuario) {
-            buscarAva();
-        } else {
-            setErro("Nenhum usuário está identificado.");
-        }
-    }, [idUsuario]);
+            apiRequest("/avaliacoes_usuario")
+                .then((resultado) => {
+                    setAvaliacoes(resultado);
+                    setErro("");
+                })
+                .catch((erroBusca) => {
+                    console.error("Erro ao buscar avaliações:", erroBusca);
+                    setErro(erroBusca.message || "Não foi possível buscar as avaliações.");
+                });
+        });
+    }, []);
 
     return (
         <main className="avaliacoes">
@@ -75,21 +61,17 @@ export default function RecipeReviewCard() {
                         subheader={avaliacao.categoria}
                     />
 
-                    {avaliacao.imagem && (
+                    {avaliacao.imagemUrl && (
                         <CardMedia
                             component="img"
-                            image={
-                                avaliacao.imagem
-                                    ? `https://lacstar-backend.onrender.com${avaliacao.imagem}`
-                                    : undefined
-                            }
+                            image={avaliacao.imagemUrl}
                             alt={`Imagem de ${avaliacao.nome}`}
                         />
                     )}
 
                     <CardContent>
                         <Typography className="descricao">
-                            {avaliacao.data}
+                            {avaliacao.dataCriacao}
                         </Typography>
                     </CardContent>
 

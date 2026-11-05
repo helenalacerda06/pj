@@ -4,7 +4,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test",
+    "test:emulators": "firebase emulators:exec --config ../firebase.json --project demo-lac-star --only auth,firestore \"npm test\"",
+    "test:routes:emulators": "firebase emulators:exec --config ../firebase.json --project demo-lac-star --only auth,firestore \"node --test tests/integration/rotasFirebaseHttp.test.js\"",
+    "test:web-sdk:emulators": "firebase emulators:exec --config ../firebase.json --project demo-lac-star --only auth,firestore \"npm --prefix ../my-app test -- --watchAll=false --runInBand src/firebase/auth.emulator.test.js\"",
+    "migrate:firebase": "node scripts/migrarSQLiteParaFirestore.js"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +16,14 @@
   "description": "",
   "dependencies": {
     "@libsql/client": "^0.18.0",
+    "cloudinary": "^2.11.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "firebase-admin": "^13.10.0",
     "multer": "^2.4.0",
     "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "firebase-tools": "^14.27.0"
   }
 }

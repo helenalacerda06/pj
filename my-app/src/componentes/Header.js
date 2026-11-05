@@ -1,59 +1,61 @@
 import './Header.css';
-import Logo from '../logo.png'
+import Logo from '../logo.png';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { observarAutenticacao, sairDaConta } from "../firebase/auth";
+import { apiRequest } from "../services/api";
 
 function Header() {
-
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [email, setEmail] = useState("");
+  const [erro, setErro] = useState("");
   const navigate = useNavigate();
 
-  function irParaMinhasAva() {
-    navigate("/minhas-ava")
-  }
-
-  function irParaHome() {
-    navigate("/home")
-  }
-
-  useEffect(() => {
-
-    async function buscarUsuario() {
-
-      const idUsuario =
-        localStorage.getItem("id_usuario");
-      try {
-        const resposta = await fetch(
-          `https://lacstar-backend.onrender.com/usuario/${idUsuario}`
-        );
-
-        const usuario = await resposta.json();
-
-        console.log("Usuário atual:", usuario);
-
-        setNomeUsuario(usuario.nome);
-        setEmail(usuario.email);
-      } catch (erro) {
-        console.error(
-          "Erro ao buscar usuário:",
-          erro
-        );
-      }
+  useEffect(() => observarAutenticacao((usuario) => {
+    setErro("");
+    if (!usuario) {
+      setNomeUsuario("");
+      setEmail("");
+      return;
     }
-    buscarUsuario();
-  }, []);
+
+    apiRequest("/usuarios/firebase")
+      .then((perfil) => {
+        setNomeUsuario(perfil.nome || "");
+        setEmail(perfil.email || usuario.email || "");
+      })
+      .catch((erro) => {
+        console.error("Erro ao buscar perfil:", erro);
+        setNomeUsuario("");
+        setEmail("");
+        setErro("Não foi possível carregar os dados do perfil.");
+      });
+  }), []);
+
+  async function sair() {
+    try {
+      await sairDaConta();
+      navigate("/login");
+    } catch (erro) {
+      console.error("Erro ao encerrar sessão:", erro);
+      setErro("Não foi possível encerrar a sessão. Tente novamente.");
+    }
+  }
 
   return (
     <header className="header">
       <img src={Logo} alt="Logo" className="header-logo" />
-      <h3 className='nomeUsuario'> {nomeUsuario} \ {email}</h3>
+      <h3 className='nomeUsuario'>{nomeUsuario}{email ? ` \\ ${email}` : ""}</h3>
+      {erro && <span role="alert">{erro}</span>}
       <nav>
-        <button className="buttonHeader" onClick={irParaHome}>
+        <button className="buttonHeader" onClick={() => navigate("/home")}>
           Início
         </button>
-        <button className="buttonHeader" onClick={irParaMinhasAva}>
+        <button className="buttonHeader" onClick={() => navigate("/minhas-ava")}>
           Minhas avaliações
+        </button>
+        <button className="buttonHeader" onClick={sair}>
+          Sair
         </button>
       </nav>
     </header>

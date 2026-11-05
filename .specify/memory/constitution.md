@@ -1,9 +1,12 @@
 <!--
 Sync Impact Report
-Version change: unversioned scaffold -> 1.0.0
-Modified principles: unpopulated template -> five defined core principles
-Added sections: Technical Constraints; Development Workflow
+Version change: 1.0.0 -> 1.1.0
+Modified principles: I. Approved Technology Stack (scoped Firebase/Firestore authorization for the approved lac-star migration)
+Added sections: none
 Removed sections: none
+Amendment approved: 2026-11-04, by explicit maintainer approval during planning.
+Motivation: The approved SQLite-to-Firebase migration cannot proceed under the previous SQLite-only storage mandate.
+Impact: For this migration only, Firebase Authentication and Cloud Firestore become the target identity and application-data services; SQLite remains the migration source until reconciliation, production validation, and explicit cleanup approval. All other principles remain in force.
 Follow-up TODOs: Confirm the original ratification date.
 -->
 
@@ -13,9 +16,14 @@ Follow-up TODOs: Confirm the original ratification date.
 
 ### I. Approved Technology Stack
 The frontend MUST use React. The backend MUST use Node.js with Express, and persistent
-application data MUST use SQLite. Contributors MUST follow these choices and the
-technologies already used by the project unless an amendment explicitly authorizes a
-change. This keeps the system coherent and maintainable.
+application data MUST use SQLite except for the approved lac-star migration documented
+in `specs/003-migracao-firebase/`. For that migration, Firebase Authentication MUST be
+the identity provider and Cloud Firestore MUST be the target for persistent application
+data after the migration gates are approved. SQLite MUST remain intact as the migration
+source until reconciliation, production validation, and explicit cleanup approval.
+Contributors MUST follow these choices and the technologies already used by the project
+unless an amendment explicitly authorizes a change. This keeps the system coherent and
+maintainable.
 
 ### II. Clear Responsibility and Reuse
 Code MUST be organized into components, modules, and files with clear, separate
@@ -44,10 +52,13 @@ MUST be documented with the change.
 
 ## Technical Constraints
 
-The frontend is React; the backend is Node.js with Express; and the database is SQLite.
-Data crossing the backend boundary MUST be validated, and errors MUST be handled
-explicitly. User-facing changes MUST preserve accessibility and the project's pastel-pink
-visual direction without sacrificing contrast or readability.
+The frontend is React; the backend is Node.js with Express; and SQLite remains the
+database except for the approved migration in `specs/003-migracao-firebase/`, whose
+target identity provider is Firebase Authentication and target application database is
+Cloud Firestore after approval gates. Data crossing the backend boundary MUST be
+validated, and errors MUST be handled explicitly. User-facing changes MUST preserve
+accessibility and the project's pastel-pink visual direction without sacrificing
+contrast or readability.
 
 ## Development Workflow
 
@@ -74,4 +85,4 @@ and maintainer approval in the change record. If project practice conflicts with
 constitution, the conflict MUST be raised for resolution before the affected change is
 approved.
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): original adoption date unknown | **Last Amended**: 2026-10-15
+**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): original adoption date unknown | **Last Amended**: 2026-11-04

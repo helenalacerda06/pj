@@ -1,5 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import PaginaCadsAva from './paginasCardsAva';
+import { apiRequest } from '../../../services/api';
+
+jest.mock('../../../services/api', () => ({ apiRequest: jest.fn() }));
 
 jest.mock('./carouselAva', () => function MockCarousel({ avaliacoes }) {
     const { createElement } = require('react');
@@ -12,19 +15,12 @@ jest.mock('./carouselAva', () => function MockCarousel({ avaliacoes }) {
     );
 });
 
-const fetchOriginal = global.fetch;
-
 afterEach(() => {
-    global.fetch = fetchOriginal;
     jest.clearAllMocks();
 });
 
 function renderWithAvaliacoes(avaliacoes) {
-    global.fetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => avaliacoes
-    });
-
+    apiRequest.mockResolvedValue(avaliacoes);
     render(<PaginaCadsAva />);
 }
 

@@ -3,53 +3,55 @@ import Header from '../../Header';
 import Footer from '../../Footer';
 import CarouselAva from '../cardsAva/carouselAva';
 import './minhasAva.css';
+import { apiRequest } from '../../../services/api';
+import { observarAutenticacao } from '../../../firebase/auth';
 
 const quantidadeCards = 15;
 
 function MinhasAva() {
-    const idUsuario = localStorage.getItem('id_usuario');
     const [avaliacoes, setAvaliacoes] = useState([]);
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState('');
 
     useEffect(() => {
-        async function buscarAvaliacoes() {
-            try {
-                const resposta = await fetch(
-                    `https://lacstar-backend.onrender.com/avaliacoes_usuarios/${idUsuario}`
-                );
-                const resultado = await resposta.json();
+        let requestId = 0;
+        const unsubscribe = observarAutenticacao((usuario) => {
+            const currentRequestId = ++requestId;
+            setCarregando(true);
+            setErro('');
 
-                if (!resposta.ok) {
-                    setErro(
-                        resultado.erro ||
-                        'Não foi possível buscar suas avaliações.'
-                    );
-                    return;
-                }
-
-                if (!Array.isArray(resultado)) {
-                    setErro('A resposta de avaliações está em formato inválido.');
-                    return;
-                }
-
-                setAvaliacoes(resultado);
-            } catch (erroBusca) {
-                console.error('Erro ao buscar avaliações do usuário:', erroBusca);
-                setErro('Erro ao conectar com o servidor.');
-            } finally {
+            if (!usuario) {
+                setAvaliacoes([]);
+                setErro('Entre na sua conta para ver suas avaliações.');
                 setCarregando(false);
+                return;
             }
-        }
 
-        if (!idUsuario) {
-            setErro('Nenhum usuário está identificado.');
-            setCarregando(false);
-            return;
-        }
+            apiRequest('/avaliacoes_usuario')
+                .then((resultado) => {
+                    if (currentRequestId !== requestId) return;
+                    if (!Array.isArray(resultado)) {
+                        throw new Error('A resposta de avaliações está em formato inválido.');
+                    }
+                    setAvaliacoes(resultado);
+                })
+                .catch((erroBusca) => {
+                    if (currentRequestId !== requestId) return;
+                    console.error('Erro ao buscar avaliações do usuário:', erroBusca);
+                    setErro(erroBusca.message || 'Não foi possível buscar suas avaliações.');
+                })
+                .finally(() => {
+                    if (currentRequestId === requestId) {
+                        setCarregando(false);
+                    }
+                });
+        });
 
-        buscarAvaliacoes();
-    }, [idUsuario]);
+        return () => {
+            requestId += 1;
+            unsubscribe();
+        };
+    }, []);
 
     return (
         <>

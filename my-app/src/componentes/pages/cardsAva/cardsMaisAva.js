@@ -12,6 +12,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import './cardsAva.css';
 
 export default function RecipeReviewCard({avaliacao, onSelecionar}) {
+    const imagemUrl = avaliacao.imagemUrl
+        || (avaliacao.imagem?.startsWith('https://') ? avaliacao.imagem : null);
 
     return (
                 <Card className="avaliacaoCard">
@@ -27,17 +29,17 @@ export default function RecipeReviewCard({avaliacao, onSelecionar}) {
                             subheader={avaliacao.categoria}
                         />
 
-                        {avaliacao.imagem && (
+                        {imagemUrl && (
                             <CardMedia
                                 component="img"
-                                image={`https://lacstar-backend.onrender.com${avaliacao.imagem}`}
+                                image={imagemUrl}
                                 alt={`Imagem de ${avaliacao.nome}`}
                             />
                         )}
 
                         <CardContent>
                             <Typography className="descricao">
-                                {avaliacao.data}
+                                {avaliacao.dataCriacao || avaliacao.data || ''}
                             </Typography>
                         </CardContent>
                     </button>

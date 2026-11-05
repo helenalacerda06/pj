@@ -23,7 +23,7 @@ const avaliacoes = [
     {
         id: 1,
         nome: 'Filme A',
-        imagem: '/filme-a.jpg',
+        imagemUrl: 'https://images.example.test/filme-a.jpg',
         categoria: 'Filme',
         lancamento: '2024-01-01',
         duracao: '02:00',
@@ -61,7 +61,7 @@ test('mostra apenas os detalhes do card selecionado e fecha pelo botão X', asyn
     expect(within(dialog).getByText('Pontos do filme A')).toBeInTheDocument();
     expect(within(dialog).getByRole('img', { name: 'Imagem de Filme A' })).toHaveAttribute(
         'src',
-        'https://lacstar-backend.onrender.com/filme-a.jpg'
+        'https://images.example.test/filme-a.jpg'
     );
 
     fireEvent.click(closeButton);

@@ -2,6 +2,7 @@ import pesquisar from '../../../pesquisa.png'
 import './paginasCardsAva.css'
 import CarouselAva from './carouselAva'
 import { useState, useEffect } from 'react'
+import { apiRequest } from '../../../services/api'
 
 function PaginaCadsAva() {
 
@@ -14,19 +15,9 @@ function PaginaCadsAva() {
     useEffect(() => {
         async function buscarAvaliacoes() {
             try {
-                const resposta = await fetch(
-                    `https://lacstar-backend.onrender.com/avaliacao`
-                );
-
-                const resultado = await resposta.json();
-
-                if (!resposta.ok) {
-                    setErro(
-                        resultado.erro ||
-                        "Não foi possível buscar as avaliações."
-                    );
-                    return;
-                }
+                const resultado = await apiRequest("/avaliacao", {
+                    authenticated: false
+                });
 
                 if (!Array.isArray(resultado)) {
                     setErro("A resposta de avaliações está em formato inválido.");
@@ -36,7 +27,7 @@ function PaginaCadsAva() {
                 setErro("");
             } catch (erro) {
                 console.error("Erro ao buscar avaliação:", erro);
-                setErro("Erro ao conectar com o servidor.");
+                setErro(erro.message || "Erro ao conectar com o servidor.");
             } finally {
                 setCarregando(false);
             }

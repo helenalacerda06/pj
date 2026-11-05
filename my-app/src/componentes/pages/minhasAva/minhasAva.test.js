@@ -1,5 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { act, render, screen } from '@testing-library/react';
 import MinhasAva from './minhasAva';
+import { apiRequest } from '../../../services/api';
+import { observarAutenticacao } from '../../../firebase/auth';
 
 jest.mock('../../Header', () => () => null);
 jest.mock('../../Footer', () => () => null);
@@ -13,69 +16,61 @@ jest.mock('../cardsAva/carouselAva', () => function MockCarousel({ avaliacoes })
         )
     );
 });
+jest.mock('../../../services/api', () => ({ apiRequest: jest.fn() }));
+jest.mock('../../../firebase/auth', () => ({ observarAutenticacao: jest.fn() }));
 
-const fetchOriginal = global.fetch;
+let authCallback;
+
+beforeEach(() => {
+    authCallback = null;
+    observarAutenticacao.mockImplementation((callback) => {
+        authCallback = callback;
+        return jest.fn();
+    });
+});
 
 afterEach(() => {
-    global.fetch = fetchOriginal;
-    localStorage.clear();
     jest.clearAllMocks();
 });
 
-test('carrega apenas as avaliações do usuário identificado', async () => {
-    localStorage.setItem('id_usuario', '42');
-    global.fetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => [{ id: 8 }, { id: 3 }]
-    });
-
+async function renderWithUser(reviews) {
+    apiRequest.mockResolvedValue(reviews);
     render(<MinhasAva />);
+    await act(async () => authCallback({ uid: 'uid-a' }));
+}
+
+test('loads only authenticated user reviews', async () => {
+    await renderWithUser([{ id: 'review-a' }, { id: 'review-b' }]);
 
     expect(await screen.findAllByRole('listitem')).toHaveLength(2);
-    expect(global.fetch).toHaveBeenCalledWith(
-        'https://lacstar-backend.onrender.com/avaliacoes_usuarios/42'
-    );
+    expect(apiRequest).toHaveBeenCalledWith('/avaliacoes_usuario');
 });
 
-test('limita o carrossel pessoal às 15 avaliações mais recentes', async () => {
-    localStorage.setItem('id_usuario', '42');
-    global.fetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => Array.from({ length: 16 }, (_, index) => ({
-            id: 16 - index
-        }))
-    });
-
-    render(<MinhasAva />);
+test('limits the personal carousel to the 15 most recent reviews', async () => {
+    await renderWithUser(Array.from({ length: 16 }, (_, index) => ({
+        id: `review-${16 - index}`
+    })));
 
     const cards = await screen.findAllByRole('listitem');
     expect(cards).toHaveLength(15);
-    expect(cards[0].textContent).toBe('16');
-    expect(cards[14].textContent).toBe('2');
-    expect(cards.some((card) => card.textContent === '1')).toBe(false);
+    expect(cards[0].textContent).toBe('review-16');
+    expect(cards[14].textContent).toBe('review-2');
 });
 
-test('mostra o estado vazio quando o usuário não tem avaliações', async () => {
-    localStorage.setItem('id_usuario', '42');
-    global.fetch = jest.fn().mockResolvedValue({
-        ok: true,
-        json: async () => []
-    });
-
-    render(<MinhasAva />);
+test('shows an empty state when the authenticated user has no reviews', async () => {
+    await renderWithUser([]);
 
     expect(
         await screen.findByText('Você ainda não possui avaliações cadastradas.')
-    ).toBeTruthy();
+    ).toBeInTheDocument();
 });
 
-test('informa quando não há usuário identificado e não consulta a API', async () => {
-    global.fetch = jest.fn();
-
+test('does not request personal reviews without an authenticated user', async () => {
     render(<MinhasAva />);
+    await act(async () => authCallback(null));
 
-    expect(
-        (await screen.findByRole('alert')).textContent
-    ).toBe('Nenhum usuário está identificado.');
-    expect(global.fetch).not.toHaveBeenCalled();
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+        'Entre na sua conta para ver suas avaliações.'
+    );
+    expect(apiRequest).not.toHaveBeenCalled();
 });

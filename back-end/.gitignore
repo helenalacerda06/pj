@@ -1,2 +1,8 @@
 node_modules/
 *.db
+serviceAccountKey.json
+.env*
+!.env.example
+build/
+dist/
+*.log

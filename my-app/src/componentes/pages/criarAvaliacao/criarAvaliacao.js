@@ -7,6 +7,7 @@ import Footer from '../../Footer';
 import ButtoVoltar from '../../button/buttonVoltar'
 import './criarAvaliacao.css';
 import './visualizacaoAvaliacao/visualizacaoAvaliacao.css'
+import { apiRequest } from '../../../services/api';
 
 
 function CriarAvaliação() {
@@ -20,7 +21,6 @@ function CriarAvaliação() {
     const [estrelas, setEstrelas] = useState("");
     const [lancamento, setLancamento] = useState("")
     const [duracao, setDuracao] = useState("")
-    const idUsuario = localStorage.getItem("id_usuario");
     const [imagemPreview, setImagemPreview] = useState(null);
 
     useEffect(() => {
@@ -55,45 +55,14 @@ function CriarAvaliação() {
                 formulario.append("imagem", imagem);
             }
 
-            const resposta = await fetch(
-                "https://lacstar-backend.onrender.com/avaliacao",
-                {
-                    method: "POST",
-                    body: formulario
-                }
-            );
-
-            const dados = await resposta.json();
-
-            if (!resposta.ok) {
-                alert(dados.mensagem || dados.message || "Erro ao criar avaliação.");
-                return;
-            }
-
-            const relacionamento = await fetch(
-                "https://lacstar-backend.onrender.com/avaliacoes_usuario",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        id_usuario: idUsuario,
-                        id_avaliacao: dados.id_avaliacao,
-                        data_criacao: new Date().toISOString()
-                    })
-                }
-            );
-
-            if (!relacionamento.ok) {
-                alert("Avaliação criada, mas houve um erro ao vinculá-la ao usuário.");
-                return;
-            }
-
+            await apiRequest("/avaliacao", {
+                method: "POST",
+                body: formulario
+            });
             navigate("/home");
         } catch (erro) {
             console.error("Erro ao criar avaliação:", erro);
-            alert("Não foi possível conectar ao servidor.");
+            alert(erro.message || "Não foi possível salvar a avaliação.");
         }
     }
 
