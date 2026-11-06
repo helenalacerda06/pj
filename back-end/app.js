@@ -96,7 +96,7 @@ function createApp({
         });
     });
 
-    app.get("/usuarios/firebase", authenticateUser, async (req, res) => {
+    const obterPerfilFirebase = async (req, res) => {
         try {
             const perfil = await buscarPerfil(firestore, req.usuario.uid);
             if (!perfil) {
@@ -117,7 +117,9 @@ function createApp({
                 mensagem: "Não foi possível consultar o perfil."
             });
         }
-    });
+    };
+    app.get("/usuario/firebase", authenticateUser, obterPerfilFirebase);
+    app.get("/usuarios/firebase", authenticateUser, obterPerfilFirebase);
 
     app.get("/usuarios/:id", (request, response) => {
         const sql = `
@@ -356,12 +358,12 @@ function createApp({
         });
     });
 
-    app.post("/usuarios/firebase", authenticateUser, async (req, res) => {
+    const salvarPerfilFirebase = async (req, res) => {
         try {
             const perfil = await criarPerfil({
                 db: firestore,
                 fieldValue: admin.firestore.FieldValue,
-                usuario: req.usuarios,
+                usuario: req.usuario,
                 perfil: {
                     nome: req.body.nome,
                     aniversario: req.body.aniversario
@@ -384,7 +386,9 @@ function createApp({
                 mensagem: "Erro ao salvar usuário."
             });
         }
-    });
+    };
+    app.post("/usuario/firebase", authenticateUser, salvarPerfilFirebase);
+    app.post("/usuarios/firebase", authenticateUser, salvarPerfilFirebase);
 
     return app;
 }
