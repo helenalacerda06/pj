@@ -9,19 +9,19 @@ function Cadastro({ onCadastro }) {
     const navigate = useNavigate();
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
-    const [aniversario, setAniversario] = useState("");
+    const [data_nascimento, setData_nascimento] = useState("");
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
 
     async function Cadastrar(event) {
         event.preventDefault();
         try {
-             const resposta = await fetch("https://lacstar-backend.onrender.com/usuario", {
+             const resposta = await fetch("http://localhost:3001/usuarios", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ nome, email, aniversario, senha })
+                body: JSON.stringify({ nome, email, data_nascimento, senha })
             });
             const resultado = await resposta.json();
 
@@ -67,8 +67,8 @@ function Cadastro({ onCadastro }) {
                             id='aniversario'
                             type="date"
                             required
-                            value={aniversario}
-                            onChange={(event) => setAniversario(event.target.value)}
+                            value={data_nascimento}
+                            onChange={(event) => setData_nascimento(event.target.value)}
                         />
                         <label className='label' >E-mail</label>
                         <input
