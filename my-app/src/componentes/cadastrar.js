@@ -11,9 +11,13 @@ function Cadastro({ onCadastro }) {
     const [email, setEmail] = useState("");
     const [data_nascimento, setData_nascimento] = useState("");
     const [erro, setErro] = useState("");
+    const [carregando, setCarregando] = useState(false);
 
     async function Cadastrar(event) {
         event.preventDefault();
+        setErro("");
+        setCarregando(true);
+
         try {
              const resposta = await fetch("http://localhost:3001/usuarios", {
                 method: "POST",
@@ -35,6 +39,8 @@ function Cadastro({ onCadastro }) {
         } catch (erro) {
             console.error("Erro no cadastro:", erro);
             setErro("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
+        } finally{
+            setCarregando(false)
         }
     }
 
@@ -87,8 +93,8 @@ function Cadastro({ onCadastro }) {
                             type='password'
                         />
                         <div className='buttons'>
-                            <button className='buttonCa' type='submit' id='buttonCadastrar'  >
-                            Cadastrar
+                            <button className='buttonCa' type='submit' disable={carregando}>
+                            {carregando ? "Carregando..." : "Cadastrar"}
                         </button>
                         <nav className='buttonLo'>
                             <Link to="/login" className='buttonLo'>Já tenho uma conta</Link>

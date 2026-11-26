@@ -9,11 +9,14 @@ function Login({ onLogin }) {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [carregando, setCarregando] = useState(false);
     const [erro, setErro] = useState("");
 
     async function fazerLogin(event) {
 
         event.preventDefault();
+        setErro("");
+        setCarregando(true);
         try {
               const resposta = await fetch("https://lacstar-backend.onrender.com/login",
                 {
@@ -47,6 +50,8 @@ function Login({ onLogin }) {
         } catch (erro) {
             console.error("Erro no login:", erro);
             setErro("Não foi possível conectar ao servidor. Verifique se a API está iniciada.");
+        } finally {
+            setCarregando(false);
         }
     }
 
@@ -79,8 +84,8 @@ function Login({ onLogin }) {
                     />
 
 
-                    <button className='button' type='submit' id='buttonLogar'  >
-                        Login
+                    <button className='button' type='submit' disabled={carregando}>
+                        {carregando ? "Carregando..." : "Logar"}
                     </button>
                 </form>
             </div>

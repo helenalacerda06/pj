@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "swiper": "^14.3.0"
+    "motion": "^14.4.0"
   }
 }
