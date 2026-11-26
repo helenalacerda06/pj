@@ -59,6 +59,11 @@
     background: transparent;
 }
 
+.cardss{
+    color: #6c676c;
+    font-family: sans-serif;
+}
+
 .carouselButtonDireita {
     height: 50px;
     width: 50px;

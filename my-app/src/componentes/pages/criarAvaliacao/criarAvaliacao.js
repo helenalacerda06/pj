@@ -56,7 +56,7 @@ function CriarAvaliação() {
             }
 
             const resposta = await fetch(
-                "https://lacstar-backend.onrender.com/avaliacao",
+                "https://localhost:3001/avaliacoes",
                 {
                     method: "POST",
                     body: formulario
@@ -71,7 +71,7 @@ function CriarAvaliação() {
             }
 
             const relacionamento = await fetch(
-                "https://lacstar-backend.onrender.com/avaliacoes_usuario",
+                "https://localhost:3001",
                 {
                     method: "POST",
                     headers: {
@@ -216,7 +216,7 @@ function CriarAvaliação() {
                             <h1 className="tituloVisualizacao">{nome}</h1>
                             {nome === "" && <h1 className='tituloVisualizacaoNull'>Nome da Obra</h1>}
                             <section className='areaImagem'>
-                                {imagemPreview && (<img className="imagemAvaliacao" src={imagemPreview} alt="Imagem da avaliação"/>)}
+                                {imagemPreview && (<img className="imagemAvaliacao" src={imagemPreview} alt="Imagem da avaliação" />)}
                                 {!imagemPreview && (<h3 className="imagemAvaliacaoNull">Área do banner</h3>)}
 
                                 {categoria !== "" && <p className='categoria'>Categoria: {categoria}</p>}
