@@ -101,14 +101,8 @@
 .visualizacaoWrapper {
     display: flex;
     flex-direction: column;
-    background: transparent;
-
-}
-
-.visualizacaoWrapper {
-    display: flex;
-    flex-direction: column;
-    background: transparent;
+    background: transparent
+    
 }
 
 @media(max-width: 600px) {

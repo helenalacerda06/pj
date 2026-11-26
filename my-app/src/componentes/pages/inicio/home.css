@@ -106,6 +106,8 @@ body {
 @media (max-width:600px){
     .home{
         display: block;
+        width: auto;
+        height:auto
     }
     .primeiro{
         align-items: center;

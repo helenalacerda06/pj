@@ -6,7 +6,7 @@
 
 ## Summary
 
-Completar o carrossel de avaliações públicas para mostrar quatro cards por vez, com páginas de até 15 avaliações, ordenadas das mais recentes para as mais antigas. Reutilizar o Swiper e o endpoint público existente; buscar a lista uma vez quando a tela é carregada e navegar sobre essa cópia em memória, sem novas buscas durante a navegação. O recarregamento da página inicia uma nova busca.
+Completar o carrossel de avaliações públicas para mostrar até quatro cards por vez (com adaptação a telas menores) e limitar o conjunto do carrossel às 15 avaliações mais recentes. Reutilizar o Swiper e o endpoint público existente; buscar a lista uma vez quando a tela é carregada e navegar sobre essa cópia em memória, sem novas buscas durante a navegação. O recarregamento da página inicia uma nova busca. O acesso às avaliações excedentes por uma página separada fica fora do escopo atual.
 
 ## Technical Context
 
@@ -22,11 +22,11 @@ Completar o carrossel de avaliações públicas para mostrar quatro cards por ve
 
 **Project Type**: Aplicação web com frontend e API backend existentes.
 
-**Performance Goals**: Mostrar quatro cards simultaneamente quando houver pelo menos quatro na página atual; carregar a lista uma vez por montagem da tela e não fazer novas requisições ao navegar.
+**Performance Goals**: Mostrar até quatro cards simultaneamente conforme a largura da tela; limitar o carrossel às 15 avaliações mais recentes; carregar a lista uma vez por montagem da tela e não fazer novas requisições ao navegar.
 
-**Constraints**: No máximo 15 avaliações por página; ordenar as avaliações da mais recente para a mais antiga; preservar a biblioteca e a API existentes; os controles devem funcionar por teclado e manter legibilidade.
+**Constraints**: No máximo 15 avaliações no carrossel; ordenar as avaliações da mais recente para a mais antiga; preservar a biblioteca e a API existentes; os controles devem funcionar por teclado e manter legibilidade.
 
-**Scale/Scope**: Avaliações públicas na página de cards, navegação de carrossel e paginação. Não inclui edição, exclusão, busca ou mudança nas avaliações do usuário.
+**Scale/Scope**: Avaliações públicas na página de cards, navegação do carrossel e limite às 15 avaliações mais recentes. Não inclui página para avaliações excedentes, edição, exclusão, busca ou mudança nas avaliações do usuário.
 
 ## Constitution Check
 
@@ -34,9 +34,9 @@ Completar o carrossel de avaliações públicas para mostrar quatro cards por ve
 
 - **Approved Technology Stack**: PASS — permanece em React no frontend, Node/Express no backend e SQLite para dados persistentes; não requer mudança de stack nem esquema.
 - **Clear Responsibility and Reuse**: PASS — reaproveita `CarouselAva`, `cardsMaisAva`, Swiper e o endpoint público `GET /avaliacao`; as mudanças ficam no fluxo atual de cards.
-- **Accessible, Legible Interface**: PASS — os controles de avanço, retorno e paginação devem ter nomes acessíveis, foco visível e operação por teclado, preservando o estilo e contraste atuais.
+- **Accessible, Legible Interface**: PASS — os controles de avanço e retorno do carrossel devem ter nomes acessíveis, foco visível e operação por teclado, preservando o estilo e contraste atuais.
 - **Safe Backend and Behavior Preservation**: PASS — não introduz entrada de backend nem altera endpoints; estados vazio e de erro devem permanecer distintos e explícitos.
-- **Simplicity and Maintainability**: PASS — paginação em memória evita novo endpoint, estado duplicado no servidor ou persistência desnecessária.
+- **Simplicity and Maintainability**: PASS — limitar a lista em memória evita novo endpoint, estado duplicado no servidor ou persistência desnecessária.
 
 No constitution violations identified.
 
