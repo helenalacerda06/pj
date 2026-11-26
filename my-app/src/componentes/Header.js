@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
 
-  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [nome_usuario, setNomeUsuario] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
@@ -21,11 +21,11 @@ function Header() {
 
     async function buscarUsuario() {
 
-      const idUsuario =
+      const id_usuario =
         localStorage.getItem("id_usuario");
       try {
         const resposta = await fetch(
-          `https://lacstar-backend.onrender.com/usuario/${idUsuario}`
+          `https://localhost:3001/usuario/${id_usuario}`
         );
 
         const usuario = await resposta.json();
@@ -47,7 +47,7 @@ function Header() {
   return (
     <header className="header">
       <img src={Logo} alt="Logo" className="header-logo" />
-      <h3 className='nomeUsuario'> {nomeUsuario} \ {email}</h3>
+      <h3 className='nome_usuario'> {nome_usuario} \ {email}</h3>
       <nav>
         <button className="buttonHeader" onClick={irParaHome}>
           Início

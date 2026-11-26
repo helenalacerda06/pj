@@ -9,8 +9,7 @@ function Cadastro({ onCadastro }) {
     const navigate = useNavigate();
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
-    const [aniversario, setAniversario] = useState("");
-    const [senha, setSenha] = useState("");
+    const [data_nascimento, setData_nascimento] = useState("");
     const [erro, setErro] = useState("");
     const [carregando, setCarregando] = useState(false);
 
@@ -20,12 +19,12 @@ function Cadastro({ onCadastro }) {
         setCarregando(true);
 
         try {
-             const resposta = await fetch("https://lacstar-backend.onrender.com/usuario", {
+             const resposta = await fetch("http://localhost:3001/usuarios", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ nome, email, aniversario, senha })
+                body: JSON.stringify({ nome, email, data_nascimento })
             });
             const resultado = await resposta.json();
 
@@ -35,7 +34,7 @@ function Cadastro({ onCadastro }) {
             }
 
             localStorage.setItem("id_usuario", resultado.id);
-            localStorage.setItem("nomeUsuario", nome);
+            localStorage.setItem("nome_usuario", nome);
             navigate("/home");
         } catch (erro) {
             console.error("Erro no cadastro:", erro);
@@ -73,8 +72,8 @@ function Cadastro({ onCadastro }) {
                             id='aniversario'
                             type="date"
                             required
-                            value={aniversario}
-                            onChange={(event) => setAniversario(event.target.value)}
+                            value={data_nascimento}
+                            onChange={(event) => setData_nascimento(event.target.value)}
                         />
                         <label className='label' >E-mail</label>
                         <input
@@ -92,9 +91,6 @@ function Cadastro({ onCadastro }) {
                             placeholder='Digite uma senha'
                             id='senha'
                             type='password'
-                            required
-                            value={senha}
-                            onChange={(event) => setSenha(event.target.value)}
                         />
                         <div className='buttons'>
                             <button className='buttonCa' type='submit' disable={carregando}>
