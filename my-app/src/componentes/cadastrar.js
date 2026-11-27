@@ -10,6 +10,7 @@ function Cadastro({ onCadastro }) {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [data_nascimento, setData_nascimento] = useState("");
+    const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
     const [carregando, setCarregando] = useState(false);
 
@@ -24,7 +25,7 @@ function Cadastro({ onCadastro }) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ nome, email, data_nascimento })
+                body: JSON.stringify({ nome, email, data_nascimento, senha })
             });
             const resultado = await resposta.json();
 
@@ -91,9 +92,12 @@ function Cadastro({ onCadastro }) {
                             placeholder='Digite uma senha'
                             id='senha'
                             type='password'
+                            required
+                            value={senha}
+                            onChange={(event) => setSenha(event.target.value)}
                         />
                         <div className='buttons'>
-                            <button className='buttonCa' type='submit' disable={carregando}>
+                            <button className='buttonCa' type='submit' disabled={carregando}>
                             {carregando ? "Carregando..." : "Cadastrar"}
                         </button>
                         <nav className='buttonLo'>

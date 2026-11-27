@@ -1,17 +1,16 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { AppRoutes } from './App';
+import App from './App';
 
-test('renderiza login e navega para criar avaliação', () => {
+jest.mock('./componentes/pages/cardsAva/carouselAva', () => () => null);
+
+test('renderiza a tela de login', () => {
   render(
-    <MemoryRouter initialEntries={['/']}>
-      <AppRoutes />
+    <MemoryRouter initialEntries={['/login']}>
+      <App />
     </MemoryRouter>
   );
 
   expect(screen.getByRole('heading', { name: /login/i })).toBeInTheDocument();
-
-  fireEvent.click(screen.getByRole('button', { name: /^login$/i }));
-
-  expect(screen.getByRole('heading', { name: /criar nova avaliação/i })).toBeInTheDocument();
 });

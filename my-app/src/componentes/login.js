@@ -18,7 +18,7 @@ function Login({ onLogin }) {
         setErro("");
         setCarregando(true);
         try {
-              const resposta = await fetch("https://lacstar-backend.onrender.com/login",
+              const resposta = await fetch("http://localhost:3001/login",
                 {
                     method: "POST",
                     headers: {
@@ -39,7 +39,7 @@ function Login({ onLogin }) {
                     "id_usuario",
                     usuario.id
                 );
-                localStorage.setItem("nomeUsuario", usuario.nome);
+                localStorage.setItem("nome_usuario", usuario.nome);
 
                 navigate("/home");
 

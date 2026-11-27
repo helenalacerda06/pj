@@ -13,7 +13,7 @@ Follow-up TODOs: Confirm the original ratification date.
 
 ### I. Approved Technology Stack
 The frontend MUST use React. The backend MUST use Node.js with Express, and persistent
-application data MUST use SQLite. Contributors MUST follow these choices and the
+application data MUST use MySQL. Contributors MUST follow these choices and the
 technologies already used by the project unless an amendment explicitly authorizes a
 change. This keeps the system coherent and maintainable.
 
@@ -44,7 +44,7 @@ MUST be documented with the change.
 
 ## Technical Constraints
 
-The frontend is React; the backend is Node.js with Express; and the database is SQLite.
+The frontend is React; the backend is Node.js with Express; and the database is MySQL.
 Data crossing the backend boundary MUST be validated, and errors MUST be handled
 explicitly. User-facing changes MUST preserve accessibility and the project's pastel-pink
 visual direction without sacrificing contrast or readability.
@@ -74,4 +74,5 @@ and maintainer approval in the change record. If project practice conflicts with
 constitution, the conflict MUST be raised for resolution before the affected change is
 approved.
 
-**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): original adoption date unknown | **Last Amended**: 2026-10-15
+**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): original adoption date unknown | **Last Amended**: 2026-11-27
+**Impact Summary**: Corrected the persistent database requirement from SQLite to MySQL to match the existing Express/MySQL project implementation.
