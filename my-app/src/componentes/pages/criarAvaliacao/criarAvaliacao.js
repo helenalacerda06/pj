@@ -42,21 +42,21 @@ function CriarAvaliação() {
         try {
             const formulario = new FormData();
 
-            formulario.append("categoria", categoria);
-            formulario.append("nome", nome);
-            formulario.append("descricao", descricao);
-            formulario.append("feedback", feedback);
-            formulario.append("principais_pontos", principais_pontos);
-            formulario.append("lancamento", lancamento);
-            formulario.append("duracao", duracao);
-            formulario.append("estrelas", String(estrelas));
+            formulario.append("categoria_avaliacao", categoria);
+            formulario.append("nome_avaliacao", nome);
+            formulario.append("descricao_avaliacao", descricao);
+            formulario.append("feedback_avaliacao", feedback);
+            formulario.append("principais_pontos_avaliacao", principais_pontos);
+            formulario.append("lancamento_avaliacao", lancamento);
+            formulario.append("tempo_duracao_avaliacao", duracao);
+            formulario.append("estrelas_avaliacao", String(estrelas));
 
             if (imagem) {
-                formulario.append("imagem", imagem);
+                formulario.append("imagens_avaliacao", imagem);
             }
 
             const resposta = await fetch(
-                "https://localhost:3001/avaliacoes",
+                "http://localhost:3001/avaliacoes",
                 {
                     method: "POST",
                     body: formulario
@@ -71,7 +71,7 @@ function CriarAvaliação() {
             }
 
             const relacionamento = await fetch(
-                "https://localhost:3001",
+                "http://localhost:3001",
                 {
                     method: "POST",
                     headers: {

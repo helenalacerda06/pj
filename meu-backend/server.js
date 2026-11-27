@@ -2,17 +2,21 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const cors = require('cors');
 const crypto = require('crypto');
+const multer = require('multer');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const upload = multer({
+  dest: 'uploads/'
+});
 
 const pool = mysql.createPool({
   host: '127.0.0.1',
   port: 3306,
   user: 'root',
   database: 'lacStar',
-  
   dateStrings: true
 });
 
@@ -108,27 +112,75 @@ app.post('/login', async (req, res) => {
 });
 
 // criar avaliações
-app.post('/avaliacoes', async (req, res) => {
-  try {
-    const { categoria_avaliacao, nome_avaliacao, descricao_avaliacao, feedback_avaliacao, principais_pontos_avaliacao, imagens_avaliacao, lancamento_avaliacao, tempo_duracao_avaliacao, estrelas_avaliacao } = req.body;
-    if (!nome_avaliacao || !descricao_avaliacao || !feedback_avaliacao || !principais_pontos_avaliacao || !imagens_avaliacao || !estrelas_avaliacao) {
-      return res.status(400).json({ erro: '' })
+app.post('/avaliacoes', upload.single('imagens_avaliacao'), async (req, res) => {
+    try {
+        const {
+            categoria_avaliacao,
+            nome_avaliacao,
+            descricao_avaliacao,
+            feedback_avaliacao,
+            principais_pontos_avaliacao,
+            lancamento_avaliacao,
+            tempo_duracao_avaliacao,
+            estrelas_avaliacao
+        } = req.body;
+
+        const imagens_avaliacao = req.file
+            ? req.file.filename
+            : null;
+
+        if (!nome_avaliacao || !descricao_avaliacao ||
+            !feedback_avaliacao || !principais_pontos_avaliacao ||
+            !estrelas_avaliacao) {
+
+            return res.status(400).json({
+                erro: 'Preencha os campos obrigatórios.'
+            });
+        }
+
+        const [result] = await pool.query(
+    `INSERT INTO avaliacoes (
+        categoria_avaliacao,
+        nome_avaliacao,
+        descricao_avaliacao,
+        feedback_avaliacao,
+        principais_pontos_avaliacao,
+        imagens_avaliacao,
+        lancamento_avaliacao,
+        tempo_duracao_avaliacao,
+        estrelas_avaliacao
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+        categoria_avaliacao,
+        nome_avaliacao,
+        descricao_avaliacao,
+        feedback_avaliacao,
+        principais_pontos_avaliacao,
+        imagens_avaliacao,
+        lancamento_avaliacao || null,
+        tempo_duracao_avaliacao || null,
+        estrelas_avaliacao
+    ]
+);
+
+        res.status(201).json({
+            mensagem: 'Avaliação criada com sucesso!',
+            id_avaliacao: result.insertId
+        });
+
+    } catch (erro) {
+        console.error('Erro ao criar avaliação:', erro);
+
+        res.status(500).json({
+            erro: 'Erro ao criar avaliação'
+        });
     }
-    const [result] = await pool.query(
-      'INSERT INTO avaliacao (categoria_avaliacao, nome_avaliacao, descricao_avaliacao, feedback_avaliacao, principais_pontos_avaliacao, imagens_avaliacao, lancamento_avaliacao, tempo_duracao_avaliacao, estrelas_avaliacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [categoria_avaliacao, nome_avaliacao, descricao_avaliacao, feedback_avaliacao, principais_pontos_avaliacao, imagens_avaliacao, lancamento_avaliacao, tempo_duracao_avaliacao, estrelas_avaliacao || null]
-    )
-    res.status(201).json({ id_avaliacao: result.insertId, categoria_avaliacao, nome_avaliacao, descricao_avaliacao, feedback_avaliacao, principais_pontos_avaliacao, imagens_avaliacao, lancamento_avaliacao, tempo_duracao_avaliacao, estrelas_avaliacao })
-  } catch (erro) {
-    console.log(erro);
-    res.status(500).json({ erro: 'Erro ao criar avaliação' })
-  }
-})
+});
 
 //buscar avaliações
-app.get('/avaliacao', async (req, res) => {
+app.get('/avaliacoes', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT * FROM avaliacao');
+    const [rows] = await pool.query('SELECT * FROM avaliacoes');
     res.status(200).json(rows);
   } catch (erro) {
     console.error(erro);
